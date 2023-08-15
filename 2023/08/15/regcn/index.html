@@ -414,55 +414,55 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093646041.png" alt="image-20230815093646041"></p>
+                <p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093646041.png" alt="image-20230815093646041"></p>
 <p>考虑 KG 中并发事实之间的结构依赖关系、跨时间相邻事实的顺序模式和实体的静态属性。</p>
 <p>考虑了所有的依赖关系</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093658500.png" alt="image-20230815093658500"></p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093704195.png" alt="image-20230815093704195"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093658500.png" alt="image-20230815093658500"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093704195.png" alt="image-20230815093704195"></p>
 <p>在时间t有指向的多关系图，V指实体集合，R表示关系，😱</p>
 <p>剩下的表示在时间t的事实集合，他可以用4元组来表示</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093715372.png" alt="image-20230815093715372"></p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093718556.png" alt="image-20230815093718556"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093715372.png" alt="image-20230815093715372"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093718556.png" alt="image-20230815093718556"></p>
 <p>其中的意思就是这就是一个事实，即一个关系为r的事实，什么事实呢，就是s和o在t时刻的事实</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093733148.png" alt="image-20230815093733148"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093733148.png" alt="image-20230815093733148"></p>
 <p>实体预测 (𝑠, 𝑟, ?, 𝑡 +1) (？, 𝑟, o, 𝑡 +1)</p>
 <p>关系预测 (𝑠, ？, o, 𝑡 +1)</p>
 <p>预测的取决于下面的</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093742981.png" alt="image-20230815093742981"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093742981.png" alt="image-20230815093742981"></p>
 <p>Ht和Rt  用到实体和关系在t时刻的嵌入矩阵</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093752542.png" alt="image-20230815093752542"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093752542.png" alt="image-20230815093752542"></p>
 <h1 id="REGCN-MODEL"><a href="#REGCN-MODEL" class="headerlink" title="REGCN MODEL"></a><strong>REGCN MODEL</strong></h1><p>RE-GCN 在每个时间戳、跨时间相邻事实的信息顺序模式和实体的静态属性集成到实体和关系的进化表示中。</p>
 <p>多任务评分函数，</p>
 <h2 id="The-Evolution-Unit"><a href="#The-Evolution-Unit" class="headerlink" title="The Evolution Unit"></a><strong>The Evolution Unit</strong></h2><p>The evolution unit consists of a relation-aware GCN, two gate recurrent components, and a static graph constraint component.</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093814931.png" alt="image-20230815093814931"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093814931.png" alt="image-20230815093814931"></p>
 <p>a relation-aware GCN：attempts to capture the structural dependencies within the KG at each timestamp.</p>
 <p>two gate recurrent components：model the historical KG sequence auto-regressively.</p>
 <p>a static graph constraint component：integrates the static properties to the evolutional embeddings by adding some constraints between static embeddings and evolutional embeddings of entities.  将静态属性集成到进化嵌入中。</p>
 <p>（具体来说，时间门循环组件和 GRU 组件相应地获得每个时间戳实体和关系的演变表示。）</p>
-<h3 id="并发事实之间的结构依赖性"><a href="#并发事实之间的结构依赖性" class="headerlink" title="并发事实之间的结构依赖性"></a>并发事实之间的结构依赖性</h3><p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093824119.png" alt="image-20230815093824119"></p>
-<p>$$<br>\vec{h}<em>{o,t}^{l+1}&#x3D;f\Bigg(\frac{1}{c</em>{o}}\sum_{(s,r),\exists(s,r,o)\in\mathcal{E}<em>{t}}\mathbf{W}</em>{1}^{l}(\vec{h}<em>{s,t}^{l}+\vec{r}</em>{t})+\mathbf{W}<em>{2}^{l}\vec{h}</em>{o,t}^{l}\Bigg),<br>$$<br><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093831448.png" alt="image-20230815093831448"></p>
+<h3 id="并发事实之间的结构依赖性"><a href="#并发事实之间的结构依赖性" class="headerlink" title="并发事实之间的结构依赖性"></a>并发事实之间的结构依赖性</h3><p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093824119.png" alt="image-20230815093824119"></p>
+<p>$$<br>\vec{h}<em>{o,t}^{l+1}&#x3D;f\Bigg(\frac{1}{c</em>{o}}\sum_{(s,r),\exists(s,r,o)\in\mathcal{E}<em>{t}}\mathbf{W}</em>{1}^{l}(\vec{h}<em>{s,t}^{l}+\vec{r}</em>{t})+\mathbf{W}<em>{2}^{l}\vec{h}</em>{o,t}^{l}\Bigg),<br>$$<br><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093831448.png" alt="image-20230815093831448"></p>
 <h3 id="时间相邻事实的顺序模式"><a href="#时间相邻事实的顺序模式" class="headerlink" title="时间相邻事实的顺序模式"></a>时间相邻事实的顺序模式</h3><p>包含时间相邻事实信息的一种直接有效的方法是使用输出实体嵌入矩阵</p>
 <p>$$<br>\vec{h}_{o,t-1}^\omega,<br>$$<br>建模这个t-1时刻的相邻事实</p>
 <p>潜在的顺序模式是通过堆叠层关系感知 GCN 来建模的。</p>
 <p>可能会导致梯度消失问题，因此采用时间门控循环来解决问题</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815093834678.png" alt="image-20230815093834678"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093834678.png" alt="image-20230815093834678"></p>
 <p>当前时间戳实体嵌入矩阵和上一个时间戳的</p>
 <p>$$<br>\mathrm{U}_t&#x3D;\sigma(\mathrm{W}<em>4\mathrm{H}</em>{t-1}+\mathrm{b}),\quad\quad\quad\quad\quad(5)<br>$$<br>𝜎 (·) is the sigmoid function and W4 ∈ R𝑑×𝑑 is the weight matrix of the time gate.</p>
 <p>因为是不断进化的，所以关系矩阵又会有变化</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815103448818.png" alt="image-20230815103448818"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103448818.png" alt="image-20230815103448818"></p>
 <p>当前timestamp嵌入的关系矩阵收到之前关联实体的影响，因此采用 GRU 组件对关系的顺序模式进行建模。</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815103456664.png" alt="image-20230815103456664"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103456664.png" alt="image-20230815103456664"></p>
 <p>实体嵌入矩阵Ht-1</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815103502512.png" alt="image-20230815103502512"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103502512.png" alt="image-20230815103502512"></p>
 <h3 id="Static-Properties"><a href="#Static-Properties" class="headerlink" title="Static Properties"></a><strong>Static Properties</strong></h3><p>构成静态图的实体的一些静态属性可以看作是TKG的背景知识，有助于模型学习更准确的实体演化表示。因此，我们将静态图合并到进化表示的建模中。、</p>
 <p>R-GCN  可以对多关系图进行建模，而无需对关系进行任何额外的嵌入。因此，我们采用没有自循环的 1 层 R-GCN  来获得 TKG 中实体的静态嵌入。</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815103528969.png" alt="image-20230815103528969"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103528969.png" alt="image-20230815103528969"></p>
 <p>我们将进化嵌入和同一实体的静态嵌入之间的角度限制在不超过时间戳相关阈值。随着时间的推移，它会增加，因为实体的进化嵌入的允许变量范围会随着出现越来越多的事实而持续扩展。</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815103535649.png" alt="image-20230815103535649"></p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815103538544.png" alt="image-20230815103538544"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103535649.png" alt="image-20230815103535649"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103538544.png" alt="image-20230815103538544"></p>
 <h2 id="Score-Functions-for-Different-Tasks"><a href="#Score-Functions-for-Different-Tasks" class="headerlink" title="Score Functions for Different Tasks"></a><strong>Score Functions for Different Tasks</strong></h2><p>选择ConvTransE[30]作为我们的解码器。ConvTransE 包含一个一维卷积层和一个全连接层。我们使用 ConvTransE (·) 来表示这两个层。然后，所有实体的概率向量为：</p>
-<p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815103555609.png" alt="image-20230815103555609"></p>
-<h2 id="Parameter-Learning"><a href="#Parameter-Learning" class="headerlink" title="Parameter Learning"></a><strong>Parameter Learning</strong></h2><p><img src="/2023/08/15/re-gcn/RE-GCN%5Cimage-20230815103621962.png" alt="image-20230815103621962"></p>
+<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103555609.png" alt="image-20230815103555609"></p>
+<h2 id="Parameter-Learning"><a href="#Parameter-Learning" class="headerlink" title="Parameter Learning"></a><strong>Parameter Learning</strong></h2><p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103621962.png" alt="image-20230815103621962"></p>
 <p>关键： 可以更好的进化嵌入实体和关系矩阵</p>
 <p>时间门控循环组件的必要性</p>
 
