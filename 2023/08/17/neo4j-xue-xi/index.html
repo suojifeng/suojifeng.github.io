@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="RE-GCN, 索时">
-    <meta name="description" content="REGCN论文学习">
+    <meta name="keywords" content="neo4j学习, 索时">
+    <meta name="description" content="neo4j初见">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>RE-GCN | 索时</title>
+    <title>neo4j学习 | 索时</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
     
 
@@ -38,7 +38,9 @@
 
 
 
+    <link rel="stylesheet" href="../../../../libs/tocbot/tocbot.css">
     <link rel="stylesheet" href="../../../../css/post.css">
+
 
 
 
@@ -333,12 +335,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">RE-GCN</h1>
+                    <h1 class="description center-align post-title">neo4j学习</h1>
                 </div>
             </div>
         </div>
@@ -348,10 +350,12 @@
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -360,16 +364,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/KG/">
-                                <span class="chip bg-color">KG</span>
+                            <a href="../../../../tags/knowledgeGraphs/">
+                                <span class="chip bg-color">knowledgeGraphs</span>
                             </a>
                         
-                            <a href="../../../../tags/Typora/">
-                                <span class="chip bg-color">Typora</span>
+                            <a href="../../../../tags/neo4j/">
+                                <span class="chip bg-color">neo4j</span>
                             </a>
                         
-                            <a href="../../../../tags/Markdown/">
-                                <span class="chip bg-color">Markdown</span>
+                            <a href="../../../../tags/java/">
+                                <span class="chip bg-color">java</span>
                             </a>
                         
                     </div>
@@ -380,8 +384,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../categories/temporal-KG/" class="post-category">
-                                temporal KG
+                            <a href="../../../../categories/neo4j/" class="post-category">
+                                neo4j
                             </a>
                         
                     </div>
@@ -393,7 +397,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-08-15
+                    2023-08-17
                 </div>
                 
 
@@ -414,57 +418,95 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093646041.png" alt="image-20230815093646041"></p>
-<p>考虑 KG 中并发事实之间的结构依赖关系、跨时间相邻事实的顺序模式和实体的静态属性。</p>
-<p>考虑了所有的依赖关系</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093658500.png" alt="image-20230815093658500"></p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093704195.png" alt="image-20230815093704195"></p>
-<p>在时间t有指向的多关系图，V指实体集合，R表示关系，😱</p>
-<p>剩下的表示在时间t的事实集合，他可以用4元组来表示</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093715372.png" alt="image-20230815093715372"></p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093718556.png" alt="image-20230815093718556"></p>
-<p>其中的意思就是这就是一个事实，即一个关系为r的事实，什么事实呢，就是s和o在t时刻的事实</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093733148.png" alt="image-20230815093733148"></p>
-<p>实体预测 (𝑠, 𝑟, ?, 𝑡 +1) (？, 𝑟, o, 𝑡 +1)</p>
-<p>关系预测 (𝑠, ？, o, 𝑡 +1)</p>
-<p>预测的取决于下面的</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093742981.png" alt="image-20230815093742981"></p>
-<p>Ht和Rt  用到实体和关系在t时刻的嵌入矩阵</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093752542.png" alt="image-20230815093752542"></p>
-<h1 id="REGCN-MODEL"><a href="#REGCN-MODEL" class="headerlink" title="REGCN MODEL"></a><strong>REGCN MODEL</strong></h1><p>RE-GCN 在每个时间戳、跨时间相邻事实的信息顺序模式和实体的静态属性集成到实体和关系的进化表示中。</p>
-<p>多任务评分函数，</p>
-<h2 id="The-Evolution-Unit"><a href="#The-Evolution-Unit" class="headerlink" title="The Evolution Unit"></a><strong>The Evolution Unit</strong></h2><p>The evolution unit consists of a relation-aware GCN, two gate recurrent components, and a static graph constraint component.</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093814931.png" alt="image-20230815093814931"></p>
-<p>a relation-aware GCN：attempts to capture the structural dependencies within the KG at each timestamp.</p>
-<p>two gate recurrent components：model the historical KG sequence auto-regressively.</p>
-<p>a static graph constraint component：integrates the static properties to the evolutional embeddings by adding some constraints between static embeddings and evolutional embeddings of entities.  将静态属性集成到进化嵌入中。</p>
-<p>（具体来说，时间门循环组件和 GRU 组件相应地获得每个时间戳实体和关系的演变表示。）</p>
-<h3 id="并发事实之间的结构依赖性"><a href="#并发事实之间的结构依赖性" class="headerlink" title="并发事实之间的结构依赖性"></a>并发事实之间的结构依赖性</h3><p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093824119.png" alt="image-20230815093824119"></p>
-<p>$$<br>\vec{h}<em>{o,t}^{l+1}&#x3D;f\Bigg(\frac{1}{c</em>{o}}\sum_{(s,r),\exists(s,r,o)\in\mathcal{E}<em>{t}}\mathbf{W}</em>{1}^{l}(\vec{h}<em>{s,t}^{l}+\vec{r}</em>{t})+\mathbf{W}<em>{2}^{l}\vec{h}</em>{o,t}^{l}\Bigg),<br>$$<br><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093831448.png" alt="image-20230815093831448"></p>
-<h3 id="时间相邻事实的顺序模式"><a href="#时间相邻事实的顺序模式" class="headerlink" title="时间相邻事实的顺序模式"></a>时间相邻事实的顺序模式</h3><p>包含时间相邻事实信息的一种直接有效的方法是使用输出实体嵌入矩阵</p>
-<p>$$<br>\vec{h}_{o,t-1}^\omega,<br>$$<br>建模这个t-1时刻的相邻事实</p>
-<p>潜在的顺序模式是通过堆叠层关系感知 GCN 来建模的。</p>
-<p>可能会导致梯度消失问题，因此采用时间门控循环来解决问题</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815093834678.png" alt="image-20230815093834678"></p>
-<p>当前时间戳实体嵌入矩阵和上一个时间戳的</p>
-<p>$$<br>\mathrm{U}_t&#x3D;\sigma(\mathrm{W}<em>4\mathrm{H}</em>{t-1}+\mathrm{b}),\quad\quad\quad\quad\quad(5)<br>$$<br>𝜎 (·) is the sigmoid function and W4 ∈ R𝑑×𝑑 is the weight matrix of the time gate.</p>
-<p>因为是不断进化的，所以关系矩阵又会有变化</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103448818.png" alt="image-20230815103448818"></p>
-<p>当前timestamp嵌入的关系矩阵收到之前关联实体的影响，因此采用 GRU 组件对关系的顺序模式进行建模。</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103456664.png" alt="image-20230815103456664"></p>
-<p>实体嵌入矩阵Ht-1</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103502512.png" alt="image-20230815103502512"></p>
-<h3 id="Static-Properties"><a href="#Static-Properties" class="headerlink" title="Static Properties"></a><strong>Static Properties</strong></h3><p>构成静态图的实体的一些静态属性可以看作是TKG的背景知识，有助于模型学习更准确的实体演化表示。因此，我们将静态图合并到进化表示的建模中。、</p>
-<p>R-GCN  可以对多关系图进行建模，而无需对关系进行任何额外的嵌入。因此，我们采用没有自循环的 1 层 R-GCN  来获得 TKG 中实体的静态嵌入。</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103528969.png" alt="image-20230815103528969"></p>
-<p>我们将进化嵌入和同一实体的静态嵌入之间的角度限制在不超过时间戳相关阈值。随着时间的推移，它会增加，因为实体的进化嵌入的允许变量范围会随着出现越来越多的事实而持续扩展。</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103535649.png" alt="image-20230815103535649"></p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103538544.png" alt="image-20230815103538544"></p>
-<h2 id="Score-Functions-for-Different-Tasks"><a href="#Score-Functions-for-Different-Tasks" class="headerlink" title="Score Functions for Different Tasks"></a><strong>Score Functions for Different Tasks</strong></h2><p>选择ConvTransE[30]作为我们的解码器。ConvTransE 包含一个一维卷积层和一个全连接层。我们使用 ConvTransE (·) 来表示这两个层。然后，所有实体的概率向量为：</p>
-<p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103555609.png" alt="image-20230815103555609"></p>
-<h2 id="Parameter-Learning"><a href="#Parameter-Learning" class="headerlink" title="Parameter Learning"></a><strong>Parameter Learning</strong></h2><p><img src="/2023/08/15/regcn/REGCN%5Cimage-20230815103621962.png" alt="image-20230815103621962"></p>
-<p>关键： 可以更好的进化嵌入实体和关系矩阵</p>
-<p>时间门控循环组件的必要性</p>
+                <h1 id="neo4j下载和相关问题"><a href="#neo4j下载和相关问题" class="headerlink" title="neo4j下载和相关问题"></a>neo4j下载和相关问题</h1><p>由于目前学习到知识图谱方面，neo4j也是一个经常会用到的工具，所以今天来进行稍微的学习一下，也算是作为今天的记录吧，首先是软件的安装，我下载的是neo4j Desktop</p>
+<p>  需要注意的是，你的java版本需要很高，我是从这次升级到了17，卸载也是挺麻烦的，从网上找个教程卸载吧，</p>
+<p>首先是从系统的卸载页面把两个和Java有关的卸载了，然后最重要的是环境变量的删除，系统变量环境变量这种</p>
+<p>然后是删除系统文件夹中的JAVA，c盘中的Oracle和Sun文件夹，查看C:Program Files或C:Program Files (x86)下是否有相关的文件夹；最后检验cmd这种，我是没有删除注册表这种东西。</p>
+<p>  重要的是，如果你重复卸载之后可能会出现红色的感叹号！</p>
+<p>这种你需要解决的就是去c盘的neo4j desktop 文件夹中删除掉之前建立的project就可以。</p>
+<h1 id="neo4j基础学习"><a href="#neo4j基础学习" class="headerlink" title="neo4j基础学习"></a>neo4j基础学习</h1><p>CREATE (:个人 {性别: ‘男’, 体检年龄:43 , 丙氨酸氨基转移酶: 正常, 天门冬氨酸氨基转移酶: 正常, γ-谷氨酰基转移酶: 正常, 总胆红素: 过高, 尿酸: 正常, 总胆固醇: 正常, 甘油三酯: 正常, 腰围: 正常, 体重指数: 正常, 是否有糖尿病: 否, 高密度脂蛋白胆固醇: 正常})</p>
+<h2 id="1-基本的增删改查"><a href="#1-基本的增删改查" class="headerlink" title="1.基本的增删改查"></a>1.基本的增删改查</h2><p>插入节点。插入一个Person类别的节点，且这个节点有一个属性name，属性值为Andres</p>
+<pre><code>  CREATE (n:Person &#123;name : &#39;suoshi&#39;&#125;);
+</code></pre>
+<p>插入边。插入一条a到b的有向边，且边的类别为Follow</p>
+<pre><code>  MATCH (a:Person),(b:Person)
+  WHERE a.name = &#39;Node A&#39; AND b.name = &#39;Node B&#39;
+  CREATE (a)-[r:Follow]-&gt;(b);
+</code></pre>
+<p>删除节点</p>
+<pre><code>  MATCH (n:Person &#123; name:&#39;Taylor&#39; &#125;)
+  DETACH DELETE n;
+</code></pre>
+<p>更新节点。更新一个Person类别的节点，设置新的name。</p>
+<pre><code>  MATCH (n:Person &#123; name: &#39;Andres&#39; &#125;)
+  SET n.name = &#39;Taylor&#39;;
+</code></pre>
+<p>删除边</p>
+<pre><code>  MATCH (a:Person)-[r:Follow]-&gt;(b:Person)
+  WHERE a.name = &#39;Node A&#39; AND b.name = &#39;Node B&#39;
+  DELETE r;
+</code></pre>
+<p>查询</p>
+<pre><code>MATCH (tom &#123;name: &quot;Tom Hanks&quot;&#125;) RETURN tom
+MATCH (people:Person) RETURN people.name LIMIT 10
+MATCH (nineties:Movie) WHERE nineties.released &gt;= 1990 AND nineties.released &lt; 2000 RETURN nineties.title
+</code></pre>
+<p>查询最短路径</p>
+<pre><code>  MATCH (ms:Person &#123; name:&#39;Node A&#39; &#125;),(cs:Person &#123; name:&#39;Node B&#39; &#125;), p = shortestPath((ms)-[r:Follow]-(cs)) RETURN p;
+</code></pre>
+<p>查询两个节点之间的关系</p>
+<pre><code>  MATCH (a:Person &#123; name:&#39;Node A&#39; &#125;)-[r]-&gt;(b:Person &#123; name:&#39;Node B&#39; &#125;)
+  RETURN type(r);
+</code></pre>
+<p>查询一个节点的所有Follower。</p>
+<pre><code>  MATCH (:Person &#123; name:&#39;Taylor&#39; &#125;)-[r:Follow]-&gt;(Person)
+  RETURN Person.name;
+</code></pre>
+<h2 id="2-可以通过调用JAVA来进行使用"><a href="#2-可以通过调用JAVA来进行使用" class="headerlink" title="2.可以通过调用JAVA来进行使用"></a>2.可以通过调用JAVA来进行使用</h2><p>其实在网络上有着 springboot + neo4j的组合，我之后肯定会建一个这样的可视化系统来进行展示。</p>
+<h3 id="Neo4j-Java-Driver"><a href="#Neo4j-Java-Driver" class="headerlink" title="Neo4j Java Driver"></a>Neo4j Java Driver</h3><p>When using Maven, add this to your <em>pom.xml</em> file:</p>
+<pre><code>&lt;groupId&gt;org.neo4j.driver&lt;/groupId&gt;
+&lt;artifactId&gt;neo4j-java-driver&lt;/artifactId&gt;
+&lt;version&gt;？？？&lt;/version&gt;
+</code></pre>
+<p>对于其他的构建系统来说</p>
+<pre><code>import org.neo4j.driver.AuthTokens;
+import org.neo4j.driver.Driver;
+import org.neo4j.driver.GraphDatabase;
+import org.neo4j.driver.Query;
+
+import static org.neo4j.driver.Values.parameters;
+
+public class HelloWorldExample implements AutoCloseable &#123;
+    private final Driver driver;
+
+    public HelloWorldExample(String uri, String user, String password) &#123;
+        driver = GraphDatabase.driver(uri, AuthTokens.basic(user, password));
+    &#125;
+
+    @Override
+    public void close() throws RuntimeException &#123;
+        driver.close();
+    &#125;
+
+    public void printGreeting(final String message) &#123;
+        try (var session = driver.session()) &#123;
+            var greeting = session.executeWrite(tx -&gt; &#123;
+                var query = new Query(&quot;CREATE (a:Greeting) SET a.message = $message RETURN a.message + &#39;, from node &#39; + id(a)&quot;, parameters(&quot;message&quot;, message));
+                var result = tx.run(query);
+                return result.single().get(0).asString();
+            &#125;);
+            System.out.println(greeting);
+        &#125;
+    &#125;
+
+    public static void main(String... args) &#123;
+        try (var greeter = new HelloWorldExample(&quot;bolt://localhost:7687&quot;, &quot;neo4j&quot;, &quot;password&quot;)) &#123;
+            greeter.printGreeting(&quot;hello, world&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>下次再构建吧 可以学习的页面</p>
 
                 
             </div>
@@ -529,16 +571,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/KG/">
-                                    <span class="chip bg-color">KG</span>
+                                <a href="../../../../tags/knowledgeGraphs/">
+                                    <span class="chip bg-color">knowledgeGraphs</span>
                                 </a>
                             
-                                <a href="../../../../tags/Typora/">
-                                    <span class="chip bg-color">Typora</span>
+                                <a href="../../../../tags/neo4j/">
+                                    <span class="chip bg-color">neo4j</span>
                                 </a>
                             
-                                <a href="../../../../tags/Markdown/">
-                                    <span class="chip bg-color">Markdown</span>
+                                <a href="../../../../tags/java/">
+                                    <span class="chip bg-color">java</span>
                                 </a>
                             
                         </div>
@@ -621,31 +663,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="../markdown-xue-xi/">
+                <a href="../zhi-fang-gan-shu-ju-de-gai-xie/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/15.jpg" class="responsive-img" alt="Markdown学习">
+                        <img src="../../../../medias/featureimages/7.jpg" class="responsive-img" alt="脂肪肝数据的改写">
                         
-                        <span class="card-title">Markdown学习</span>
+                        <span class="card-title">脂肪肝数据的改写</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            markdown 学习
+                            利用python的数据替换改写
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-17
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/learning/" class="post-category">
-                                    learning
+                            <a href="../../../../categories/dataprogress/" class="post-category">
+                                    dataprogress
                                 </a>
                             
                             
@@ -655,12 +697,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/Typora/">
-                        <span class="chip bg-color">Typora</span>
+                    <a href="../../../../tags/knowledgeGraphs/">
+                        <span class="chip bg-color">knowledgeGraphs</span>
                     </a>
                     
-                    <a href="../../../../tags/Markdown/">
-                        <span class="chip bg-color">Markdown</span>
+                    <a href="../../../../tags/dataprogress/">
+                        <span class="chip bg-color">dataprogress</span>
+                    </a>
+                    
+                    <a href="../../../../tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
                 </div>
@@ -674,32 +720,44 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../14/hello-world/">
+                <a href="../../16/cenet/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="../../../../medias/featureimages/19.jpg" class="responsive-img" alt="CENET">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">CENET</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            CENET论文学习,Temporal Knowledge Graph Reasoning with Historical Contrastive Learning
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-16
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            suojifeng
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/temporal-KG/" class="post-category">
+                                    temporal KG
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/KG/">
+                        <span class="chip bg-color">KG</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -732,6 +790,87 @@
 <script type="text/javascript" src="../../../../libs/codeBlock/codeShrink.js"></script>
 
 
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="../../../../libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
 
     
 
