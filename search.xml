@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>CENET</title>
+      <link href="/2023/08/16/cenet/"/>
+      <url>/2023/08/16/cenet/</url>
+      
+        <content type="html"><![CDATA[<p>CENET 学习历史和非历史依赖来区分可以与给定查询最佳匹配的最潜在实体。</p><p>通过启动对比学习来研究当前时刻是否更多地依赖于历史或非历史事件</p><p>表示进一步帮助训练一个二元分类器，其输出是一个布尔掩码来指示搜索空间中的相关实体</p><p>之前的是多关注于周期性和重复性的事件</p><p>对于重复或周期性事件，模型预计会优先考虑一些频繁出现的实体，对于新事件，模型应该更多地关注历史交互较少的实体。</p><p>历史和非历史实体，通过对比学习确认</p><p>(𝑠, 𝑟, ?, 𝑡 )</p><p>首先采用基于复制机制的评分策略对历史和非历史事件的依赖性进行建模。（基于复制机制的评分机制是一种通过为数据副本赋予权重或分数来管理分布式系统中数据复制和访问的方法，以提供高可用性、容错性和性能优化。）</p><p>突出贡献：</p><p>1.提出了CENET,不仅可以通过联合调查历史和非历史信息来预测重复和周期性事件，还可以预测潜在的新事件；</p><p>2.引用了对比学习来来分辨高相关的实体</p><p>对比学习损失函数</p><p><img src="/2023/08/16/cenet/%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="CENET结构图"></p><h1 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a>METHOD</h1><h2 id="1-预设参数"><a href="#1-预设参数" class="headerlink" title="1.预设参数"></a>1.预设参数</h2><p>我们将粗体<strong>s,p, o</strong> 分别用于 s、p 和 o 的嵌入向量，其维度为 d。E 是所有实体的嵌入，其行表示实体的嵌入向量，例如 s 和 o。类似地，P是所有关系类型的嵌入。</p><p>对于给定query(𝑠, 𝑟, ?, 𝑡 )，我们设定<br>$$<br>\mathcal{D}<em>{t}^{s,p}<br>$$<br>为历史事件集合<br>$$<br>\mathcal{H}</em>{t}^{s,p}<br>$$<br>为相关历史实体的集合<br>$$<br>{(s,p,o’,k)|o’\not\in\mathcal{H}<em>{t}^{s,p},k&lt;t}<br>$$<br>表示非历史事件的集合，其中 G 中可能不存在一些四元组。如果一个事件 (s, p, o, t) 本身在其对应的<br>$$<br>\mathcal{D}</em>{t}^{s,p}<br>$$<br> 中不存在，那么它是一个新事件。不失一般性，我们详细介绍了 CENET 如何在给定查询 q &#x3D; (s, p,？, t) 在以下部分。<br>$$<br>\mathcal{L}_{i,j}&#x3D;-\log\frac{exp(\mathbf{z}_i\cdot\mathbf{z}<em>j&#x2F;\tau)}{\sum</em>{k&#x3D;1,k\neq i}^{2N}exp(\mathbf{z}_i\cdot\mathbf{z}_k&#x2F;\tau)}<br>$$</p><p>$$<br>\mathcal{D}<em>{t}^{s,p}&#x3D;\bigcup</em>{k&lt;t}{(s,p,o,k)\in\mathcal{G}_{k}},<br>$$</p><p>$$<br>\mathcal{H}<em>{t}^{s,p}&#x3D;{o|(s,p,o,k)\in\mathcal{D}</em>{t}^{s,p}}.<br>$$</p><p>$$<br>{(s,p,o’,k)|o’\not\in\mathcal{H}_{t}^{s,p},k&lt;t}<br>$$</p><p>$$<br>\mathbf{F}<em>{t}^{s,p}(o)&#x3D;\sum</em>{k&lt;t}|{o|(s,p,o,k)\in\mathcal{G}_{k}}|.<br>$$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> temporal KG </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> KG </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>My Love</title>
+      <link href="/2023/08/16/my-love/"/>
+      <url>/2023/08/16/my-love/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Markdown学习</title>
       <link href="/2023/08/15/markdown-xue-xi/"/>
       <url>/2023/08/15/markdown-xue-xi/</url>
