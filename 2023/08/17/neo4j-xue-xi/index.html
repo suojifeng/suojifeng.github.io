@@ -426,50 +426,50 @@
 <p>这种你需要解决的就是去c盘的neo4j desktop 文件夹中删除掉之前建立的project就可以。</p>
 <h1 id="neo4j基础学习"><a href="#neo4j基础学习" class="headerlink" title="neo4j基础学习"></a>neo4j基础学习</h1><p>CREATE (:个人 {性别: ‘男’, 体检年龄:43 , 丙氨酸氨基转移酶: 正常, 天门冬氨酸氨基转移酶: 正常, γ-谷氨酰基转移酶: 正常, 总胆红素: 过高, 尿酸: 正常, 总胆固醇: 正常, 甘油三酯: 正常, 腰围: 正常, 体重指数: 正常, 是否有糖尿病: 否, 高密度脂蛋白胆固醇: 正常})</p>
 <h2 id="1-基本的增删改查"><a href="#1-基本的增删改查" class="headerlink" title="1.基本的增删改查"></a>1.基本的增删改查</h2><p>插入节点。插入一个Person类别的节点，且这个节点有一个属性name，属性值为Andres</p>
-<pre><code>  CREATE (n:Person &#123;name : &#39;suoshi&#39;&#125;);
+<pre class=" language-python"><code class="language-python">  CREATE <span class="token punctuation">(</span>n<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;name : 'suoshi'&amp;#125;);</span>
 </code></pre>
 <p>插入边。插入一条a到b的有向边，且边的类别为Follow</p>
-<pre><code>  MATCH (a:Person),(b:Person)
-  WHERE a.name = &#39;Node A&#39; AND b.name = &#39;Node B&#39;
-  CREATE (a)-[r:Follow]-&gt;(b);
+<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>a<span class="token punctuation">:</span>Person<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>b<span class="token punctuation">:</span>Person<span class="token punctuation">)</span>
+  WHERE a<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Node A'</span> AND b<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Node B'</span>
+  CREATE <span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token operator">-</span><span class="token punctuation">[</span>r<span class="token punctuation">:</span>Follow<span class="token punctuation">]</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>删除节点</p>
-<pre><code>  MATCH (n:Person &#123; name:&#39;Taylor&#39; &#125;)
-  DETACH DELETE n;
+<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>n<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name:'Taylor' &amp;#125;)</span>
+  DETACH DELETE n<span class="token punctuation">;</span>
 </code></pre>
 <p>更新节点。更新一个Person类别的节点，设置新的name。</p>
-<pre><code>  MATCH (n:Person &#123; name: &#39;Andres&#39; &#125;)
-  SET n.name = &#39;Taylor&#39;;
+<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>n<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name: 'Andres' &amp;#125;)</span>
+  SET n<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Taylor'</span><span class="token punctuation">;</span>
 </code></pre>
 <p>删除边</p>
-<pre><code>  MATCH (a:Person)-[r:Follow]-&gt;(b:Person)
-  WHERE a.name = &#39;Node A&#39; AND b.name = &#39;Node B&#39;
-  DELETE r;
+<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>a<span class="token punctuation">:</span>Person<span class="token punctuation">)</span><span class="token operator">-</span><span class="token punctuation">[</span>r<span class="token punctuation">:</span>Follow<span class="token punctuation">]</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">(</span>b<span class="token punctuation">:</span>Person<span class="token punctuation">)</span>
+  WHERE a<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Node A'</span> AND b<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Node B'</span>
+  DELETE r<span class="token punctuation">;</span>
 </code></pre>
 <p>查询</p>
-<pre><code>MATCH (tom &#123;name: &quot;Tom Hanks&quot;&#125;) RETURN tom
-MATCH (people:Person) RETURN people.name LIMIT 10
-MATCH (nineties:Movie) WHERE nineties.released &gt;= 1990 AND nineties.released &lt; 2000 RETURN nineties.title
+<pre class=" language-python"><code class="language-python">MATCH <span class="token punctuation">(</span>tom <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;name: "Tom Hanks"&amp;#125;) RETURN tom</span>
+MATCH <span class="token punctuation">(</span>people<span class="token punctuation">:</span>Person<span class="token punctuation">)</span> RETURN people<span class="token punctuation">.</span>name LIMIT <span class="token number">10</span>
+MATCH <span class="token punctuation">(</span>nineties<span class="token punctuation">:</span>Movie<span class="token punctuation">)</span> WHERE nineties<span class="token punctuation">.</span>released <span class="token operator">>=</span> <span class="token number">1990</span> AND nineties<span class="token punctuation">.</span>released <span class="token operator">&lt;</span> <span class="token number">2000</span> RETURN nineties<span class="token punctuation">.</span>title
 </code></pre>
 <p>查询最短路径</p>
-<pre><code>  MATCH (ms:Person &#123; name:&#39;Node A&#39; &#125;),(cs:Person &#123; name:&#39;Node B&#39; &#125;), p = shortestPath((ms)-[r:Follow]-(cs)) RETURN p;
+<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>ms<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name:'Node A' &amp;#125;),(cs:Person &amp;#123; name:'Node B' &amp;#125;), p = shortestPath((ms)-[r:Follow]-(cs)) RETURN p;</span>
 </code></pre>
 <p>查询两个节点之间的关系</p>
-<pre><code>  MATCH (a:Person &#123; name:&#39;Node A&#39; &#125;)-[r]-&gt;(b:Person &#123; name:&#39;Node B&#39; &#125;)
-  RETURN type(r);
+<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>a<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name:'Node A' &amp;#125;)-[r]->(b:Person &amp;#123; name:'Node B' &amp;#125;)</span>
+  RETURN type<span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>查询一个节点的所有Follower。</p>
-<pre><code>  MATCH (:Person &#123; name:&#39;Taylor&#39; &#125;)-[r:Follow]-&gt;(Person)
-  RETURN Person.name;
+<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span><span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name:'Taylor' &amp;#125;)-[r:Follow]->(Person)</span>
+  RETURN Person<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
 </code></pre>
 <h2 id="2-可以通过调用JAVA来进行使用"><a href="#2-可以通过调用JAVA来进行使用" class="headerlink" title="2.可以通过调用JAVA来进行使用"></a>2.可以通过调用JAVA来进行使用</h2><p>其实在网络上有着 springboot + neo4j的组合，我之后肯定会建一个这样的可视化系统来进行展示。</p>
 <h3 id="Neo4j-Java-Driver"><a href="#Neo4j-Java-Driver" class="headerlink" title="Neo4j Java Driver"></a>Neo4j Java Driver</h3><p>When using Maven, add this to your <em>pom.xml</em> file:</p>
-<pre><code>&lt;groupId&gt;org.neo4j.driver&lt;/groupId&gt;
-&lt;artifactId&gt;neo4j-java-driver&lt;/artifactId&gt;
-&lt;version&gt;？？？&lt;/version&gt;
+<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span>groupId<span class="token operator">></span>org<span class="token punctuation">.</span>neo4j<span class="token punctuation">.</span>driver<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+<span class="token operator">&lt;</span>artifactId<span class="token operator">></span>neo4j<span class="token operator">-</span>java<span class="token operator">-</span>driver<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+<span class="token operator">&lt;</span>version<span class="token operator">></span>？？？<span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
 </code></pre>
 <p>对于其他的构建系统来说</p>
-<pre><code>import org.neo4j.driver.AuthTokens;
+<pre class=" language-JAVA"><code class="language-JAVA">import org.neo4j.driver.AuthTokens;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
 import org.neo4j.driver.Query;
@@ -490,8 +490,8 @@ public class HelloWorldExample implements AutoCloseable &#123;
 
     public void printGreeting(final String message) &#123;
         try (var session = driver.session()) &#123;
-            var greeting = session.executeWrite(tx -&gt; &#123;
-                var query = new Query(&quot;CREATE (a:Greeting) SET a.message = $message RETURN a.message + &#39;, from node &#39; + id(a)&quot;, parameters(&quot;message&quot;, message));
+            var greeting = session.executeWrite(tx -> &#123;
+                var query = new Query("CREATE (a:Greeting) SET a.message = $message RETURN a.message + ', from node ' + id(a)", parameters("message", message));
                 var result = tx.run(query);
                 return result.single().get(0).asString();
             &#125;);
@@ -500,8 +500,8 @@ public class HelloWorldExample implements AutoCloseable &#123;
     &#125;
 
     public static void main(String... args) &#123;
-        try (var greeter = new HelloWorldExample(&quot;bolt://localhost:7687&quot;, &quot;neo4j&quot;, &quot;password&quot;)) &#123;
-            greeter.printGreeting(&quot;hello, world&quot;);
+        try (var greeter = new HelloWorldExample("bolt://localhost:7687", "neo4j", "password")) &#123;
+            greeter.printGreeting("hello, world");
         &#125;
     &#125;
 &#125;

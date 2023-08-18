@@ -556,26 +556,26 @@ wb<span class="token punctuation">.</span>save<span class="token punctuation">(<
 </code></pre>
 <p>首先是对规则的应用，然后缓存替换输出，十分的漂亮。</p>
 <p>下面是从行入手的代码，也是可以值得借鉴。</p>
-<pre><code>import pandas as pd
-def replace_column_values(filename, sheetname, column_name):
-    # 读取原始文件
-    df = pd.read_excel(filename, sheet_name=sheetname)
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">def</span> <span class="token function">replace_column_values</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sheetname<span class="token punctuation">,</span> column_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># 读取原始文件</span>
+    df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_excel<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sheet_name<span class="token operator">=</span>sheetname<span class="token punctuation">)</span>
 
-    # 替换列值
-    df.loc[3:, column_index] = df.loc[3:, column_name].apply(lambda x: &#39;正常&#39; if x &lt; 40 else (&#39;偏高&#39; if x &lt; 80 else &#39;过高&#39;))
+    <span class="token comment" spellcheck="true"># 替换列值</span>
+    df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">,</span> column_index<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">,</span> column_name<span class="token punctuation">]</span><span class="token punctuation">.</span>apply<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">40</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">80</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    # 保存到新文件
-    new_filename = filename.replace(&#39;.xlsx&#39;, &#39;_new1.xlsx&#39;)
-    df.to_excel(new_filename, index=False)
+    <span class="token comment" spellcheck="true"># 保存到新文件</span>
+    new_filename <span class="token operator">=</span> filename<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'.xlsx'</span><span class="token punctuation">,</span> <span class="token string">'_new1.xlsx'</span><span class="token punctuation">)</span>
+    df<span class="token punctuation">.</span>to_excel<span class="token punctuation">(</span>new_filename<span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
 
-    print(f&quot;替换后的文件已保存为 &#123;new_filename&#125;&quot;)
+    <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">"替换后的文件已保存为 &amp;#123;new_filename&amp;#125;"</span><span class="token punctuation">)</span>
 
-# 使用示例：
-filename = &#39;3 合并（脂肪肝+非脂肪肝）完整数据.xlsx&#39;  # 替换前的文件名
-sheetname = &#39;Sheet1&#39;   # 表格名（如果是默认的第一个表格，直接填写 Sheet1 即可）
-column_index = 4    # 需要替换的列名
+<span class="token comment" spellcheck="true"># 使用示例：</span>
+filename <span class="token operator">=</span> <span class="token string">'3 合并（脂肪肝+非脂肪肝）完整数据.xlsx'</span>  <span class="token comment" spellcheck="true"># 替换前的文件名</span>
+sheetname <span class="token operator">=</span> <span class="token string">'Sheet1'</span>   <span class="token comment" spellcheck="true"># 表格名（如果是默认的第一个表格，直接填写 Sheet1 即可）</span>
+column_index <span class="token operator">=</span> <span class="token number">4</span>    <span class="token comment" spellcheck="true"># 需要替换的列名</span>
 
-replace_column_values(filename, sheetname, column_index)
+replace_column_values<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sheetname<span class="token punctuation">,</span> column_index<span class="token punctuation">)</span>
 </code></pre>
 <p>对每一列进行规则的替换，然后进行处理，上面是只处理一列的数据。</p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd

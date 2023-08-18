@@ -418,7 +418,7 @@
 <p>1.提出了CENET,不仅可以通过联合调查历史和非历史信息来预测重复和周期性事件，还可以预测潜在的新事件；</p>
 <p>2.引用了对比学习来来分辨高相关的实体</p>
 <p>对比学习损失函数</p>
-<p><img src="/2023/08/16/cenet/CENET%5CCENET%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="CENET结构图"></p>
+<p><img src="/2023/08/16/cenet/CENET%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="CENET结构图"></p>
 <h1 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a>METHOD</h1><h2 id="1-预设参数"><a href="#1-预设参数" class="headerlink" title="1.预设参数"></a>1.预设参数</h2><p>我们将粗体<strong>s,p, o</strong> 分别用于 s、p 和 o 的嵌入向量，其维度为 d。E 是所有实体的嵌入，其行表示实体的嵌入向量，例如 s 和 o。类似地，P是所有关系类型的嵌入。</p>
 <p>对于给定query(𝑠, 𝑟, ?, 𝑡 )，我们设定<br>$$<br>\mathcal{D}<em>{t}^{s,p}<br>$$<br>为历史事件集合<br>$$<br>\mathcal{H}</em>{t}^{s,p}<br>$$<br>为相关历史实体的集合<br>$$<br>{(s,p,o’,k)|o’\not\in\mathcal{H}<em>{t}^{s,p},k&lt;t}<br>$$<br>表示非历史事件的集合，其中 G 中可能不存在一些四元组。如果一个事件 (s, p, o, t) 本身在其对应的<br>$$<br>\mathcal{D}</em>{t}^{s,p}<br>$$<br> 中不存在，那么它是一个新事件。不失一般性，我们详细介绍了 CENET 如何在给定查询 q &#x3D; (s, p,？, t) 在以下部分。<br>$$<br>\mathcal{L}_{i,j}&#x3D;-\log\frac{exp(\mathbf{z}_i\cdot\mathbf{z}<em>j&#x2F;\tau)}{\sum</em>{k&#x3D;1,k\neq i}^{2N}exp(\mathbf{z}_i\cdot\mathbf{z}_k&#x2F;\tau)}<br>$$</p>
 <p>$$<br>\mathcal{D}<em>{t}^{s,p}&#x3D;\bigcup</em>{k&lt;t}{(s,p,o,k)\in\mathcal{G}_{k}},<br>$$</p>
