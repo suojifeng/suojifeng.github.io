@@ -50,8 +50,12 @@
 
     <script src="../../../../libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -447,7 +451,8 @@
 <p>可能会导致梯度消失问题，因此采用时间门控循环来解决问题</p>
 <p><img src="/2023/08/15/regcn/image-20230815093834678.png" alt="image-20230815093834678"></p>
 <p>当前时间戳实体嵌入矩阵和上一个时间戳的</p>
-<p>$$<br>\mathrm{U}_t&#x3D;\sigma(\mathrm{W}<em>4\mathrm{H}</em>{t-1}+\mathrm{b}),\quad\quad\quad\quad\quad(5)<br>$$<br>𝜎 (·) is the sigmoid function and W4 ∈ R𝑑×𝑑 is the weight matrix of the time gate.</p>
+<p>$$<br>\mathrm{U}_t&#x3D;\sigma(\mathrm{W}<em>4\mathrm{H}</em>{t-1}+\mathrm{b}),\quad\quad\quad\quad\quad(5)<br>$$</p>
+<p>𝜎 (·) is the sigmoid function and W4 ∈ R𝑑×𝑑 is the weight matrix of the time gate.</p>
 <p>因为是不断进化的，所以关系矩阵又会有变化</p>
 <p><img src="/2023/08/15/regcn/image-20230815103448818.png" alt="image-20230815103448818"></p>
 <p>当前timestamp嵌入的关系矩阵收到之前关联实体的影响，因此采用 GRU 组件对关系的顺序模式进行建模。</p>
