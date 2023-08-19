@@ -417,6 +417,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="../../../../libs/prism/prism.min.css">
+        
 
         
 
@@ -440,33 +443,81 @@ Files或C:Program Files
 是否有糖尿病: 否, 高密度脂蛋白胆固醇: 正常})</p>
 <h2 id="基本的增删改查">1.基本的增删改查</h2>
 <p>插入节点。插入一个Person类别的节点，且这个节点有一个属性name，属性值为Andres</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE (n:Person &#123;name : &#x27;suoshi&#x27;&#125;);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">CREATE (n:Person &#123;name : &#39;suoshi&#39;&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>插入边。插入一条a到b的有向边，且边的类别为Follow</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MATCH (a:Person),(b:Person)</span><br><span class="line">WHERE a.name = &#x27;Node A&#x27; AND b.name = &#x27;Node B&#x27;</span><br><span class="line">CREATE (a)-[r:Follow]-&gt;(b);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">MATCH (a:Person),(b:Person)
+WHERE a.name &#x3D; &#39;Node A&#39; AND b.name &#x3D; &#39;Node B&#39;
+CREATE (a)-[r:Follow]-&gt;(b);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>删除节点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MATCH (n:Person &#123; name:&#x27;Taylor&#x27; &#125;)</span><br><span class="line">DETACH DELETE n;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">MATCH (n:Person &#123; name:&#39;Taylor&#39; &#125;)
+DETACH DELETE n;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>更新节点。更新一个Person类别的节点，设置新的name。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MATCH (n:Person &#123; name: &#x27;Andres&#x27; &#125;)</span><br><span class="line">SET n.name = &#x27;Taylor&#x27;;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">MATCH (n:Person &#123; name: &#39;Andres&#39; &#125;)
+SET n.name &#x3D; &#39;Taylor&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>全部删除关系和节点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MATCH(r)</span><br><span class="line">DETACH DELETE r</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">MATCH(r)
+DETACH DELETE r<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>删除边</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MATCH (a:Person)-[r:Follow]-&gt;(b:Person)</span><br><span class="line">WHERE a.name = &#x27;Node A&#x27; AND b.name = &#x27;Node B&#x27;</span><br><span class="line">DELETE r;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">MATCH (a:Person)-[r:Follow]-&gt;(b:Person)
+WHERE a.name &#x3D; &#39;Node A&#39; AND b.name &#x3D; &#39;Node B&#39;
+DELETE r;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>查询</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MATCH (tom &#123;name: &quot;Tom Hanks&quot;&#125;) RETURN tom</span><br><span class="line">MATCH (people:Person) RETURN people.name LIMIT 10</span><br><span class="line">MATCH (nineties:Movie) WHERE nineties.released &gt;= 1990 AND nineties.released &lt; 2000 RETURN nineties.title</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">MATCH (tom &#123;name: &quot;Tom Hanks&quot;&#125;) RETURN tom
+MATCH (people:Person) RETURN people.name LIMIT 10
+MATCH (nineties:Movie) WHERE nineties.released &gt;&#x3D; 1990 AND nineties.released &lt; 2000 RETURN nineties.title<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>查询最短路径</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MATCH (ms:Person &#123; name:&#x27;Node A&#x27; &#125;),(cs:Person &#123; name:&#x27;Node B&#x27; &#125;), p = shortestPath((ms)-[r:Follow]-(cs)) RETURN p;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">MATCH (ms:Person &#123; name:&#39;Node A&#39; &#125;),(cs:Person &#123; name:&#39;Node B&#39; &#125;), p &#x3D; shortestPath((ms)-[r:Follow]-(cs)) RETURN p;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>查询两个节点之间的关系</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MATCH (a:Person &#123; name:&#x27;Node A&#x27; &#125;)-[r]-&gt;(b:Person &#123; name:&#x27;Node B&#x27; &#125;)</span><br><span class="line">RETURN type(r);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">MATCH (a:Person &#123; name:&#39;Node A&#39; &#125;)-[r]-&gt;(b:Person &#123; name:&#39;Node B&#39; &#125;)
+RETURN type(r);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>查询一个节点的所有Follower</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MATCH (:Person &#123; name:&#x27;Taylor&#x27; &#125;)-[r:Follow]-&gt;(Person)</span><br><span class="line">RETURN Person.name;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-cypher" data-language="cypher"><code class="language-cypher">MATCH (:Person &#123; name:&#39;Taylor&#39; &#125;)-[r:Follow]-&gt;(Person)
+RETURN Person.name;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="可以通过调用java来进行使用">2.可以通过调用JAVA来进行使用</h2>
 <p>其实在网络上有着 springboot +
 neo4j的组合，我之后肯定会建一个这样的可视化系统来进行展示。</p>
 <h3 id="neo4j-java-driver">Neo4j Java Driver</h3>
 <p>When using Maven, add this to your <em>pom.xml</em> file:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;groupId&gt;org.neo4j.driver&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;neo4j-java-driver&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;？？？&lt;/version&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&lt;groupId&gt;org.neo4j.driver&lt;&#x2F;groupId&gt;
+&lt;artifactId&gt;neo4j-java-driver&lt;&#x2F;artifactId&gt;
+&lt;version&gt;？？？&lt;&#x2F;version&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>对于其他的构建系统来说</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.neo4j.driver.AuthTokens;</span><br><span class="line"><span class="keyword">import</span> org.neo4j.driver.Driver;</span><br><span class="line"><span class="keyword">import</span> org.neo4j.driver.GraphDatabase;</span><br><span class="line"><span class="keyword">import</span> org.neo4j.driver.Query;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.neo4j.driver.Values.parameters;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorldExample</span> <span class="keyword">implements</span> <span class="title class_">AutoCloseable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Driver driver;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">HelloWorldExample</span><span class="params">(String uri, String user, String password)</span> &#123;</span><br><span class="line">        driver = GraphDatabase.driver(uri, AuthTokens.basic(user, password));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">()</span> <span class="keyword">throws</span> RuntimeException &#123;</span><br><span class="line">        driver.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">printGreeting</span><span class="params">(<span class="keyword">final</span> String message)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">var</span> <span class="variable">session</span> <span class="operator">=</span> driver.session()) &#123;</span><br><span class="line">            <span class="type">var</span> <span class="variable">greeting</span> <span class="operator">=</span> session.executeWrite(tx -&gt; &#123;</span><br><span class="line">                <span class="type">var</span> <span class="variable">query</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Query</span>(<span class="string">&quot;CREATE (a:Greeting) SET a.message = $message RETURN a.message + &#x27;, from node &#x27; + id(a)&quot;</span>, parameters(<span class="string">&quot;message&quot;</span>, message));</span><br><span class="line">                <span class="type">var</span> <span class="variable">result</span> <span class="operator">=</span> tx.run(query);</span><br><span class="line">                <span class="keyword">return</span> result.single().get(<span class="number">0</span>).asString();</span><br><span class="line">            &#125;);</span><br><span class="line">            System.out.println(greeting);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String... args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">var</span> <span class="variable">greeter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HelloWorldExample</span>(<span class="string">&quot;bolt://localhost:7687&quot;</span>, <span class="string">&quot;neo4j&quot;</span>, <span class="string">&quot;password&quot;</span>)) &#123;</span><br><span class="line">            greeter.printGreeting(<span class="string">&quot;hello, world&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-JAVA" data-language="JAVA"><code class="language-JAVA">import org.neo4j.driver.AuthTokens;
+import org.neo4j.driver.Driver;
+import org.neo4j.driver.GraphDatabase;
+import org.neo4j.driver.Query;
+
+import static org.neo4j.driver.Values.parameters;
+
+public class HelloWorldExample implements AutoCloseable &#123;
+    private final Driver driver;
+
+    public HelloWorldExample(String uri, String user, String password) &#123;
+        driver &#x3D; GraphDatabase.driver(uri, AuthTokens.basic(user, password));
+    &#125;
+
+    @Override
+    public void close() throws RuntimeException &#123;
+        driver.close();
+    &#125;
+
+    public void printGreeting(final String message) &#123;
+        try (var session &#x3D; driver.session()) &#123;
+            var greeting &#x3D; session.executeWrite(tx -&gt; &#123;
+                var query &#x3D; new Query(&quot;CREATE (a:Greeting) SET a.message &#x3D; $message RETURN a.message + &#39;, from node &#39; + id(a)&quot;, parameters(&quot;message&quot;, message));
+                var result &#x3D; tx.run(query);
+                return result.single().get(0).asString();
+            &#125;);
+            System.out.println(greeting);
+        &#125;
+    &#125;
+
+    public static void main(String... args) &#123;
+        try (var greeter &#x3D; new HelloWorldExample(&quot;bolt:&#x2F;&#x2F;localhost:7687&quot;, &quot;neo4j&quot;, &quot;password&quot;)) &#123;
+            greeter.printGreeting(&quot;hello, world&quot;);
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>下次再构建吧 可以学习的页面</p>
 
                 
@@ -722,6 +773,9 @@ neo4j的组合，我之后肯定会建一个这样的可视化系统来进行展
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="../../../../libs/codeBlock/codeBlockFuction.js"></script>
 
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="../../../../libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->
