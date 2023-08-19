@@ -56,8 +56,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-</head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -629,6 +629,66 @@ df <span class="token operator">=</span> pd<span class="token punctuation">.</sp
 <span class="token comment" spellcheck="true"># 将数据保存为CSV文件</span>
 df<span class="token punctuation">.</span>to_csv<span class="token punctuation">(</span><span class="token string">'disease.csv'</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
 </code></pre>
+<p>构建的实体： 病人， 年龄，性别， 丙氨酸氨基转移酶， 天门冬氨酸氨基转移酶， γ-谷氨酰基转移酶， 总胆红素， 尿酸， 总胆固醇， 甘油三酯， 腰围， 体重指数，高密度脂蛋白胆固醇， 糖尿病， 脂肪肝</p>
+<pre class=" language-cypher"><code class="language-cypher">CREATE (:Patient &#123;id: 1, gender: 'Male', age: 25, waist: 80, bmi: 23, diabetes: false, color: 'blue'&#125;)
+CREATE (:BiochemicalIndicator &#123;name: 'ALT', color: 'green'&#125;)
+CREATE (:BiochemicalIndicator &#123;name: 'AST', color: 'green'&#125;)
+CREATE (:BiochemicalIndicator &#123;name: 'GGT', color: 'green'&#125;)
+CREATE (:BiochemicalIndicator &#123;name: 'TBIL', color: 'green'&#125;)
+CREATE (:BiochemicalIndicator &#123;name: 'UA', color: 'green'&#125;)
+CREATE (:BiochemicalIndicator &#123;name: 'TC', color: 'green'&#125;)
+CREATE (:BiochemicalIndicator &#123;name: 'TG', color: 'green'&#125;)
+CREATE (:BiochemicalIndicator &#123;name: 'HDL-C', color: 'green'&#125;)
+CREATE (:FattyLiver &#123;name: 'Fatty Liver', color: 'red'&#125;)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'ALT'&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 23&#125;]->(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'AST'&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 25&#125;]->(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'GGT'&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 88&#125;]->(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'TBIL'&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 16.7&#125;]->(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'UA'&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 457&#125;]->(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'TC'&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 4.15&#125;]->(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'TG'&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 0.96&#125;]->(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'HDL-C'&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 1.81&#125;]->(b)
+MATCH (p:Patient &#123;id: 1&#125;), (f:FattyLiver &#123;name: 'Fatty Liver'&#125;)
+CREATE (p)-[:HAS_LIVER_CONDITION &#123;value: TRUE&#125;]->(f)
+</code></pre>
+<p>导入csv文件，</p>
+<p>注意csv文件要放在projects里面或者社区版的import里面</p>
+<pre class=" language-cypher"><code class="language-cypher">LOAD CSV WITH HEADERS FROM 'file:///data_disease.csv' AS row
+FIELDTERMINATOR '\t'
+WITH toInteger(row.id) AS id, toInteger(row.gender) AS gender, toInteger(row.age) AS age,
+     toFloat(row.ALT) AS ALT, toFloat(row.AST) AS AST, toFloat(row.GGT) AS GGT,
+     toFloat(row.TBIL) AS TBIL, toFloat(row.UA) AS UA, toFloat(row.TC) AS TC,
+     toFloat(row.TG) AS TG, toFloat(row.WC) AS WC, toFloat(row.BMI) AS BMI,
+     toInteger(row.diabetes) AS hasDiabetes, toFloat(row.HDLC) AS HDL, toBoolean(row.FattyLiver) AS hasFattyLiver
+MERGE (p:Patient &#123;id: id, gender: gender, age: age, WC: WC, BMI: BMI&#125;)
+SET p.hasDiabetes = hasDiabetes
+MERGE (a:Attribute &#123;name: 'ALT'&#125;)
+MERGE (b:Attribute &#123;name: 'AST'&#125;)
+MERGE (c:Attribute &#123;name: 'GGT'&#125;)
+MERGE (d:Attribute &#123;name: 'TBIL'&#125;)
+MERGE (e:Attribute &#123;name: 'UA'&#125;)
+MERGE (f:Attribute &#123;name: 'TC'&#125;)
+MERGE (g:Attribute &#123;name: 'TG'&#125;)
+MERGE (j:Attribute &#123;name: 'HDL'&#125;)
+MERGE (k:Attribute &#123;name: 'FattyLiver'&#125;)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: ALT&#125;]->(a)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: AST&#125;]->(b)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: GGT&#125;]->(c)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: TBIL&#125;]->(d)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: UA&#125;]->(e)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: TC&#125;]->(f)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: TG&#125;]->(g)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: HDL&#125;]->(j)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: hasFattyLiver&#125;]->(k)
+</code></pre>
 
                 
             </div>
@@ -781,56 +841,54 @@ df<span class="token punctuation">.</span>to_csv<span class="token punctuation">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="">
+                <a href="../../18/cenet/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/7.jpg" class="responsive-img" alt="脂肪肝数据的改写">
+                        <img src="../../../../medias/featureimages/19.jpg" class="responsive-img" alt="CENET">
                         
-                        <span class="card-title">脂肪肝数据的改写</span>
+                        <span class="card-title">CENET</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            利用python的数据替换改写
+                            CENET论文学习,Temporal Knowledge Graph Reasoning with Historical Contrastive Learning
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-18
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/dataprogress/" class="post-category">
-                                    dataprogress
+                            <a href="../../../../categories/temporal-KG/" class="post-category">
+                                    temporal KG
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/knowledgeGraphs/">
-                        <span class="chip bg-color">knowledgeGraphs</span>
+                    <a href="../../../../tags/KG/">
+                        <span class="chip bg-color">KG</span>
                     </a>
                     
-                    <a href="../../../../tags/dataprogress/">
-                        <span class="chip bg-color">dataprogress</span>
+                    <a href="../../../../tags/contrastive-learning/">
+                        <span class="chip bg-color">contrastive learning</span>
                     </a>
                     
-                    <a href="../../../../tags/python/">
-                        <span class="chip bg-color">python</span>
+                    <a href="../../../../tags/CENET/">
+                        <span class="chip bg-color">CENET</span>
                     </a>
                     
                 </div>

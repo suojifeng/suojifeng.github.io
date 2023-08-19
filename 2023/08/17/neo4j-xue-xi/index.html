@@ -56,8 +56,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-</head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -430,41 +430,45 @@
 <p>这种你需要解决的就是去c盘的neo4j desktop 文件夹中删除掉之前建立的project就可以。</p>
 <h1 id="neo4j基础学习"><a href="#neo4j基础学习" class="headerlink" title="neo4j基础学习"></a>neo4j基础学习</h1><p>CREATE (:个人 {性别: ‘男’, 体检年龄:43 , 丙氨酸氨基转移酶: 正常, 天门冬氨酸氨基转移酶: 正常, γ-谷氨酰基转移酶: 正常, 总胆红素: 过高, 尿酸: 正常, 总胆固醇: 正常, 甘油三酯: 正常, 腰围: 正常, 体重指数: 正常, 是否有糖尿病: 否, 高密度脂蛋白胆固醇: 正常})</p>
 <h2 id="1-基本的增删改查"><a href="#1-基本的增删改查" class="headerlink" title="1.基本的增删改查"></a>1.基本的增删改查</h2><p>插入节点。插入一个Person类别的节点，且这个节点有一个属性name，属性值为Andres</p>
-<pre class=" language-python"><code class="language-python">  CREATE <span class="token punctuation">(</span>n<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;name : 'suoshi'&amp;#125;);</span>
+<pre class=" language-cypher"><code class="language-cypher">  CREATE (n:Person &#123;name : 'suoshi'&#125;);
 </code></pre>
 <p>插入边。插入一条a到b的有向边，且边的类别为Follow</p>
-<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>a<span class="token punctuation">:</span>Person<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>b<span class="token punctuation">:</span>Person<span class="token punctuation">)</span>
-  WHERE a<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Node A'</span> AND b<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Node B'</span>
-  CREATE <span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token operator">-</span><span class="token punctuation">[</span>r<span class="token punctuation">:</span>Follow<span class="token punctuation">]</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class=" language-cypher"><code class="language-cypher">  MATCH (a:Person),(b:Person)
+  WHERE a.name = 'Node A' AND b.name = 'Node B'
+  CREATE (a)-[r:Follow]->(b);
 </code></pre>
 <p>删除节点</p>
-<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>n<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name:'Taylor' &amp;#125;)</span>
-  DETACH DELETE n<span class="token punctuation">;</span>
+<pre class=" language-cypher"><code class="language-cypher">  MATCH (n:Person &#123; name:'Taylor' &#125;)
+  DETACH DELETE n;
 </code></pre>
 <p>更新节点。更新一个Person类别的节点，设置新的name。</p>
-<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>n<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name: 'Andres' &amp;#125;)</span>
-  SET n<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Taylor'</span><span class="token punctuation">;</span>
+<pre class=" language-cypher"><code class="language-cypher">  MATCH (n:Person &#123; name: 'Andres' &#125;)
+  SET n.name = 'Taylor';
+</code></pre>
+<p>全部删除关系和节点</p>
+<pre class=" language-cypher"><code class="language-cypher">MATCH(r)
+DETACH DELETE r
 </code></pre>
 <p>删除边</p>
-<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>a<span class="token punctuation">:</span>Person<span class="token punctuation">)</span><span class="token operator">-</span><span class="token punctuation">[</span>r<span class="token punctuation">:</span>Follow<span class="token punctuation">]</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">(</span>b<span class="token punctuation">:</span>Person<span class="token punctuation">)</span>
-  WHERE a<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Node A'</span> AND b<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Node B'</span>
-  DELETE r<span class="token punctuation">;</span>
+<pre class=" language-cypher"><code class="language-cypher">  MATCH (a:Person)-[r:Follow]->(b:Person)
+  WHERE a.name = 'Node A' AND b.name = 'Node B'
+  DELETE r;
 </code></pre>
 <p>查询</p>
-<pre class=" language-python"><code class="language-python">MATCH <span class="token punctuation">(</span>tom <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;name: "Tom Hanks"&amp;#125;) RETURN tom</span>
-MATCH <span class="token punctuation">(</span>people<span class="token punctuation">:</span>Person<span class="token punctuation">)</span> RETURN people<span class="token punctuation">.</span>name LIMIT <span class="token number">10</span>
-MATCH <span class="token punctuation">(</span>nineties<span class="token punctuation">:</span>Movie<span class="token punctuation">)</span> WHERE nineties<span class="token punctuation">.</span>released <span class="token operator">>=</span> <span class="token number">1990</span> AND nineties<span class="token punctuation">.</span>released <span class="token operator">&lt;</span> <span class="token number">2000</span> RETURN nineties<span class="token punctuation">.</span>title
+<pre class=" language-cypher"><code class="language-cypher">MATCH (tom &#123;name: "Tom Hanks"&#125;) RETURN tom
+MATCH (people:Person) RETURN people.name LIMIT 10
+MATCH (nineties:Movie) WHERE nineties.released >= 1990 AND nineties.released < 2000 RETURN nineties.title
 </code></pre>
 <p>查询最短路径</p>
-<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>ms<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name:'Node A' &amp;#125;),(cs:Person &amp;#123; name:'Node B' &amp;#125;), p = shortestPath((ms)-[r:Follow]-(cs)) RETURN p;</span>
+<pre class=" language-cypher"><code class="language-cypher">  MATCH (ms:Person &#123; name:'Node A' &#125;),(cs:Person &#123; name:'Node B' &#125;), p = shortestPath((ms)-[r:Follow]-(cs)) RETURN p;
 </code></pre>
 <p>查询两个节点之间的关系</p>
-<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span>a<span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name:'Node A' &amp;#125;)-[r]->(b:Person &amp;#123; name:'Node B' &amp;#125;)</span>
-  RETURN type<span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class=" language-cypher"><code class="language-cypher">  MATCH (a:Person &#123; name:'Node A' &#125;)-[r]->(b:Person &#123; name:'Node B' &#125;)
+  RETURN type(r);
 </code></pre>
-<p>查询一个节点的所有Follower。</p>
-<pre class=" language-python"><code class="language-python">  MATCH <span class="token punctuation">(</span><span class="token punctuation">:</span>Person <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; name:'Taylor' &amp;#125;)-[r:Follow]->(Person)</span>
-  RETURN Person<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+<p>查询一个节点的所有Follower</p>
+<pre class=" language-cypher"><code class="language-cypher">  MATCH (:Person &#123; name:'Taylor' &#125;)-[r:Follow]->(Person)
+  RETURN Person.name;
 </code></pre>
 <h2 id="2-可以通过调用JAVA来进行使用"><a href="#2-可以通过调用JAVA来进行使用" class="headerlink" title="2.可以通过调用JAVA来进行使用"></a>2.可以通过调用JAVA来进行使用</h2><p>其实在网络上有着 springboot + neo4j的组合，我之后肯定会建一个这样的可视化系统来进行展示。</p>
 <h3 id="Neo4j-Java-Driver"><a href="#Neo4j-Java-Driver" class="headerlink" title="Neo4j Java Driver"></a>Neo4j Java Driver</h3><p>When using Maven, add this to your <em>pom.xml</em> file:</p>
@@ -724,19 +728,19 @@ public class HelloWorldExample implements AutoCloseable &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../16/cenet/">
+                <a href="../../16/my-love/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/19.jpg" class="responsive-img" alt="CENET">
+                        <img src="../../../../medias/featureimages/2.jpg" class="responsive-img" alt="My Love">
                         
-                        <span class="card-title">CENET</span>
+                        <span class="card-title">My Love</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            CENET论文学习,Temporal Knowledge Graph Reasoning with Historical Contrastive Learning
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -745,23 +749,11 @@ public class HelloWorldExample implements AutoCloseable &#123;
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="../../../../categories/temporal-KG/" class="post-category">
-                                    temporal KG
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            suojifeng
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="../../../../tags/KG/">
-                        <span class="chip bg-color">KG</span>
-                    </a>
-                    
                 </div>
                 
             </div>
