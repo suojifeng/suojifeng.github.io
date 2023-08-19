@@ -422,247 +422,249 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="改写成果"><a href="#改写成果" class="headerlink" title="改写成果"></a>改写成果</h1><p> 今天的主要成果是利用chatgpt对我的xlsx的脂肪肝病人数据进行了替换，根据不同指标与是否患代谢性脂肪肝之间的关联，最终选定原始指标13个，分别为：性别（gender)、体检年龄（age)、丙氨酸氨基转移酶（ALT)、天门冬氨酸氨基转移酶（AST)、γ－谷氨酰基转移酶（GGT)、总胆红素（TBIL)；尿酸（UA)、总胆固醇（TC)；甘油三酯（TG)、腰围（WC)、体重指数（BMI)、是否有糖尿病、高密度脂蛋白胆固醇（HDL-C)。各个指标的参考值、异常值占比及均值标准差。</p>
-<p>  之前师姐给我们的数据是数字，也可以说是结构化数据吧，但是要构建时序的知识图谱还有很长的一段路要走，现在最关键的问题就是我们如何去构建这么的一个知识图谱，所以从今天开始也是做了一个尝试。</p>
+                <h1 id="改写成果">改写成果</h1>
+<p>今天的主要成果是利用chatgpt对我的xlsx的脂肪肝病人数据进行了替换，根据不同指标与是否患代谢性脂肪肝之间的关联，最终选定原始指标13个，分别为：性别（gender)、体检年龄（age)、丙氨酸氨基转移酶（ALT)、天门冬氨酸氨基转移酶（AST)、γ－谷氨酰基转移酶（GGT)、总胆红素（TBIL)；尿酸（UA)、总胆固醇（TC)；甘油三酯（TG)、腰围（WC)、体重指数（BMI)、是否有糖尿病、高密度脂蛋白胆固醇（HDL-C)。各个指标的参考值、异常值占比及均值标准差。</p>
+<p>之前师姐给我们的数据是数字，也可以说是结构化数据吧，但是要构建时序的知识图谱还有很长的一段路要走，现在最关键的问题就是我们如何去构建这么的一个知识图谱，所以从今天开始也是做了一个尝试。</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>指标</th>
 <th>参考值</th>
 <th>异常占比</th>
 <th>均值标准差</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>性别（gender)</td>
-<td>–</td>
-<td>–</td>
-<td>–</td>
+<td>--</td>
+<td>--</td>
+<td>--</td>
 </tr>
-<tr>
+<tr class="even">
 <td>年龄（age)</td>
-<td>–</td>
-<td>–</td>
+<td>--</td>
+<td>--</td>
 <td>47.42±13.82</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>ALT</td>
 <td>0-40</td>
 <td>12.7%</td>
 <td>25.67±23.8</td>
 </tr>
-<tr>
+<tr class="even">
 <td>AST</td>
 <td>0-40</td>
 <td>3.6%</td>
 <td>21.8±14.78</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>GGT</td>
 <td>男: 11-50,女:7-32</td>
 <td>17.4%</td>
 <td>30.16±33.58</td>
 </tr>
-<tr>
+<tr class="even">
 <td>TBIL</td>
 <td>3.4-17.1</td>
 <td>31.6%</td>
 <td>15.64±6.15</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>UA</td>
 <td>男:150-38女:100-300</td>
 <td>48.7%</td>
 <td>349.82±90.73</td>
 </tr>
-<tr>
+<tr class="even">
 <td>TC</td>
 <td>0-5.2</td>
 <td>38.6%</td>
 <td>5.01±0.94</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>TG</td>
 <td>0-1.7</td>
 <td>29.7%</td>
 <td>1.57±1.26</td>
 </tr>
-<tr>
+<tr class="even">
 <td>WC</td>
 <td>男:0-85,女:0-80</td>
 <td>62.8%</td>
 <td>86.59±10.67</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>BMI</td>
 <td>0-23.9</td>
 <td>40.3%</td>
 <td>24.82±3.64</td>
 </tr>
-<tr>
+<tr class="even">
 <td>是否有糖尿病</td>
 <td>0</td>
 <td>10.6%</td>
-<td>–</td>
+<td>--</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>HDL-C</td>
 <td>男:1.16-1.42，女:1.29-1.55</td>
 <td>69.8%</td>
 <td>1.28±0.33</td>
 </tr>
-</tbody></table>
-<p>  上面的表格就是对应的处理部分，然后应用chatgpt对我的数据进行了处理。</p>
+</tbody>
+</table>
+<p>上面的表格就是对应的处理部分，然后应用chatgpt对我的数据进行了处理。</p>
 <p>下面是我的python代码：</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> openpyxl
-
-<span class="token comment" spellcheck="true"># 定义文件名和输出文件名</span>
-input_file <span class="token operator">=</span> <span class="token string">'3 合并（脂肪肝+非脂肪肝）完整数据.xlsx'</span>
-output_file <span class="token operator">=</span> <span class="token string">'output1.xlsx'</span>
-
-<span class="token comment" spellcheck="true"># 加载 Excel 文件</span>
-wb <span class="token operator">=</span> openpyxl<span class="token punctuation">.</span>load_workbook<span class="token punctuation">(</span>input_file<span class="token punctuation">)</span>
-ws <span class="token operator">=</span> wb<span class="token punctuation">.</span>active
-
-<span class="token comment" spellcheck="true"># 定义替换规则函数</span>
-replace_rules <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-    <span class="token number">4</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">40</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">80</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token number">5</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">40</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">80</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token number">6</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">7</span> <span class="token operator">&lt;</span> x <span class="token operator">&lt;</span> <span class="token number">32</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">32</span> <span class="token operator">&lt;=</span> x <span class="token operator">&lt;</span> <span class="token number">64</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span> <span class="token keyword">if</span> column_2_value <span class="token operator">==</span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">11</span> <span class="token operator">&lt;</span> x <span class="token operator">&lt;</span> <span class="token number">50</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">50</span> <span class="token operator">&lt;=</span> x <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token number">7</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">3.4</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">17.1</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token number">8</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">&lt;</span> x <span class="token operator">&lt;</span> <span class="token number">300</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">300</span> <span class="token operator">&lt;=</span> x <span class="token operator">&lt;</span> <span class="token number">600</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span> <span class="token keyword">if</span> column_2_value <span class="token operator">==</span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">150</span> <span class="token operator">&lt;</span> x <span class="token operator">&lt;</span> <span class="token number">380</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">380</span> <span class="token operator">&lt;=</span> x <span class="token operator">&lt;</span> <span class="token number">500</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token number">9</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">5.2</span> <span class="token keyword">else</span> <span class="token string">'偏高'</span><span class="token punctuation">,</span>
-    <span class="token number">10</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">1.7</span> <span class="token keyword">else</span> <span class="token string">'偏高'</span><span class="token punctuation">,</span>
-    <span class="token number">11</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">80</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">80</span> <span class="token operator">&lt;=</span> x <span class="token operator">&lt;</span> <span class="token number">90</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span> <span class="token keyword">if</span> column_2_value <span class="token operator">==</span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">85</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">85</span> <span class="token operator">&lt;=</span> x <span class="token operator">&lt;</span> <span class="token number">95</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token number">12</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">23.9</span> <span class="token keyword">else</span> <span class="token string">'偏高'</span><span class="token punctuation">,</span>
-    <span class="token number">14</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">1.29</span> <span class="token operator">&lt;</span> x <span class="token operator">&lt;</span> <span class="token number">1.55</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">1.55</span> <span class="token operator">&lt;=</span> x <span class="token operator">&lt;</span> <span class="token number">1.89</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span> <span class="token keyword">if</span> column_2_value <span class="token operator">==</span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">1.16</span> <span class="token operator">&lt;</span> x <span class="token operator">&lt;</span> <span class="token number">1.42</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">1.42</span> <span class="token operator">&lt;=</span> x <span class="token operator">&lt;</span> <span class="token number">1.77</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
-
-<span class="token comment" spellcheck="true"># 缓存需要替换的单元格的值</span>
-replace_values <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-<span class="token keyword">for</span> row <span class="token keyword">in</span> ws<span class="token punctuation">.</span>iter_rows<span class="token punctuation">(</span>min_row<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    column_2_value <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value
-    <span class="token keyword">for</span> cell <span class="token keyword">in</span> row<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-        column_index <span class="token operator">=</span> cell<span class="token punctuation">.</span>column
-        replace_func <span class="token operator">=</span> replace_rules<span class="token punctuation">.</span>get<span class="token punctuation">(</span>column_index<span class="token punctuation">,</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">)</span>
-        replace_values<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>cell<span class="token punctuation">,</span> replace_func<span class="token punctuation">(</span>cell<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 批量替换数值</span>
-<span class="token keyword">for</span> cell<span class="token punctuation">,</span> replace_value <span class="token keyword">in</span> replace_values<span class="token punctuation">:</span>
-    cell<span class="token punctuation">.</span>value <span class="token operator">=</span> replace_value
-
-<span class="token comment" spellcheck="true"># 保存修改后的 Excel 文件</span>
-wb<span class="token punctuation">.</span>save<span class="token punctuation">(</span>output_file<span class="token punctuation">)</span>
-</code></pre>
-<p>  openpyxl 是我第一次用这个包，字面意思，首先是读取文件中的内容，然后定义了一个替换的规则，然后因为要有根据性别的不同进行区分，所以我们进行了一个 if column_2_value &#x3D;&#x3D; 1 判断在里面，然后下面就是替换了，对于最小行的处理，下面我将会展示我的第一版是根据列进行处理的，但是还是差了一步没有解决，所以才转到了从行这里入手处理，因为是可以获得行的数据所以更好的处理。</p>
-<pre class=" language-python"><code class="language-python"> replace_func <span class="token operator">=</span> replace_rules<span class="token punctuation">.</span>get<span class="token punctuation">(</span>column_index<span class="token punctuation">,</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">)</span>
- replace_values<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>cell<span class="token punctuation">,</span> replace_func<span class="token punctuation">(</span>cell<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openpyxl</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义文件名和输出文件名</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>input_file <span class="op">=</span> <span class="st">&#39;3 合并（脂肪肝+非脂肪肝）完整数据.xlsx&#39;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>output_file <span class="op">=</span> <span class="st">&#39;output1.xlsx&#39;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 加载 Excel 文件</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>wb <span class="op">=</span> openpyxl.load_workbook(input_file)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ws <span class="op">=</span> wb.active</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义替换规则函数</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>replace_rules <span class="op">=</span> &#123;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">40</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">80</span> <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">40</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">80</span> <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> (<span class="dv">7</span> <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="dv">32</span>) <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (<span class="dv">32</span> <span class="op">&lt;=</span> x <span class="op">&lt;</span> <span class="dv">64</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>) <span class="cf">if</span> column_2_value <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> (<span class="dv">11</span> <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="dv">50</span>) <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (<span class="dv">50</span> <span class="op">&lt;=</span> x <span class="op">&lt;</span> <span class="dv">100</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">3.4</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">17.1</span> <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> (<span class="dv">100</span> <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="dv">300</span>) <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (<span class="dv">300</span> <span class="op">&lt;=</span> x <span class="op">&lt;</span> <span class="dv">600</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>) <span class="cf">if</span> column_2_value <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> (<span class="dv">150</span> <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="dv">380</span>) <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (<span class="dv">380</span> <span class="op">&lt;=</span> x <span class="op">&lt;</span> <span class="dv">500</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">5.2</span> <span class="cf">else</span> <span class="st">&#39;偏高&#39;</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">1.7</span> <span class="cf">else</span> <span class="st">&#39;偏高&#39;</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">80</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (<span class="dv">80</span> <span class="op">&lt;=</span> x <span class="op">&lt;</span> <span class="dv">90</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>) <span class="cf">if</span> column_2_value <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">85</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (<span class="dv">85</span> <span class="op">&lt;=</span> x <span class="op">&lt;</span> <span class="dv">95</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dv">12</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">23.9</span> <span class="cf">else</span> <span class="st">&#39;偏高&#39;</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="dv">14</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> (<span class="fl">1.29</span> <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="fl">1.55</span>) <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (<span class="fl">1.55</span> <span class="op">&lt;=</span> x <span class="op">&lt;</span> <span class="fl">1.89</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>) <span class="cf">if</span> column_2_value <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> (<span class="fl">1.16</span> <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="fl">1.42</span>) <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (<span class="fl">1.42</span> <span class="op">&lt;=</span> x <span class="op">&lt;</span> <span class="fl">1.77</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>&#125;</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 缓存需要替换的单元格的值</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>replace_values <span class="op">=</span> []</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> ws.iter_rows(min_row<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    column_2_value <span class="op">=</span> row[<span class="dv">1</span>].value</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row[<span class="dv">2</span>:]:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        column_index <span class="op">=</span> cell.column</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        replace_func <span class="op">=</span> replace_rules.get(column_index, <span class="kw">lambda</span> x: x)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        replace_values.append((cell, replace_func(cell.value)))</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 批量替换数值</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cell, replace_value <span class="kw">in</span> replace_values:</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    cell.value <span class="op">=</span> replace_value</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存修改后的 Excel 文件</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>wb.save(output_file)</span></code></pre></div>
+<p>openpyxl
+是我第一次用这个包，字面意思，首先是读取文件中的内容，然后定义了一个替换的规则，然后因为要有根据性别的不同进行区分，所以我们进行了一个
+if column_2_value == 1
+判断在里面，然后下面就是替换了，对于最小行的处理，下面我将会展示我的第一版是根据列进行处理的，但是还是差了一步没有解决，所以才转到了从行这里入手处理，因为是可以获得行的数据所以更好的处理。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> replace_func <span class="op">=</span> replace_rules.get(column_index, <span class="kw">lambda</span> x: x)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> replace_values.append((cell, replace_func(cell.value)))</span></code></pre></div>
 <p>首先是对规则的应用，然后缓存替换输出，十分的漂亮。</p>
 <p>下面是从行入手的代码，也是可以值得借鉴。</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
-<span class="token keyword">def</span> <span class="token function">replace_column_values</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sheetname<span class="token punctuation">,</span> column_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 读取原始文件</span>
-    df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_excel<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sheet_name<span class="token operator">=</span>sheetname<span class="token punctuation">)</span>
-
-    <span class="token comment" spellcheck="true"># 替换列值</span>
-    df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">,</span> column_index<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">,</span> column_name<span class="token punctuation">]</span><span class="token punctuation">.</span>apply<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">40</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">80</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    <span class="token comment" spellcheck="true"># 保存到新文件</span>
-    new_filename <span class="token operator">=</span> filename<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'.xlsx'</span><span class="token punctuation">,</span> <span class="token string">'_new1.xlsx'</span><span class="token punctuation">)</span>
-    df<span class="token punctuation">.</span>to_excel<span class="token punctuation">(</span>new_filename<span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">"替换后的文件已保存为 &amp;#123;new_filename&amp;#125;"</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 使用示例：</span>
-filename <span class="token operator">=</span> <span class="token string">'3 合并（脂肪肝+非脂肪肝）完整数据.xlsx'</span>  <span class="token comment" spellcheck="true"># 替换前的文件名</span>
-sheetname <span class="token operator">=</span> <span class="token string">'Sheet1'</span>   <span class="token comment" spellcheck="true"># 表格名（如果是默认的第一个表格，直接填写 Sheet1 即可）</span>
-column_index <span class="token operator">=</span> <span class="token number">4</span>    <span class="token comment" spellcheck="true"># 需要替换的列名</span>
-
-replace_column_values<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sheetname<span class="token punctuation">,</span> column_index<span class="token punctuation">)</span>
-</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> replace_column_values(filename, sheetname, column_name):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 读取原始文件</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_excel(filename, sheet_name<span class="op">=</span>sheetname)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 替换列值</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    df.loc[<span class="dv">3</span>:, column_index] <span class="op">=</span> df.loc[<span class="dv">3</span>:, column_name].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">40</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">80</span> <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 保存到新文件</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    new_filename <span class="op">=</span> filename.replace(<span class="st">&#39;.xlsx&#39;</span>, <span class="st">&#39;_new1.xlsx&#39;</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    df.to_excel(new_filename, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;替换后的文件已保存为 </span><span class="sc">&#123;</span>new_filename<span class="sc">&#125;</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用示例：</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">&#39;3 合并（脂肪肝+非脂肪肝）完整数据.xlsx&#39;</span>  <span class="co"># 替换前的文件名</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>sheetname <span class="op">=</span> <span class="st">&#39;Sheet1&#39;</span>   <span class="co"># 表格名（如果是默认的第一个表格，直接填写 Sheet1 即可）</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>column_index <span class="op">=</span> <span class="dv">4</span>    <span class="co"># 需要替换的列名</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>replace_column_values(filename, sheetname, column_index)</span></code></pre></div>
 <p>对每一列进行规则的替换，然后进行处理，上面是只处理一列的数据。</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
-
-<span class="token keyword">def</span> <span class="token function">replace_column_values</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sheetname<span class="token punctuation">,</span> column_rules<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 读取原始文件</span>
-    df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_excel<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sheet_name<span class="token operator">=</span>sheetname<span class="token punctuation">)</span>
-
-    <span class="token comment" spellcheck="true"># 遍历列规则</span>
-    <span class="token keyword">for</span> column_index<span class="token punctuation">,</span> rule <span class="token keyword">in</span> column_rules<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        column_name <span class="token operator">=</span> df<span class="token punctuation">.</span>columns<span class="token punctuation">[</span>column_index<span class="token punctuation">]</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>column_name<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 替换列值</span>
-        df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token punctuation">,</span> column_name<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token punctuation">,</span> column_name<span class="token punctuation">]</span><span class="token punctuation">.</span>apply<span class="token punctuation">(</span>rule<span class="token punctuation">)</span>
-
-    <span class="token comment" spellcheck="true"># 保存到新文件</span>
-    new_filename <span class="token operator">=</span> filename<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'.xlsx'</span><span class="token punctuation">,</span> <span class="token string">'_new.xlsx'</span><span class="token punctuation">)</span>
-    df<span class="token punctuation">.</span>to_excel<span class="token punctuation">(</span>new_filename<span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">"替换后的文件已保存为 &amp;#123;new_filename&amp;#125;"</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 使用示例：</span>
-filename <span class="token operator">=</span> <span class="token string">'3 合并（脂肪肝+非脂肪肝）完整数据.xlsx'</span>  <span class="token comment" spellcheck="true"># 替换前的文件名</span>
-sheetname <span class="token operator">=</span> <span class="token string">'Sheet1'</span>   <span class="token comment" spellcheck="true"># 表格名（如果是默认的第一个表格，直接填写 Sheet1 即可）</span>
-column_rules <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-    <span class="token number">3</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">40</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">80</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token number">4</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">40</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">80</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token number">5</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">7</span> <span class="token operator">and</span> x <span class="token operator">&lt;</span> <span class="token number">32</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">>=</span> <span class="token number">32</span> <span class="token operator">and</span> x <span class="token operator">&lt;</span> <span class="token number">64</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span> i
-    <span class="token number">6</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">3.4</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">17.1</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token number">7</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">100</span> <span class="token operator">and</span> x <span class="token operator">&lt;</span> <span class="token number">300</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">>=</span> <span class="token number">300</span> <span class="token operator">and</span> x <span class="token operator">&lt;</span> <span class="token number">600</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span>
-    <span class="token number">8</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">5.2</span> <span class="token keyword">else</span> <span class="token string">'偏高'</span><span class="token punctuation">,</span>
-    <span class="token number">9</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">1.7</span> <span class="token keyword">else</span> <span class="token string">'偏高'</span><span class="token punctuation">,</span>
-    <span class="token number">10</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">80</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">>=</span> <span class="token number">80</span> <span class="token operator">and</span> x <span class="token operator">&lt;</span> <span class="token number">90</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span> 
-    <span class="token number">11</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">,</span> df<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> x <span class="token operator">&lt;</span> <span class="token number">23.9</span> <span class="token keyword">else</span> <span class="token string">'偏高'</span><span class="token punctuation">,</span>
-    <span class="token number">13</span><span class="token punctuation">:</span> <span class="token keyword">lambda</span> x<span class="token punctuation">,</span> df<span class="token punctuation">:</span> <span class="token string">'正常'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">1.29</span> <span class="token operator">and</span> x <span class="token operator">&lt;</span> <span class="token number">1.55</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token punctuation">(</span><span class="token string">'偏高'</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">>=</span> <span class="token number">1.55</span> <span class="token operator">and</span> x <span class="token operator">&lt;</span> <span class="token number">1.89</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">'过高'</span><span class="token punctuation">)</span> 
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
-column_index <span class="token operator">=</span> <span class="token number">3</span>
-replace_column_values<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sheetname<span class="token punctuation">,</span> column_rules<span class="token punctuation">)</span>
-</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> replace_column_values(filename, sheetname, column_rules):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 读取原始文件</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_excel(filename, sheet_name<span class="op">=</span>sheetname)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 遍历列规则</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> column_index, rule <span class="kw">in</span> column_rules.items():</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        column_name <span class="op">=</span> df.columns[column_index]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(column_name)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(df[<span class="dv">2</span>])</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 替换列值</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        df.loc[<span class="dv">4</span>:, column_name] <span class="op">=</span> df.loc[<span class="dv">4</span>:, column_name].<span class="bu">apply</span>(rule)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 保存到新文件</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    new_filename <span class="op">=</span> filename.replace(<span class="st">&#39;.xlsx&#39;</span>, <span class="st">&#39;_new.xlsx&#39;</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    df.to_excel(new_filename, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;替换后的文件已保存为 </span><span class="sc">&#123;</span>new_filename<span class="sc">&#125;</span><span class="ss">&quot;</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用示例：</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">&#39;3 合并（脂肪肝+非脂肪肝）完整数据.xlsx&#39;</span>  <span class="co"># 替换前的文件名</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>sheetname <span class="op">=</span> <span class="st">&#39;Sheet1&#39;</span>   <span class="co"># 表格名（如果是默认的第一个表格，直接填写 Sheet1 即可）</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>column_rules <span class="op">=</span> &#123;</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">40</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">80</span> <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">40</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">80</span> <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> (x <span class="op">&gt;</span> <span class="dv">7</span> <span class="kw">and</span> x <span class="op">&lt;</span> <span class="dv">32</span>) <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (x <span class="op">&gt;=</span> <span class="dv">32</span> <span class="kw">and</span> x <span class="op">&lt;</span> <span class="dv">64</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>) i</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">3.4</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">17.1</span> <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> (x <span class="op">&gt;</span> <span class="dv">100</span> <span class="kw">and</span> x <span class="op">&lt;</span> <span class="dv">300</span>) <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (x <span class="op">&gt;=</span> <span class="dv">300</span> <span class="kw">and</span> x <span class="op">&lt;</span> <span class="dv">600</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">5.2</span> <span class="cf">else</span> <span class="st">&#39;偏高&#39;</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">1.7</span> <span class="cf">else</span> <span class="st">&#39;偏高&#39;</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span>: <span class="kw">lambda</span> x: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">80</span> <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (x <span class="op">&gt;=</span> <span class="dv">80</span> <span class="kw">and</span> x <span class="op">&lt;</span> <span class="dv">90</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>) </span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>: <span class="kw">lambda</span> x, df: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="fl">23.9</span> <span class="cf">else</span> <span class="st">&#39;偏高&#39;</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="dv">13</span>: <span class="kw">lambda</span> x, df: <span class="st">&#39;正常&#39;</span> <span class="cf">if</span> (x <span class="op">&gt;</span> <span class="fl">1.29</span> <span class="kw">and</span> x <span class="op">&lt;</span> <span class="fl">1.55</span>) <span class="cf">else</span> (<span class="st">&#39;偏高&#39;</span> <span class="cf">if</span> (x <span class="op">&gt;=</span> <span class="fl">1.55</span> <span class="kw">and</span> x <span class="op">&lt;</span> <span class="fl">1.89</span>) <span class="cf">else</span> <span class="st">&#39;过高&#39;</span>) </span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>&#125;</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>column_index <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>replace_column_values(filename, sheetname, column_rules)</span></code></pre></div>
 <p>整个定义规则，然后是存储为csv文件，根据下面就可以转换</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
-
-<span class="token comment" spellcheck="true"># 读取XLSX文件</span>
-df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_excel<span class="token punctuation">(</span><span class="token string">'output1.xlsx'</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 将数据保存为CSV文件</span>
-df<span class="token punctuation">.</span>to_csv<span class="token punctuation">(</span><span class="token string">'disease.csv'</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-</code></pre>
-<p>构建的实体： 病人， 年龄，性别， 丙氨酸氨基转移酶， 天门冬氨酸氨基转移酶， γ-谷氨酰基转移酶， 总胆红素， 尿酸， 总胆固醇， 甘油三酯， 腰围， 体重指数，高密度脂蛋白胆固醇， 糖尿病， 脂肪肝</p>
-<pre class=" language-cypher"><code class="language-cypher">CREATE (:Patient &#123;id: 1, gender: 'Male', age: 25, waist: 80, bmi: 23, diabetes: false, color: 'blue'&#125;)
-CREATE (:BiochemicalIndicator &#123;name: 'ALT', color: 'green'&#125;)
-CREATE (:BiochemicalIndicator &#123;name: 'AST', color: 'green'&#125;)
-CREATE (:BiochemicalIndicator &#123;name: 'GGT', color: 'green'&#125;)
-CREATE (:BiochemicalIndicator &#123;name: 'TBIL', color: 'green'&#125;)
-CREATE (:BiochemicalIndicator &#123;name: 'UA', color: 'green'&#125;)
-CREATE (:BiochemicalIndicator &#123;name: 'TC', color: 'green'&#125;)
-CREATE (:BiochemicalIndicator &#123;name: 'TG', color: 'green'&#125;)
-CREATE (:BiochemicalIndicator &#123;name: 'HDL-C', color: 'green'&#125;)
-CREATE (:FattyLiver &#123;name: 'Fatty Liver', color: 'red'&#125;)
-MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'ALT'&#125;)
-CREATE (p)-[:HAS_INDICATOR &#123;value: 23&#125;]->(b)
-MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'AST'&#125;)
-CREATE (p)-[:HAS_INDICATOR &#123;value: 25&#125;]->(b)
-MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'GGT'&#125;)
-CREATE (p)-[:HAS_INDICATOR &#123;value: 88&#125;]->(b)
-MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'TBIL'&#125;)
-CREATE (p)-[:HAS_INDICATOR &#123;value: 16.7&#125;]->(b)
-MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'UA'&#125;)
-CREATE (p)-[:HAS_INDICATOR &#123;value: 457&#125;]->(b)
-MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'TC'&#125;)
-CREATE (p)-[:HAS_INDICATOR &#123;value: 4.15&#125;]->(b)
-MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'TG'&#125;)
-CREATE (p)-[:HAS_INDICATOR &#123;value: 0.96&#125;]->(b)
-MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: 'HDL-C'&#125;)
-CREATE (p)-[:HAS_INDICATOR &#123;value: 1.81&#125;]->(b)
-MATCH (p:Patient &#123;id: 1&#125;), (f:FattyLiver &#123;name: 'Fatty Liver'&#125;)
-CREATE (p)-[:HAS_LIVER_CONDITION &#123;value: TRUE&#125;]->(f)
-</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取XLSX文件</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">&#39;output1.xlsx&#39;</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 将数据保存为CSV文件</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">&#39;disease.csv&#39;</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<p>构建的实体： 病人， 年龄，性别， 丙氨酸氨基转移酶，
+天门冬氨酸氨基转移酶， γ-谷氨酰基转移酶， 总胆红素， 尿酸， 总胆固醇，
+甘油三酯， 腰围， 体重指数，高密度脂蛋白胆固醇， 糖尿病， 脂肪肝</p>
+<pre class="cypher"><code>CREATE (:Patient &#123;id: 1, gender: &#39;Male&#39;, age: 25, waist: 80, bmi: 23, diabetes: false, color: &#39;blue&#39;&#125;)
+CREATE (:BiochemicalIndicator &#123;name: &#39;ALT&#39;, color: &#39;green&#39;&#125;)
+CREATE (:BiochemicalIndicator &#123;name: &#39;AST&#39;, color: &#39;green&#39;&#125;)
+CREATE (:BiochemicalIndicator &#123;name: &#39;GGT&#39;, color: &#39;green&#39;&#125;)
+CREATE (:BiochemicalIndicator &#123;name: &#39;TBIL&#39;, color: &#39;green&#39;&#125;)
+CREATE (:BiochemicalIndicator &#123;name: &#39;UA&#39;, color: &#39;green&#39;&#125;)
+CREATE (:BiochemicalIndicator &#123;name: &#39;TC&#39;, color: &#39;green&#39;&#125;)
+CREATE (:BiochemicalIndicator &#123;name: &#39;TG&#39;, color: &#39;green&#39;&#125;)
+CREATE (:BiochemicalIndicator &#123;name: &#39;HDL-C&#39;, color: &#39;green&#39;&#125;)
+CREATE (:FattyLiver &#123;name: &#39;Fatty Liver&#39;, color: &#39;red&#39;&#125;)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: &#39;ALT&#39;&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 23&#125;]-&gt;(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: &#39;AST&#39;&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 25&#125;]-&gt;(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: &#39;GGT&#39;&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 88&#125;]-&gt;(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: &#39;TBIL&#39;&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 16.7&#125;]-&gt;(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: &#39;UA&#39;&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 457&#125;]-&gt;(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: &#39;TC&#39;&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 4.15&#125;]-&gt;(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: &#39;TG&#39;&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 0.96&#125;]-&gt;(b)
+MATCH (p:Patient &#123;id: 1&#125;), (b:BiochemicalIndicator &#123;name: &#39;HDL-C&#39;&#125;)
+CREATE (p)-[:HAS_INDICATOR &#123;value: 1.81&#125;]-&gt;(b)
+MATCH (p:Patient &#123;id: 1&#125;), (f:FattyLiver &#123;name: &#39;Fatty Liver&#39;&#125;)
+CREATE (p)-[:HAS_LIVER_CONDITION &#123;value: TRUE&#125;]-&gt;(f)</code></pre>
 <p>导入csv文件，</p>
 <p>注意csv文件要放在projects里面或者社区版的import里面</p>
-<pre class=" language-cypher"><code class="language-cypher">LOAD CSV WITH HEADERS FROM 'file:///data_disease.csv' AS row
-FIELDTERMINATOR '\t'
+<pre class="cypher"><code>LOAD CSV WITH HEADERS FROM &#39;file:///data_disease.csv&#39; AS row
+FIELDTERMINATOR &#39;\t&#39;
 WITH toInteger(row.id) AS id, toInteger(row.gender) AS gender, toInteger(row.age) AS age,
      toFloat(row.ALT) AS ALT, toFloat(row.AST) AS AST, toFloat(row.GGT) AS GGT,
      toFloat(row.TBIL) AS TBIL, toFloat(row.UA) AS UA, toFloat(row.TC) AS TC,
@@ -670,25 +672,24 @@ WITH toInteger(row.id) AS id, toInteger(row.gender) AS gender, toInteger(row.age
      toInteger(row.diabetes) AS hasDiabetes, toFloat(row.HDLC) AS HDL, toBoolean(row.FattyLiver) AS hasFattyLiver
 MERGE (p:Patient &#123;id: id, gender: gender, age: age, WC: WC, BMI: BMI&#125;)
 SET p.hasDiabetes = hasDiabetes
-MERGE (a:Attribute &#123;name: 'ALT'&#125;)
-MERGE (b:Attribute &#123;name: 'AST'&#125;)
-MERGE (c:Attribute &#123;name: 'GGT'&#125;)
-MERGE (d:Attribute &#123;name: 'TBIL'&#125;)
-MERGE (e:Attribute &#123;name: 'UA'&#125;)
-MERGE (f:Attribute &#123;name: 'TC'&#125;)
-MERGE (g:Attribute &#123;name: 'TG'&#125;)
-MERGE (j:Attribute &#123;name: 'HDL'&#125;)
-MERGE (k:Attribute &#123;name: 'FattyLiver'&#125;)
-MERGE (p)-[:HAS_ATTRIBUTE &#123;value: ALT&#125;]->(a)
-MERGE (p)-[:HAS_ATTRIBUTE &#123;value: AST&#125;]->(b)
-MERGE (p)-[:HAS_ATTRIBUTE &#123;value: GGT&#125;]->(c)
-MERGE (p)-[:HAS_ATTRIBUTE &#123;value: TBIL&#125;]->(d)
-MERGE (p)-[:HAS_ATTRIBUTE &#123;value: UA&#125;]->(e)
-MERGE (p)-[:HAS_ATTRIBUTE &#123;value: TC&#125;]->(f)
-MERGE (p)-[:HAS_ATTRIBUTE &#123;value: TG&#125;]->(g)
-MERGE (p)-[:HAS_ATTRIBUTE &#123;value: HDL&#125;]->(j)
-MERGE (p)-[:HAS_ATTRIBUTE &#123;value: hasFattyLiver&#125;]->(k)
-</code></pre>
+MERGE (a:Attribute &#123;name: &#39;ALT&#39;&#125;)
+MERGE (b:Attribute &#123;name: &#39;AST&#39;&#125;)
+MERGE (c:Attribute &#123;name: &#39;GGT&#39;&#125;)
+MERGE (d:Attribute &#123;name: &#39;TBIL&#39;&#125;)
+MERGE (e:Attribute &#123;name: &#39;UA&#39;&#125;)
+MERGE (f:Attribute &#123;name: &#39;TC&#39;&#125;)
+MERGE (g:Attribute &#123;name: &#39;TG&#39;&#125;)
+MERGE (j:Attribute &#123;name: &#39;HDL&#39;&#125;)
+MERGE (k:Attribute &#123;name: &#39;FattyLiver&#39;&#125;)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: ALT&#125;]-&gt;(a)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: AST&#125;]-&gt;(b)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: GGT&#125;]-&gt;(c)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: TBIL&#125;]-&gt;(d)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: UA&#125;]-&gt;(e)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: TC&#125;]-&gt;(f)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: TG&#125;]-&gt;(g)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: HDL&#125;]-&gt;(j)
+MERGE (p)-[:HAS_ATTRIBUTE &#123;value: hasFattyLiver&#125;]-&gt;(k)</code></pre>
 
                 
             </div>

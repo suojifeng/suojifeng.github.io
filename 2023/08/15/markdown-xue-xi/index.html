@@ -414,87 +414,91 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Markdown学习"><a href="#Markdown学习" class="headerlink" title="Markdown学习"></a>Markdown学习</h1><h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>首先是有6种标题，对应的是h1~h6</p>
+                <h1 id="markdown学习">Markdown学习</h1>
+<h2 id="基础语法">基础语法</h2>
+<h3 id="标题">标题</h3>
+<p>首先是有6种标题，对应的是h1~h6</p>
 <pre><code># h1
 ## h2
 ### h3
 #### h4
 ##### h5
-###### h6
-</code></pre>
+###### h6</code></pre>
 <p>即可表示标题</p>
-<h3 id="段逻辑区块引用"><a href="#段逻辑区块引用" class="headerlink" title="段逻辑区块引用"></a>段逻辑区块引用</h3><p>Markdown其实就是一种易于编写的普通文本，只不过加入了部分渲染文本的标签而已。</p>
+<h3 id="段逻辑区块引用">段逻辑区块引用</h3>
+<p>Markdown其实就是一种易于编写的普通文本，只不过加入了部分渲染文本的标签而已。</p>
 <p>最终变成html标签，分段的话则会比较简单，<strong>前后至少保留一个空行</strong></p>
 <p>Markdown提供了一个特殊符号&gt;用于段首进行强调，被强调的文字部分将会高亮显示，即</p>
 <blockquote>
 <p>我爱你</p>
 </blockquote>
-<h3 id="插入链接或图片"><a href="#插入链接或图片" class="headerlink" title="插入链接或图片"></a>插入链接或图片</h3><p>我用的是Typora，插入图片还算简单，给出示例</p>
-<pre class=" language-csharp"><code class="language-csharp"><span class="token punctuation">[</span>点击跳转至百度<span class="token punctuation">]</span><span class="token punctuation">(</span>http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>baidu<span class="token punctuation">.</span>com<span class="token punctuation">)</span>
-<span class="token operator">!</span><span class="token punctuation">[</span>图片<span class="token punctuation">]</span><span class="token punctuation">(</span>https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>upload<span class="token operator">-</span>images<span class="token punctuation">.</span>jianshu<span class="token punctuation">.</span>io<span class="token operator">/</span>upload_images<span class="token operator">/</span><span class="token number">703764</span><span class="token operator">-</span>605e3cc2ecb664f6<span class="token punctuation">.</span>jpg<span class="token operator">?</span>imageMogr2<span class="token operator">/</span>auto<span class="token operator">-</span>orient<span class="token operator">/</span>strip<span class="token operator">%</span>7CimageView2<span class="token operator">/</span><span class="token number">2</span><span class="token operator">/</span>w<span class="token operator">/</span><span class="token number">1240</span><span class="token punctuation">)</span>
-</code></pre>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>Markdown支持有序列表和无序列表两种形式：</p>
+<h3 id="插入链接或图片">插入链接或图片</h3>
+<p>我用的是Typora，插入图片还算简单，给出示例</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>点击跳转至百度<span class="op">](</span>http<span class="op">:</span><span class="co">//www.baidu.com)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">![</span>图片<span class="op">](</span>https<span class="op">:</span><span class="co">//upload-images.jianshu.io/upload_images/703764-605e3cc2ecb664f6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span></span></code></pre></div>
+<h3 id="列表">列表</h3>
+<p>Markdown支持有序列表和无序列表两种形式：</p>
 <ul>
-<li><p>无序列表使用*或+或-标识</p>
-</li>
-<li><p>有序列表使用数字加.标识，例如：1.</p>
-</li>
-<li><pre class=" language-markdown"><code class="language-markdown"><span class="token list punctuation">*</span> 黄瓜
-<span class="token list punctuation">*</span> 玉米
-<span class="token list punctuation">*</span> 茄子
-
-<span class="token list punctuation">1.</span> 黄瓜
-<span class="token list punctuation">2.</span> 玉米
-<span class="token list punctuation">3.</span> 茄子
-</code></pre>
-</li>
+<li><p>无序列表使用*或+或-标识</p></li>
+<li><p>有序列表使用数字加.标识，例如：1.</p></li>
+<li><div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>黄瓜</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>玉米</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>茄子</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>黄瓜</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>玉米</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>茄子</span></code></pre></div></li>
 </ul>
 <p>如果在单一列表项中包含了多个段落，为了保证渲染正常，*与段落首字母之间必须保留四个空格</p>
 <ul>
 <li><p>段落4</p>
 <blockquote>
 <p>我爱你</p>
-</blockquote>
-</li>
+</blockquote></li>
 </ul>
-<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>*** 或者 —</p>
+<h3 id="分割线">分割线</h3>
+<p>*** 或者 ---</p>
 <hr>
 <hr>
-<h2 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h2><h3 id="插入代码块"><a href="#插入代码块" class="headerlink" title="插入代码块"></a>插入代码块</h3><p>它能够轻松漂亮地插入代码。方法是，使用反引号&#96;进行包裹即可。如果是行内代码引用，使用单个反引号进行包裹</p>
-<p><code>const x = 3 </code></p>
-<h3 id="插入表格"><a href="#插入表格" class="headerlink" title="插入表格"></a>插入表格</h3><pre><code>表头|条目一|条目二
+<h2 id="高级用法">高级用法</h2>
+<h3 id="插入代码块">插入代码块</h3>
+<p>它能够轻松漂亮地插入代码。方法是，使用反引号`进行包裹即可。如果是行内代码引用，使用单个反引号进行包裹</p>
+<p><code>const x = 3</code></p>
+<h3 id="插入表格">插入表格</h3>
+<pre><code>表头|条目一|条目二
 :---:|:---:|:---:
-项目|项目一|项目二
-</code></pre>
+项目|项目一|项目二</code></pre>
 <table>
 <thead>
-<tr>
-<th align="center">表头</th>
-<th align="center">条目一</th>
-<th align="center">条目二</th>
+<tr class="header">
+<th style="text-align: center;">表头</th>
+<th style="text-align: center;">条目一</th>
+<th style="text-align: center;">条目二</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">项目</td>
-<td align="center">项目一</td>
-<td align="center">项目二</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">项目</td>
+<td style="text-align: center;">项目一</td>
+<td style="text-align: center;">项目二</td>
 </tr>
-</tbody></table>
-<h3 id="特殊符号处理"><a href="#特殊符号处理" class="headerlink" title="特殊符号处理"></a>特殊符号处理</h3><p>Markdown使用反斜杠\插入语法中用到的特殊符号。在Markdown中，主要有以下几种特殊符号需要处理：</p>
-<pre class=" language-csharp"><code class="language-csharp">\   反斜线
-`   反引号
-<span class="token operator">*</span>   星号
-_   底线
-<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  花括号
-<span class="token punctuation">[</span><span class="token punctuation">]</span>  方括号
-<span class="token punctuation">(</span><span class="token punctuation">)</span>  括弧
-<span class="token preprocessor property">#   井字号</span>
-<span class="token operator">+</span>   加号
-<span class="token operator">-</span>   减号
-<span class="token punctuation">.</span>   英文句点
-<span class="token operator">!</span>   惊叹号
-</code></pre>
-<p>例如，如果你需要插入反斜杠，就连续输入两个反斜杠即可：\ &#x3D;&gt; \ 。</p>
+</tbody>
+</table>
+<h3 id="特殊符号处理">特殊符号处理</h3>
+<p>Markdown使用反斜杠。在Markdown中，主要有以下几种特殊符号需要处理：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>\   反斜线</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>`   反引号</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>   星号</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>_   底线</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&#123;&#125;</span>  花括号</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">[]</span>  方括号</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">()</span>  括弧</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>#   井字号</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>   加号</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>   减号</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>   英文句点</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>   惊叹号</span></code></pre></div>
+<p>例如，如果你需要插入反斜杠，就连续输入两个反斜杠即可：\ =&gt;  。</p>
 <p>注：在内容中输入以上特殊符号的时候一定要注意转义，否则将导致内容显示不全，甚至排版混乱。</p>
 
                 

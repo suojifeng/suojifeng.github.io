@@ -422,98 +422,99 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="neo4j下载和相关问题"><a href="#neo4j下载和相关问题" class="headerlink" title="neo4j下载和相关问题"></a>neo4j下载和相关问题</h1><p>由于目前学习到知识图谱方面，neo4j也是一个经常会用到的工具，所以今天来进行稍微的学习一下，也算是作为今天的记录吧，首先是软件的安装，我下载的是neo4j Desktop</p>
-<p>  需要注意的是，你的java版本需要很高，我是从这次升级到了17，卸载也是挺麻烦的，从网上找个教程卸载吧，</p>
+                <h1 id="neo4j下载和相关问题">neo4j下载和相关问题</h1>
+<p>由于目前学习到知识图谱方面，neo4j也是一个经常会用到的工具，所以今天来进行稍微的学习一下，也算是作为今天的记录吧，首先是软件的安装，我下载的是neo4j
+Desktop</p>
+<p>需要注意的是，你的java版本需要很高，我是从这次升级到了17，卸载也是挺麻烦的，从网上找个教程卸载吧，</p>
 <p>首先是从系统的卸载页面把两个和Java有关的卸载了，然后最重要的是环境变量的删除，系统变量环境变量这种</p>
-<p>然后是删除系统文件夹中的JAVA，c盘中的Oracle和Sun文件夹，查看C:Program Files或C:Program Files (x86)下是否有相关的文件夹；最后检验cmd这种，我是没有删除注册表这种东西。</p>
-<p>  重要的是，如果你重复卸载之后可能会出现红色的感叹号！</p>
-<p>这种你需要解决的就是去c盘的neo4j desktop 文件夹中删除掉之前建立的project就可以。</p>
-<h1 id="neo4j基础学习"><a href="#neo4j基础学习" class="headerlink" title="neo4j基础学习"></a>neo4j基础学习</h1><p>CREATE (:个人 {性别: ‘男’, 体检年龄:43 , 丙氨酸氨基转移酶: 正常, 天门冬氨酸氨基转移酶: 正常, γ-谷氨酰基转移酶: 正常, 总胆红素: 过高, 尿酸: 正常, 总胆固醇: 正常, 甘油三酯: 正常, 腰围: 正常, 体重指数: 正常, 是否有糖尿病: 否, 高密度脂蛋白胆固醇: 正常})</p>
-<h2 id="1-基本的增删改查"><a href="#1-基本的增删改查" class="headerlink" title="1.基本的增删改查"></a>1.基本的增删改查</h2><p>插入节点。插入一个Person类别的节点，且这个节点有一个属性name，属性值为Andres</p>
-<pre class=" language-cypher"><code class="language-cypher">  CREATE (n:Person &#123;name : 'suoshi'&#125;);
-</code></pre>
+<p>然后是删除系统文件夹中的JAVA，c盘中的Oracle和Sun文件夹，查看C:Program
+Files或C:Program Files
+(x86)下是否有相关的文件夹；最后检验cmd这种，我是没有删除注册表这种东西。</p>
+<p>重要的是，如果你重复卸载之后可能会出现红色的感叹号！</p>
+<p>这种你需要解决的就是去c盘的neo4j desktop
+文件夹中删除掉之前建立的project就可以。</p>
+<h1 id="neo4j基础学习">neo4j基础学习</h1>
+<p>CREATE (:个人 {性别: '男', 体检年龄:43 , 丙氨酸氨基转移酶: 正常,
+天门冬氨酸氨基转移酶: 正常, γ-谷氨酰基转移酶: 正常, 总胆红素: 过高,
+尿酸: 正常, 总胆固醇: 正常, 甘油三酯: 正常, 腰围: 正常, 体重指数: 正常,
+是否有糖尿病: 否, 高密度脂蛋白胆固醇: 正常})</p>
+<h2 id="基本的增删改查">1.基本的增删改查</h2>
+<p>插入节点。插入一个Person类别的节点，且这个节点有一个属性name，属性值为Andres</p>
+<pre class="cypher"><code>  CREATE (n:Person &#123;name : &#39;suoshi&#39;&#125;);</code></pre>
 <p>插入边。插入一条a到b的有向边，且边的类别为Follow</p>
-<pre class=" language-cypher"><code class="language-cypher">  MATCH (a:Person),(b:Person)
-  WHERE a.name = 'Node A' AND b.name = 'Node B'
-  CREATE (a)-[r:Follow]->(b);
-</code></pre>
+<pre class="cypher"><code>  MATCH (a:Person),(b:Person)
+  WHERE a.name = &#39;Node A&#39; AND b.name = &#39;Node B&#39;
+  CREATE (a)-[r:Follow]-&gt;(b);</code></pre>
 <p>删除节点</p>
-<pre class=" language-cypher"><code class="language-cypher">  MATCH (n:Person &#123; name:'Taylor' &#125;)
-  DETACH DELETE n;
-</code></pre>
+<pre class="cypher"><code>  MATCH (n:Person &#123; name:&#39;Taylor&#39; &#125;)
+  DETACH DELETE n;</code></pre>
 <p>更新节点。更新一个Person类别的节点，设置新的name。</p>
-<pre class=" language-cypher"><code class="language-cypher">  MATCH (n:Person &#123; name: 'Andres' &#125;)
-  SET n.name = 'Taylor';
-</code></pre>
+<pre class="cypher"><code>  MATCH (n:Person &#123; name: &#39;Andres&#39; &#125;)
+  SET n.name = &#39;Taylor&#39;;</code></pre>
 <p>全部删除关系和节点</p>
-<pre class=" language-cypher"><code class="language-cypher">MATCH(r)
-DETACH DELETE r
-</code></pre>
+<pre class="cypher"><code>MATCH(r)
+DETACH DELETE r</code></pre>
 <p>删除边</p>
-<pre class=" language-cypher"><code class="language-cypher">  MATCH (a:Person)-[r:Follow]->(b:Person)
-  WHERE a.name = 'Node A' AND b.name = 'Node B'
-  DELETE r;
-</code></pre>
+<pre class="cypher"><code>  MATCH (a:Person)-[r:Follow]-&gt;(b:Person)
+  WHERE a.name = &#39;Node A&#39; AND b.name = &#39;Node B&#39;
+  DELETE r;</code></pre>
 <p>查询</p>
-<pre class=" language-cypher"><code class="language-cypher">MATCH (tom &#123;name: "Tom Hanks"&#125;) RETURN tom
+<pre class="cypher"><code>MATCH (tom &#123;name: &quot;Tom Hanks&quot;&#125;) RETURN tom
 MATCH (people:Person) RETURN people.name LIMIT 10
-MATCH (nineties:Movie) WHERE nineties.released >= 1990 AND nineties.released < 2000 RETURN nineties.title
-</code></pre>
+MATCH (nineties:Movie) WHERE nineties.released &gt;= 1990 AND nineties.released &lt; 2000 RETURN nineties.title</code></pre>
 <p>查询最短路径</p>
-<pre class=" language-cypher"><code class="language-cypher">  MATCH (ms:Person &#123; name:'Node A' &#125;),(cs:Person &#123; name:'Node B' &#125;), p = shortestPath((ms)-[r:Follow]-(cs)) RETURN p;
-</code></pre>
+<pre class="cypher"><code>  MATCH (ms:Person &#123; name:&#39;Node A&#39; &#125;),(cs:Person &#123; name:&#39;Node B&#39; &#125;), p = shortestPath((ms)-[r:Follow]-(cs)) RETURN p;</code></pre>
 <p>查询两个节点之间的关系</p>
-<pre class=" language-cypher"><code class="language-cypher">  MATCH (a:Person &#123; name:'Node A' &#125;)-[r]->(b:Person &#123; name:'Node B' &#125;)
-  RETURN type(r);
-</code></pre>
+<pre class="cypher"><code>  MATCH (a:Person &#123; name:&#39;Node A&#39; &#125;)-[r]-&gt;(b:Person &#123; name:&#39;Node B&#39; &#125;)
+  RETURN type(r);</code></pre>
 <p>查询一个节点的所有Follower</p>
-<pre class=" language-cypher"><code class="language-cypher">  MATCH (:Person &#123; name:'Taylor' &#125;)-[r:Follow]->(Person)
-  RETURN Person.name;
-</code></pre>
-<h2 id="2-可以通过调用JAVA来进行使用"><a href="#2-可以通过调用JAVA来进行使用" class="headerlink" title="2.可以通过调用JAVA来进行使用"></a>2.可以通过调用JAVA来进行使用</h2><p>其实在网络上有着 springboot + neo4j的组合，我之后肯定会建一个这样的可视化系统来进行展示。</p>
-<h3 id="Neo4j-Java-Driver"><a href="#Neo4j-Java-Driver" class="headerlink" title="Neo4j Java Driver"></a>Neo4j Java Driver</h3><p>When using Maven, add this to your <em>pom.xml</em> file:</p>
-<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span>groupId<span class="token operator">></span>org<span class="token punctuation">.</span>neo4j<span class="token punctuation">.</span>driver<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-<span class="token operator">&lt;</span>artifactId<span class="token operator">></span>neo4j<span class="token operator">-</span>java<span class="token operator">-</span>driver<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-<span class="token operator">&lt;</span>version<span class="token operator">></span>？？？<span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-</code></pre>
+<pre class="cypher"><code>  MATCH (:Person &#123; name:&#39;Taylor&#39; &#125;)-[r:Follow]-&gt;(Person)
+  RETURN Person.name;</code></pre>
+<h2 id="可以通过调用java来进行使用">2.可以通过调用JAVA来进行使用</h2>
+<p>其实在网络上有着 springboot +
+neo4j的组合，我之后肯定会建一个这样的可视化系统来进行展示。</p>
+<h3 id="neo4j-java-driver">Neo4j Java Driver</h3>
+<p>When using Maven, add this to your <em>pom.xml</em> file:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>groupId<span class="op">&gt;</span>org<span class="op">.</span><span class="fu">neo4j</span><span class="op">.</span><span class="fu">driver</span><span class="op">&lt;/</span>groupId<span class="op">&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>artifactId<span class="op">&gt;</span>neo4j<span class="op">-</span>java<span class="op">-</span>driver<span class="op">&lt;/</span>artifactId<span class="op">&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>version<span class="op">&gt;</span>？？？<span class="op">&lt;/</span>version<span class="op">&gt;</span></span></code></pre></div>
 <p>对于其他的构建系统来说</p>
-<pre class=" language-JAVA"><code class="language-JAVA">import org.neo4j.driver.AuthTokens;
-import org.neo4j.driver.Driver;
-import org.neo4j.driver.GraphDatabase;
-import org.neo4j.driver.Query;
-
-import static org.neo4j.driver.Values.parameters;
-
-public class HelloWorldExample implements AutoCloseable &#123;
-    private final Driver driver;
-
-    public HelloWorldExample(String uri, String user, String password) &#123;
-        driver = GraphDatabase.driver(uri, AuthTokens.basic(user, password));
-    &#125;
-
-    @Override
-    public void close() throws RuntimeException &#123;
-        driver.close();
-    &#125;
-
-    public void printGreeting(final String message) &#123;
-        try (var session = driver.session()) &#123;
-            var greeting = session.executeWrite(tx -> &#123;
-                var query = new Query("CREATE (a:Greeting) SET a.message = $message RETURN a.message + ', from node ' + id(a)", parameters("message", message));
-                var result = tx.run(query);
-                return result.single().get(0).asString();
-            &#125;);
-            System.out.println(greeting);
-        &#125;
-    &#125;
-
-    public static void main(String... args) &#123;
-        try (var greeter = new HelloWorldExample("bolt://localhost:7687", "neo4j", "password")) &#123;
-            greeter.printGreeting("hello, world");
-        &#125;
-    &#125;
-&#125;
-</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">neo4j</span><span class="op">.</span><span class="im">driver</span><span class="op">.</span><span class="im">AuthTokens</span><span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">neo4j</span><span class="op">.</span><span class="im">driver</span><span class="op">.</span><span class="im">Driver</span><span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">neo4j</span><span class="op">.</span><span class="im">driver</span><span class="op">.</span><span class="im">GraphDatabase</span><span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">neo4j</span><span class="op">.</span><span class="im">driver</span><span class="op">.</span><span class="im">Query</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="kw">static</span><span class="im"> org</span><span class="op">.</span><span class="im">neo4j</span><span class="op">.</span><span class="im">driver</span><span class="op">.</span><span class="im">Values</span><span class="op">.</span><span class="im">parameters</span><span class="op">;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> HelloWorldExample <span class="kw">implements</span> AutoCloseable <span class="op">&#123;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">final</span> <span class="bu">Driver</span> driver<span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="fu">HelloWorldExample</span><span class="op">(</span><span class="bu">String</span> uri<span class="op">,</span> <span class="bu">String</span> user<span class="op">,</span> <span class="bu">String</span> password<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        driver <span class="op">=</span> GraphDatabase<span class="op">.</span><span class="fu">driver</span><span class="op">(</span>uri<span class="op">,</span> AuthTokens<span class="op">.</span><span class="fu">basic</span><span class="op">(</span>user<span class="op">,</span> password<span class="op">));</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">close</span><span class="op">()</span> <span class="kw">throws</span> <span class="bu">RuntimeException</span> <span class="op">&#123;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        driver<span class="op">.</span><span class="fu">close</span><span class="op">();</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">printGreeting</span><span class="op">(</span><span class="dt">final</span> <span class="bu">String</span> message<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span> <span class="op">(</span><span class="dt">var</span> session <span class="op">=</span> driver<span class="op">.</span><span class="fu">session</span><span class="op">())</span> <span class="op">&#123;</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>            <span class="dt">var</span> greeting <span class="op">=</span> session<span class="op">.</span><span class="fu">executeWrite</span><span class="op">(</span>tx <span class="op">-&gt;</span> <span class="op">&#123;</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>                <span class="dt">var</span> query <span class="op">=</span> <span class="kw">new</span> <span class="bu">Query</span><span class="op">(</span><span class="st">&quot;CREATE (a:Greeting) SET a.message = $message RETURN a.message + &#39;, from node &#39; + id(a)&quot;</span><span class="op">,</span> <span class="fu">parameters</span><span class="op">(</span><span class="st">&quot;message&quot;</span><span class="op">,</span> message<span class="op">));</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>                <span class="dt">var</span> result <span class="op">=</span> tx<span class="op">.</span><span class="fu">run</span><span class="op">(</span>query<span class="op">);</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> result<span class="op">.</span><span class="fu">single</span><span class="op">().</span><span class="fu">get</span><span class="op">(</span><span class="dv">0</span><span class="op">).</span><span class="fu">asString</span><span class="op">();</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>            <span class="op">&#125;);</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>            <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>greeting<span class="op">);</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        <span class="op">&#125;</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="kw">...</span> args<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span> <span class="op">(</span><span class="dt">var</span> greeter <span class="op">=</span> <span class="kw">new</span> <span class="fu">HelloWorldExample</span><span class="op">(</span><span class="st">&quot;bolt://localhost:7687&quot;</span><span class="op">,</span> <span class="st">&quot;neo4j&quot;</span><span class="op">,</span> <span class="st">&quot;password&quot;</span><span class="op">))</span> <span class="op">&#123;</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>            greeter<span class="op">.</span><span class="fu">printGreeting</span><span class="op">(</span><span class="st">&quot;hello, world&quot;</span><span class="op">);</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">&#125;</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
 <p>下次再构建吧 可以学习的页面</p>
 
                 
