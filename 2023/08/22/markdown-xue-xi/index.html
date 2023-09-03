@@ -483,18 +483,33 @@
 &#96; const x &#x3D; 3  &#96;
 
 ### 插入表格
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre> 表头|条目一|条目二 :---:|:---:|:---:
-项目|项目一|项目二 <pre class="line-numbers language-none"><code class="language-none">
-| 表头 | 条目一 | 条目二 |
-| :--: | :----: | :----: |
-| 项目 | 项目一 | 项目二 |
 
-### 特殊符号处理
-
-Markdown使用反斜杠\插入语法中用到的特殊符号。在Markdown中，主要有以下几种特殊符号需要处理：
-
-&#96;&#96;&#96;csharp
-\   反斜线
+&#96;&#96;&#96;markdown
+表头|条目一|条目二
+:---:|:---:|:---:
+项目|项目一|项目二<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">表头</th>
+<th style="text-align: center;">条目一</th>
+<th style="text-align: center;">条目二</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">项目</td>
+<td style="text-align: center;">项目一</td>
+<td style="text-align: center;">项目二</td>
+</tr>
+</tbody>
+</table>
+<p>这是怎么回事我的好兄弟？</p>
+<h3 id="特殊符号处理">特殊符号处理</h3>
+<p>Markdown使用反斜杠。在Markdown中，主要有以下几种特殊符号需要处理：</p>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp">\   反斜线
 &#96;   反引号
 *   星号
 _   底线
@@ -505,9 +520,7 @@ _   底线
 +   加号
 -   减号
 .   英文句点
-!   惊叹号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ol></li>
-</ul>
+!   惊叹号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>例如，如果你需要插入反斜杠，就连续输入两个反斜杠即可：\ =&gt;  。</p>
 <p>注：在内容中输入以上特殊符号的时候一定要注意转义，否则将导致内容显示不全，甚至排版混乱。</p>
 
@@ -625,54 +638,36 @@ _   底线
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="">
+                <a href="../../23/transformer/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/15.jpg" class="responsive-img" alt="Markdown学习">
+                        <img src="../../../../medias/featureimages/7.jpg" class="responsive-img" alt="transformer">
                         
-                        <span class="card-title">Markdown学习</span>
+                        <span class="card-title">transformer</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            markdown 学习
+                            
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-22
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-23
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="../../../../categories/learning/" class="post-category">
-                                    learning
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            索冀峰
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="../../../../tags/Typora/">
-                        <span class="chip bg-color">Typora</span>
-                    </a>
-                    
-                    <a href="../../../../tags/Markdown/">
-                        <span class="chip bg-color">Markdown</span>
-                    </a>
-                    
                 </div>
                 
             </div>
