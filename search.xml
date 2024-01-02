@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>time series</title>
+      <link href="/2024/01/02/time-series/"/>
+      <url>/2024/01/02/time-series/</url>
+      
+        <content type="html"><![CDATA[<p>好久没有写博客了，最近开一个新坑时间序列，之前的研究方向不做知识图谱了，现在做一些多元时间序列的任务，也应该和遥感土地分类这块的MTSC有相关的东西。接下来应该跟一些。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> time series </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> time series </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>图签名函数</title>
       <link href="/2023/09/25/tu-qian-ming-han-shu/"/>
       <url>/2023/09/25/tu-qian-ming-han-shu/</url>
