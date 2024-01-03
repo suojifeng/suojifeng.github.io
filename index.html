@@ -93,8 +93,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-<style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -206,7 +205,8 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</style><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -659,22 +659,23 @@ THP
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/20.jpg');">
+                 style="background-image: url('/medias/featureimages/2.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">Medical Aided Diagnosis System Based on Temporal Knowledge Graph</div>
+                            <div class="title center-align">New Hawkes Transformer Reasoning</div>
                             <div class="description center-align">
                                 
                                     [TOC]
-简单介绍
-主要技术：GRU+TransR
-在临床领域，疾病发病往往存在缓慢或快速的进化过程，这些临时的事实时间序列知识可以根据时间序列转换为时间序列知识图。
-将文本数据和临床数据中最初存在的不可计算知识以知识图的形式表示
+Transformer 有两种变体，它们分别捕获瞬时结构信息和时间演化信息，以及一种新的关系连续时间编码函数，以促进
+Hawkes 过程的特征演化。
+注意：
+在这篇论文里里面，我们舍弃了 RGCN
+领域聚合器，（RGC
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2023/08/22/medical-aided-diagnosis-system-based-on-temporal-knowledge-graph/" class="waves-effect waves-light btn"
+                                <a href="2023/09/10/new-hawkes-transformer-reasoning/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -709,47 +710,22 @@ THP
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/2.jpg');">
+                 style="background-image: url('/medias/featureimages/20.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">New Hawkes Transformer Reasoning</div>
+                            <div class="title center-align">Medical Aided Diagnosis System Based on Temporal Knowledge Graph</div>
                             <div class="description center-align">
                                 
                                     [TOC]
-Transformer 有两种变体，它们分别捕获瞬时结构信息和时间演化信息，以及一种新的关系连续时间编码函数，以促进
-Hawkes 过程的特征演化。
-注意：
-在这篇论文里里面，我们舍弃了 RGCN
-领域聚合器，（RGC
+简单介绍
+主要技术：GRU+TransR
+在临床领域，疾病发病往往存在缓慢或快速的进化过程，这些临时的事实时间序列知识可以根据时间序列转换为时间序列知识图。
+将文本数据和临床数据中最初存在的不可计算知识以知识图的形式表示
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2023/09/10/new-hawkes-transformer-reasoning/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/21.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">TECHS</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2023/08/23/techs/" class="waves-effect waves-light btn"
+                                <a href="2023/08/22/medical-aided-diagnosis-system-based-on-temporal-knowledge-graph/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -797,19 +773,41 @@ SAHP 采用 self-attention
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">The Graph Hawkes Process</div>
+                            <div class="title center-align">TECHS</div>
                             <div class="description center-align">
                                 
-                                    [TOC]
-Introduce
-Hawkes过程是一种自激励点过程，用于对事件序列建模和分析。它的核心概念包括以下几个要素：
+                                    
 
-强度函数（Intensity function）：强度函数 λ(t)
-是Hawkes过程中的关键和核心
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2023/08/28/the-graph-hawkes-process/" class="waves-effect waves-light btn"
+                                <a href="2023/08/23/techs/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/19.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">evoExplore</div>
+                            <div class="description center-align">
+                                
+                                    这篇也是讲述时序知识图谱推理的工作。
+Temporal knowledge graph representation learning with local and
+global evolutions
+关系的连续建立可以看作是离散的顺
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2023/09/25/evoexplore/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -837,6 +835,34 @@ Hawkes过程是一种自激励点过程，用于对事件序列建模和分析�
                             </div>
                             <div class="cover-btns">
                                 <a href="2023/09/10/time2vec/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/21.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">The Graph Hawkes Process</div>
+                            <div class="description center-align">
+                                
+                                    [TOC]
+Introduce
+Hawkes过程是一种自激励点过程，用于对事件序列建模和分析。它的核心概念包括以下几个要素：
+
+强度函数（Intensity function）：强度函数 λ(t)
+是Hawkes过程中的关键和核心
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2023/08/28/the-graph-hawkes-process/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -895,56 +921,6 @@ Historical Patterns for Temporal Knowledge Graph Reasoning
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/19.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">evoExplore</div>
-                            <div class="description center-align">
-                                
-                                    这篇也是讲述时序知识图谱推理的工作。
-Temporal knowledge graph representation learning with local and
-global evolutions
-关系的连续建立可以看作是离散的顺
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2023/09/25/evoexplore/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/7.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">transformer</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2023/08/23/transformer/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/11.jpg');">
                 <div class="container">
                     <div class="row">
@@ -982,6 +958,56 @@ Function）是一种数学函数，它用于将图形（graphs）中的结构信
                             </div>
                             <div class="cover-btns">
                                 <a href="2023/09/25/tu-qian-ming-han-shu/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/7.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">transformer</div>
+                            <div class="description center-align">
+                                
+                                    
+
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2023/08/23/transformer/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/7.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">新的一年新的开始</div>
+                            <div class="description center-align">
+                                
+                                    回首2023
+2024年到来，我终于想起这里还有我的博客，从我心血来潮建立到现在好像只有8
+9月份在努力的每天记录，不得不说那两个月是我用心学习的两个月。
+本来的方向是做医疗知识图谱，但是现在又换了赛道，从之前的9月份一整个月都在做知
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2024/01/02/xin-de-yi-nian-xin-de-kai-shi/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -1131,6 +1157,58 @@ Function）是一种数学函数，它用于将图形（graphs）中的结构信
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="2024/01/02/xin-de-yi-nian-xin-de-kai-shi/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="新的一年新的开始">
+                            
+                            <span class="card-title">新的一年新的开始</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                回首2023
+2024年到来，我终于想起这里还有我的博客，从我心血来潮建立到现在好像只有8
+9月份在努力的每天记录，不得不说那两个月是我用心学习的两个月。
+本来的方向是做医疗知识图谱，但是现在又换了赛道，从之前的9月份一整个月都在做知
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="categories/My-Daily-Life/" class="post-category">
+                                    My Daily Life
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="tags/daliy/">
+                            <span class="chip bg-color">daliy</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
             
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
@@ -2041,63 +2119,6 @@ Hawkes过程是一种自激励点过程，用于对事件序列建模和分析�
                         
                         <a href="tags/CENET/">
                             <span class="chip bg-color">CENET</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-              <!-- 隐藏某个文章 -->
-            
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="2023/08/17/zhi-fang-gan-shu-ju-de-gai-xie/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="脂肪肝数据的改写">
-                            
-                            <span class="card-title">脂肪肝数据的改写</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                利用python的数据替换改写
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-17
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="categories/dataprogress/" class="post-category">
-                                    dataprogress
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="tags/knowledgeGraphs/">
-                            <span class="chip bg-color">knowledgeGraphs</span>
-                        </a>
-                        
-                        <a href="tags/dataprogress/">
-                            <span class="chip bg-color">dataprogress</span>
-                        </a>
-                        
-                        <a href="tags/python/">
-                            <span class="chip bg-color">python</span>
                         </a>
                         
                     </div>
