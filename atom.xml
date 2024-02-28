@@ -6,7 +6,7 @@
   <link href="https://suojifeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://suojifeng.github.io/"/>
-  <updated>2024-01-24T13:42:06.116Z</updated>
+  <updated>2024-02-28T13:13:07.426Z</updated>
   <id>https://suojifeng.github.io/</id>
   
   <author>
@@ -17,19 +17,21 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>2024 硕士</title>
+    <title>时序思考</title>
     <link href="https://suojifeng.github.io/2024/01/24/2024-shuo-shi/"/>
     <id>https://suojifeng.github.io/2024/01/24/2024-shuo-shi/</id>
     <published>2024-01-24T13:35:34.000Z</published>
-    <updated>2024-01-24T13:42:06.116Z</updated>
+    <updated>2024-02-28T13:13:07.426Z</updated>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>新的开始，目前发现一个好的方向那就是patch，我想在这方面下功夫做出我自己的代码</p><p>但是最近的工作感觉是有在这个方面，但是基本上都在长时序预测上面，在分类上面我觉得应该应该是有区别的</p><p>所以 我觉得通道独立这个是不太对的，我觉得需要是需要考虑channel上面的注意力。我觉得应该要这么做，在明天把这几篇有关于patch的文章看完之后，我就去想自己的创新点，首先要是在自己的数据集上调通，然后就在想其他方法的问题。</p><p>明天会更新一下一些相关的论文，有关于patch的。</p>]]></content>
     
     
       
       
-    <summary type="html">
-</summary>
+    <summary type="html">&lt;p&gt;新的开始，目前发现一个好的方向那就是patch，我想在这方面下功夫做出我自己的代码&lt;/p&gt;
+&lt;p&gt;但是最近的工作感觉是有在这个方面，但是基本上都在长时序预测上面，在分类上面我觉得应该应该是有区别的&lt;/p&gt;
+&lt;p&gt;所以 我觉得通道独立这个是
+不太对的，我觉得需要是需要考</summary>
       
     
     
