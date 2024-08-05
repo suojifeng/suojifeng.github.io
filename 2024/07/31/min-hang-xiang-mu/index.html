@@ -544,8 +544,10 @@ mjx-container[display="true"] + br {
 <h2 id="负责人">负责人</h2>
 <p>你作为负责人，你应该要做的是什么职责呢？</p>
 <p>确定项目架构，搭建整体框架，基于 RBAC 权限模型设计用户数据库；</p>
+<p>组员的工作：①前端页面的展示②机器学习算法集成③两个人做后端</p>
 <h2 id="前端到后端数据的传输">前端到后端数据的传输</h2>
 <p>首先是前端的交互，然后通过vue3的代码进行数据传输，使用http协议向后端发送数据（使用axios发起请求）</p>
+<p>DTO 接收前端表单实体，Entity 与数据库交互，VO 用于前端展示</p>
 <p>然后是数据传输：数据传输请求包括下面的主要部分</p>
 <p><strong>请求方法</strong>：例如POST、PUT、GET等。</p>
 <p><strong>请求URL</strong>：后端API的端点地址。</p>
@@ -555,6 +557,8 @@ mjx-container[display="true"] + br {
 <p>处理完请求后，后端会生成响应并发送回前端。响应通常包括状态码（如200
 OK）、响应头和响应体（如操作结果、成功消息、错误信息等）。</p>
 <p>前端接收到后端的响应后，会根据响应的内容更新用户界面。例如，显示成功消息、更新视图、处理错误等。</p>
+<h2 id="操作日志记录">操作日志记录</h2>
+<p>实体类</p>
 <h2 id="websocket">websocket</h2>
 <p>在这里面websocket起到了什么作用呢？</p>
 <p>WebSocket
@@ -592,6 +596,9 @@ Token，确保请求的合法性和用户身份的验证。</p>
 <p><strong>4.集成在全局异常处理当中</strong></p>
 <p>GlobalExceptionHandler处理在 Spring Boot
 应用中出现的各种异常，并返回统一格式的错误响应。</p>
+<h2 id="minio">MINIO</h2>
+<p>分布式对象存储</p>
+<p>包括分片续传和单点上传</p>
 <h2 id="http协议">http协议</h2>
 <p>HTTP 是超⽂本传输协议，信息是明⽂传输</p>
 <p>HTTPS 则解决 HTTP 不安全的缺陷，在TCP 和 HTTP ⽹络层之间加⼊了
@@ -623,6 +630,8 @@ HTTP 请求。</li>
 </ul></li>
 </ol></li>
 </ol>
+<h2 id="nginx">nginx</h2>
+<p>电脑和前端页面访问的中介就是 nginx</p>
 <h2 id="模型计算">模型计算</h2>
 <h3 id="acars">ACARS</h3>
 <p>ACARS数据那到底是怎么计算呢，主要是 包括单值预测和多值预测</p>
@@ -634,6 +643,7 @@ HTTP 请求。</li>
 <p>主要还是部署问题，</p>
 <p>maven的package功能</p>
 <p>得到相关的jar包，在linux或者其他系统通过java命令运行项目jar包</p>
+<h2 id="项目难点">项目难点</h2>
 
                 
             </div>
