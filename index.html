@@ -93,7 +93,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -205,8 +206,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</style><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -740,6 +740,38 @@ Hawkes 过程的特征演化。
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/11.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">Self-Attentive Hawkes Process</div>
+                            <div class="description center-align">
+                                
+                                    [TOC]
+SAHP 采用 self-attention
+来总结历史事件的影响并计算下一个事件的概率。
+自注意力适应以增强强度函数的表达能力。该方法增强了模型预测和模型可解释性。
+结构图如下
+
+
+结构图
+
+传统的自我注意的
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2023/09/03/self-attentive-hawkes-process/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/0.jpg');">
                 <div class="container">
                     <div class="row">
@@ -787,27 +819,22 @@ Hawkes 过程的特征演化。
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/11.jpg');">
+                 style="background-image: url('/medias/featureimages/9.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">Self-Attentive Hawkes Process</div>
+                            <div class="title center-align">Time2Vec</div>
                             <div class="description center-align">
                                 
-                                    [TOC]
-SAHP 采用 self-attention
-来总结历史事件的影响并计算下一个事件的概率。
-自注意力适应以增强强度函数的表达能力。该方法增强了模型预测和模型可解释性。
-结构图如下
-
-
-结构图
-
-传统的自我注意的
+                                    我们使用 τ 来表示时间的标量概念
+将时间特征和其他的特征连接在一起 拼接
+我们设计了一种时间表示，可用于通过可学习参数逼近任何函数。
+主要的函数  上面的 ω φ是可以学习的参数
+直观地说，位置可以被认为是时间，项目可以被认为是当
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2023/09/03/self-attentive-hawkes-process/" class="waves-effect waves-light btn"
+                                <a href="2023/09/10/time2vec/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -847,33 +874,6 @@ Hawkes过程是一种自激励点过程，用于对事件序列建模和分析�
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/9.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">Time2Vec</div>
-                            <div class="description center-align">
-                                
-                                    我们使用 τ 来表示时间的标量概念
-将时间特征和其他的特征连接在一起 拼接
-我们设计了一种时间表示，可用于通过可学习参数逼近任何函数。
-主要的函数  上面的 ω φ是可以学习的参数
-直观地说，位置可以被认为是时间，项目可以被认为是当
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2023/09/10/time2vec/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/12.jpg');">
                 <div class="container">
                     <div class="row">
@@ -887,6 +887,53 @@ Historical Patterns for Temporal Knowledge Graph Reasoning
                             </div>
                             <div class="cover-btns">
                                 <a href="2023/09/10/tirgn/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/2.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">time series</div>
+                            <div class="description center-align">
+                                
+                                    time series
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2024/01/02/time-series/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/7.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">transformer</div>
+                            <div class="description center-align">
+                                
+                                    
+
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2023/08/23/transformer/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -949,18 +996,23 @@ global evolutions
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/2.jpg');">
+                 style="background-image: url('/medias/featureimages/20.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">time series</div>
+                            <div class="title center-align">好久不见</div>
                             <div class="description center-align">
                                 
-                                    time series
+                                    讲真好久不见
+不知不觉已经5月份了，时间过得好快啊，日记倒是没有写多少，生活也好像没什么进步
+论文难道就这样吗，但是确实好像不用什么创新的地方
+时间匆匆如流水，好像已经5月15号了
+本科生的进度也是需要加快了，两周时间吧
+每天好像
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2024/01/02/time-series/" class="waves-effect waves-light btn"
+                                <a href="2024/05/13/hao-jiu-bu-jian/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -1020,75 +1072,23 @@ Function）是一种数学函数，它用于将图形（graphs）中的结构信
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/7.jpg');">
+                 style="background-image: url('/medias/featureimages/14.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">transformer</div>
+                            <div class="title center-align">民航项目</div>
                             <div class="description center-align">
                                 
-                                    
+                                    [TOC]
+民航发动机数据管理系统
+首先这个数据管理系统主要是干什么的
 
+数据管理：收集、存储和处理来自飞机发动机的传感器数据。这些数据可能包括发动机性能指标、飞行参数和环境条件。
+数据分析：利用机器学习和其他数据分析技术来分析这
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2023/08/23/transformer/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/7.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">新的一年新的开始</div>
-                            <div class="description center-align">
-                                
-                                    回首2023
-​
-2024年到来，我终于想起这里还有我的博客，从我心血来潮建立到现在好像只有8
-9月份在努力的每天记录，不得不说那两个月是我用心学习的两个月。
-​
-本来的方向是做医疗知识图谱，但是现在又换了赛道，从之前的9月份一整
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2024/04/30/xin-de-yi-nian-xin-de-kai-shi/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/20.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">好久不见</div>
-                            <div class="description center-align">
-                                
-                                    讲真好久不见
-不知不觉已经5月份了，时间过得好快啊，日记倒是没有写多少，生活也好像没什么进步
-论文难道就这样吗，但是确实好像不用什么创新的地方
-时间匆匆如流水，好像已经5月15号了
-本科生的进度也是需要加快了，两周时间吧
-每天好像
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2024/05/13/hao-jiu-bu-jian/" class="waves-effect waves-light btn"
+                                <a href="2024/07/31/min-hang-xiang-mu/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -1132,23 +1132,23 @@ oppo
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/14.jpg');">
+                 style="background-image: url('/medias/featureimages/7.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">民航项目</div>
+                            <div class="title center-align">新的一年新的开始</div>
                             <div class="description center-align">
                                 
-                                    [TOC]
-民航发动机数据管理系统
-首先这个数据管理系统主要是干什么的
-
-数据管理：收集、存储和处理来自飞机发动机的传感器数据。这些数据可能包括发动机性能指标、飞行参数和环境条件。
-数据分析：利用机器学习和其他数据分析技术来分析这
+                                    回首2023
+​
+2024年到来，我终于想起这里还有我的博客，从我心血来潮建立到现在好像只有8
+9月份在努力的每天记录，不得不说那两个月是我用心学习的两个月。
+​
+本来的方向是做医疗知识图谱，但是现在又换了赛道，从之前的9月份一整
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2024/07/31/min-hang-xiang-mu/" class="waves-effect waves-light btn"
+                                <a href="2024/04/30/xin-de-yi-nian-xin-de-kai-shi/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>

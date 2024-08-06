@@ -59,7 +59,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -171,8 +172,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</style><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -632,10 +632,20 @@ Token，确保请求的合法性和用户身份的验证。</p>
 应用中出现的各种异常，并返回统一格式的错误响应。</p>
 <h2 id="redis">Redis</h2>
 <p>Redis部署在docker里面，默认端口</p>
-<p>存储 用户登录的 session和 JWT-token</p>
-<p>每次权限验证的时候重写satoken的接口，每次查权限的时候从缓存里面查</p>
+<p>整合的是 satoken和redis链接</p>
+<p>redis整合的是 jackson序列化方式</p>
+<p>存储的是 redis的信息：用户的角色信息与权限列表，jwt-token
+请求时间</p>
+<p>每次权限验证的时候重写satoken的接口，每次<strong>查权限</strong>和登录信息的时候从redis缓存里面查</p>
+<p>还有就是经常查询的数据库：比如说是
+航班表的信息，但是实时数据可能不会存储到里面</p>
 <p>在application.yml里面部署</p>
 <p>使用Redis实现Session共享可以解决分布式应用程序中的Session一致性问题，同时提供高可用性和扩展性。Redis是一个快速、可靠且功能强大的缓存和数据存储系统，非常适合用于这种场景。</p>
+<h2 id="注册登录">注册登录</h2>
+<p>使用邮箱注册，需要验证码，验证码存放在redis中，在redis中设置有效时间为一分钟</p>
+<p>忘记密码：与注册部分同理，也是邮箱验证码</p>
+<p>验证码：配置 SMTP 服务器地址+qq邮箱小号</p>
+<p>用户登陆后后端会生成token与session存入redis中，同时token还会传送给前端，前端每次发送请求请求头中都会带着token。之后会与redis中存储的token进行对比验证，如果相同并且没有过期，就会放行。</p>
 <h2 id="cookiesessiontoken">cookie、session、token</h2>
 <p>cookie是客户端，浏览器。不安全
 根据cookie登录不同的账号，容量有限。不能完全依赖cookie</p>
@@ -777,7 +787,7 @@ HTTP 方法。</p>
 <p>4.定义外键约束。</p>
 <p><strong>Result（结果）</strong></p>
 <p>执行起来更加迅速，数据库结构更加清晰。</p>
-<p><strong>2.分批插入数据</strong></p>
+<h3 id="分批插入数据"><strong>2.分批插入数据</strong></h3>
 <p><strong>Situation（情境）</strong></p>
 <p>民航发动机在飞行过程中会产生大量的一秒一次（实时）的数据。<strong>数据插入mysql数据库的时候缓慢。</strong></p>
 <p><strong>Task（任务）</strong></p>
