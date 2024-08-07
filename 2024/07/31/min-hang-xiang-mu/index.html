@@ -59,8 +59,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-<style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -172,7 +171,8 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</style><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -784,7 +784,7 @@ HTTP 方法。</p>
 <p>1.在写入的时候批量写入，而不是每秒直接写入数据库，1000条左右</p>
 <p>2.对经常需要查询的字段 比如说航班号啊，时间加入索引，优化时间</p>
 <p>3.上面分数据库的设计</p>
-<p>4.定义外键约束。</p>
+<p>4.定义外键约束。（缺点就是维护起来比较困难）</p>
 <p><strong>Result（结果）</strong></p>
 <p>执行起来更加迅速，数据库结构更加清晰。</p>
 <h3 id="分批插入数据"><strong>2.分批插入数据</strong></h3>
@@ -826,7 +826,7 @@ HTTP 方法。</p>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://suojifeng.github.io">https://suojifeng.github.io</a>
+                    <a href="https://suojifeng.xyz">https://suojifeng.xyz</a>
                 </span>
             </div>
             <div class="reprint__notice">
