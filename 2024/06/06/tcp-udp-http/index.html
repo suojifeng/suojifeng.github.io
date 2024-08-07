@@ -4,22 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="redis, 索时">
-    <meta name="description" content="1.缓存
-
-
-缓存穿透
-
-
-
-布隆过滤器
-
-（redission）布隆过滤器：通过对id计算hash值计算，通过id得到值在bitmap中置1，但是会误判（误判率5%以内）
-攻击数据库
-
-
-缓存穿透面试解答
-
+    <meta name="keywords" content="TCP UDP HTTP, 索时">
+    <meta name="description" content="三次握手，四次挥手
 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -32,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>redis | 索时</title>
+    <title>TCP UDP HTTP | 索时</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
     
 
@@ -420,12 +406,12 @@ mjx-container[display="true"] + br {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">redis</h1>
+                    <h1 class="description center-align post-title">TCP UDP HTTP</h1>
                 </div>
             </div>
         </div>
@@ -447,12 +433,25 @@ mjx-container[display="true"] + br {
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="../../../../tags/JAVA/">
+                                <span class="chip bg-color">JAVA</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="../../../../categories/JAVA/" class="post-category">
+                                JAVA
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -461,7 +460,7 @@ mjx-container[display="true"] + br {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-08-07
+                    2024-06-06
                 </div>
                 
 
@@ -485,98 +484,7 @@ mjx-container[display="true"] + br {
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>1.缓存</p>
-<figure>
-<img src="/2024/08/07/redis/缓存穿透.jpg" alt="缓存穿透">
-<figcaption aria-hidden="true">缓存穿透</figcaption>
-</figure>
-<figure>
-<img src="/2024/08/07/redis/布隆过滤器.jpg" alt="布隆过滤器">
-<figcaption aria-hidden="true">布隆过滤器</figcaption>
-</figure>
-<p>（redission）布隆过滤器：通过对id计算hash值计算，通过id得到值在bitmap中置1，但是会误判（误判率5%以内）</p>
-<p>攻击数据库</p>
-<figure>
-<img src="/2024/08/07/redis/缓存穿透面试解答.jpg" alt="缓存穿透面试解答">
-<figcaption aria-hidden="true">缓存穿透面试解答</figcaption>
-</figure>
-<p>缓存击穿</p>
-<figure>
-<img src="/2024/08/07/redis/缓存击穿.jpg" alt="缓存击穿">
-<figcaption aria-hidden="true">缓存击穿</figcaption>
-</figure>
-<figure>
-<img src="/2024/08/07/redis/击穿解决办法.jpg" alt="击穿解决办法">
-<figcaption aria-hidden="true">击穿解决办法</figcaption>
-</figure>
-<figure>
-<img src="/2024/08/07/redis/击穿面试解答.jpg" alt="击穿面试解答">
-<figcaption aria-hidden="true">击穿面试解答</figcaption>
-</figure>
-<figure>
-<img src="/2024/08/07/redis/缓存雪崩.jpg" alt="缓存雪崩">
-<figcaption aria-hidden="true">缓存雪崩</figcaption>
-</figure>
-<figure>
-<img src="/2024/08/07/redis/雪崩解决.jpg" alt="雪崩解决">
-<figcaption aria-hidden="true">雪崩解决</figcaption>
-</figure>
-<p>mysql与redis（双写一致性）业务背景 缓存和数据库写</p>
-<figure>
-<img src="/2024/08/07/redis/双写延迟双删.jpg" alt="双写延迟双删">
-<figcaption aria-hidden="true">双写延迟双删</figcaption>
-</figure>
-<p>采用分布式锁：</p>
-<figure>
-<img src="/2024/08/07/redis/分布锁.jpg" alt="分布锁">
-<figcaption aria-hidden="true">分布锁</figcaption>
-</figure>
-<figure>
-<img src="/2024/08/07/redis/异步消息.jpg" alt="异步消息">
-<figcaption aria-hidden="true">异步消息</figcaption>
-</figure>
-<figure>
-<img src="/2024/08/07/redis/双写一致表达.jpg" alt="双写一致表达">
-<figcaption aria-hidden="true">双写一致表达</figcaption>
-</figure>
-<p>redis的持久化：</p>
-<p>RDB redis数据备份文件， 内存数据存入磁盘 bgsave（主动） save 900 1
-save 300 10 60 10000 （redis.conf被动）</p>
-<p>AOF追加文件，命令日志 执行重写效果</p>
-<p>删除策略：惰性删除 （不管他，过期了就删除）</p>
-<p>定期删除：检查，删除过期，一些key</p>
-<p>2.分布式锁</p>
-<p>setnx命令</p>
-<p>SET lock value NX EX 10</p>
-<p>DEL key</p>
-<p>redisson实现的分布式锁-执行流程（可重入）</p>
-<figure>
-<img src="/2024/08/07/redis/redisson分布锁.jpg" alt="redisson分布锁">
-<figcaption aria-hidden="true">redisson分布锁</figcaption>
-</figure>
-<p>加锁设置过期时间等操作都是基于lua脚本完成</p>
-<figure>
-<img src="/2024/08/07/redis/redis集群回答.jpg" alt="edis集群回答">
-<figcaption aria-hidden="true">edis集群回答</figcaption>
-</figure>
-<p>redis集群方案：</p>
-<p>主从复制</p>
-<p>哨兵模式</p>
-<p>分片集群</p>
-<figure>
-<img src="/2024/08/07/redis/分片集群.jpg" alt="分片集群">
-<figcaption aria-hidden="true">分片集群</figcaption>
-</figure>
-<p>16384个哈希槽，</p>
-<figure>
-<img src="/2024/08/07/redis/分片解答.jpg" alt="分片解答">
-<figcaption aria-hidden="true">分片解答</figcaption>
-</figure>
-<figure>
-<img src="/2024/08/07/redis/单线程快速回答.jpg" alt="单线程快速回答">
-<figcaption aria-hidden="true">单线程快速回答</figcaption>
-</figure>
-<p>3.消息队列、延迟队列</p>
+                <p><img src="/2024/06/06/tcp-udp-http/Blog\source_posts\TCP-UDP-HTTP\Untitled.png" alt="Untitled">三次握手，四次挥手</p>
 
                 
             </div>
@@ -640,7 +548,11 @@ save 300 10 60 10000 （redis.conf被动）</p>
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="../../../../tags/JAVA/">
+                                    <span class="chip bg-color">JAVA</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -684,12 +596,11 @@ save 300 10 60 10000 （redis.conf被动）</p>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="">
+                <a href="../../07/redis/">
                     <div class="card-image">
                         
                         
@@ -705,47 +616,9 @@ save 300 10 60 10000 （redis.conf被动）</p>
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-07
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            索冀峰
-                            
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-07
                         </span>
-                    </div>
-                </div>
-
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="../../06/tcp-udp-http/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="../../../../medias/featureimages/22.jpg" class="responsive-img" alt="TCP UDP HTTP">
-                        
-                        <span class="card-title">TCP UDP HTTP</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-06
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -763,6 +636,59 @@ save 300 10 60 10000 （redis.conf被动）</p>
                     
                     <a href="../../../../tags/JAVA/">
                         <span class="chip bg-color">JAVA</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../../../05/22/bu-wang-chu-xin/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/17.jpg" class="responsive-img" alt="不忘初心">
+                        
+                        <span class="card-title">不忘初心</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/My-Daily-Life/" class="post-category">
+                                    My Daily Life
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/daily-life/">
+                        <span class="chip bg-color">daily life</span>
+                    </a>
+                    
+                    <a href="../../../../tags/CR/">
+                        <span class="chip bg-color">CR</span>
                     </a>
                     
                 </div>
