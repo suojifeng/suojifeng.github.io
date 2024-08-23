@@ -59,8 +59,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-<style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -172,7 +171,8 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</style><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -641,6 +641,42 @@ Token，确保请求的合法性和用户身份的验证。</p>
 航班表的信息，但是实时数据可能不会存储到里面</p>
 <p>在application.yml里面部署</p>
 <p>使用Redis实现Session共享可以解决分布式应用程序中的Session一致性问题，同时提供高可用性和扩展性。Redis是一个快速、可靠且功能强大的缓存和数据存储系统，非常适合用于这种场景。</p>
+<p>首先是用户信息，和权限信息，key/value形式，使用哈希的形式</p>
+<p>然后是 用户会话登录形成的会话令牌即token，可以使用
+string进行Jackson序列化存储</p>
+<h3 id="存储的数据类型具体大小">存储的数据类型，具体大小</h3>
+<h3 id="如何保证缓存与数据库一致性">如何保证缓存与数据库一致性</h3>
+<p>1.简单：适应并发量一致性都不是很高</p>
+<p>写的时候删除缓存，然后再更新DB</p>
+<p>读的时候先读缓存，然后读DB，异步将数据刷会缓存</p>
+<p>问题在于 中间有一个步骤出错了怎么办，读写，写写并发会出现
+不一致的问题</p>
+<p>2.一般：</p>
+<p>引入日志binlog，通过解析binlog来刷新缓存</p>
+<p>写的时候第一步先删除缓存，删除之后再更新DB，我们监听从库(资源少的话主库也ok或者直接分析binlog也可以)的binlog，通过分析binlog我们解析出需要需要刷新的数据，然后读主库把最新的数据写入缓存。</p>
+<p>读的时候读的时候先读缓存，然后读DB，异步将数据刷会缓存</p>
+<p>3.困难</p>
+<p>利用<strong>MQ</strong>集成分布式系统 将所有“读数据库” +
+“写数据库缓存”的步骤<strong>串行化</strong></p>
+<figure>
+<img src="/2024/07/31/min-hang-xiang-mu/Users\suoshi\AppData\Roaming\Typora\typora-user-images\image-20240821141457071.png" alt="image-20240821141457071">
+<figcaption aria-hidden="true">image-20240821141457071</figcaption>
+</figure>
+<p>写的时候第一步先删除缓存，删除之后再更新DB，我们监听从库(资源少的话主库也ok)的binlog，通过分析binlog我们解析出需要需要刷新的<strong>数据标识</strong>，然后将<strong>数据标识写入MQ</strong>，接下来就<strong>消费MQ</strong>，解析MQ消息来读库获取相应的数据刷新缓存。</p>
+<p>读的时候第一步先读缓存，如果缓存没读到，则去读DB，之后再异步将数据标识写入MQ（这里MQ与写流程的MQ是同一个），接下来就消费MQ，解析MQ消息来读库获取相应的数据刷新缓存。</p>
+<p>4.困难进阶</p>
+<p>阿里开源的cannl组件</p>
+<p>基于bin
+log可以将数据库同步到其他各类数据库中，目标数据库支持mysql,postgresql,oracle,redis,MQ,ES等</p>
+<p>canal分成服务端deployer和客户端adapter，我们可以部署多个，同时为了方便管理还提供了一个管理端admin</p>
+<figure>
+<img src="https://i-blog.csdnimg.cn/blog_migrate/3fc70f3217cb46364b4f6a3c6d0f3bf6.png" alt="img">
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>不同点就在于我们加一个缓存，将近期被修改的数据进行标记锁定。读的时候，标记锁定的数据强行走DB，没锁定的数据，先走缓存，加上标志
+cache_0来规定</p>
+<h3 id="db主从一致性mysql的主从一致性">DB主从一致性(MySql的主从一致性)</h3>
+<p>分布式锁添加 共享锁和排他锁</p>
 <h2 id="注册登录">注册登录</h2>
 <p>使用邮箱注册，需要验证码，验证码存放在redis中，在redis中设置有效时间为一分钟</p>
 <p>忘记密码：与注册部分同理，也是邮箱验证码</p>
@@ -787,19 +823,18 @@ HTTP 方法。</p>
 <p>4.定义外键约束。（缺点就是维护起来比较困难）</p>
 <p><strong>Result（结果）</strong></p>
 <p>执行起来更加迅速，数据库结构更加清晰。</p>
-<h3 id="分批插入数据"><strong>2.分批插入数据</strong></h3>
+<h3 id="数据库和redis缓存不一致的问题">**2.数据库和redis缓存不一致的问题</h3>
 <p><strong>Situation（情境）</strong></p>
-<p>民航发动机在飞行过程中会产生大量的一秒一次（实时）的数据。<strong>数据插入mysql数据库的时候缓慢。</strong></p>
+<p>民航发动机在飞行过程中会产生大量的一秒一次（实时）的数据。<strong>数据更新mysql数据库的时候和缓存不一致的情况。</strong>或者是mysql和redis的分布式事务的问题</p>
 <p><strong>Task（任务）</strong></p>
-<p>怎么样高效的插入数据，而且安全,减短时间</p>
+<p>怎么保证数据和缓存的一致性</p>
 <p><strong>Action（行动）</strong></p>
-<p>之前也考虑过多线程的分批次插入，网上说是可以缓解数据库的压力</p>
-<p>调整数据库连接池的最大连接数</p>
-<p>数据压力在io ，磁盘速度，多线程解决不了，但是呢
-数据又不是很多，分批次导入</p>
-<p>最终采用分批次的，</p>
+<figure>
+<img src="/2024/07/31/min-hang-xiang-mu/Users\suoshi\AppData\Roaming\Typora\typora-user-images\image-20240817183541276.png" alt="image-20240817183541276">
+<figcaption aria-hidden="true">image-20240817183541276</figcaption>
+</figure>
 <p><strong>Result（结果）</strong></p>
-<p>执行起来更加迅速，数据库结构更加清晰。</p>
+<p>保证了一致性</p>
 
                 
             </div>
