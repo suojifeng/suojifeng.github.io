@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="sql优化, 索时">
-    <meta name="description" content="1.加索引
-创建合适的索引：为查询频繁使用的字段创建索引，例如主键索引、唯一索引和组合索引，减少全表扫描的发生。
-覆盖索引：通过覆盖索引（即查询所需的所有列都包含在索引中）来避免回表操作，从而加快查询速度。
-2.避免返回不必要的数据列">
+    <meta name="keywords" content="面试, 索时">
+    <meta name="description" content="1.线程和进程的区别
+进程是分配资源的最小单元，进程包括多个线程，线程其实对应的就是cpu的核心
+线程是操作系统调度的最小单位，多个线程可以共享进程的资源
+2.TCP和UDP的区别
+1.TCP是需要握手连接的，udp不用直接发送数据">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>sql优化 | 索时</title>
+    <title>面试 | 索时</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
     
 
@@ -408,12 +409,12 @@ mjx-container[display="true"] + br {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">sql优化</h1>
+                    <h1 class="description center-align post-title">面试</h1>
                 </div>
             </div>
         </div>
@@ -437,8 +438,8 @@ mjx-container[display="true"] + br {
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/Java/">
-                                <span class="chip bg-color">Java</span>
+                            <a href="../../../../tags/JAVA/">
+                                <span class="chip bg-color">-JAVA</span>
                             </a>
                         
                     </div>
@@ -453,7 +454,7 @@ mjx-container[display="true"] + br {
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-08-22
+                    2024-09-09
                 </div>
                 
 
@@ -477,17 +478,342 @@ mjx-container[display="true"] + br {
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>1.加索引</p>
-<p><strong>创建合适的索引</strong>：为查询频繁使用的字段创建索引，例如主键索引、唯一索引和组合索引，减少全表扫描的发生。</p>
-<p><strong>覆盖索引</strong>：通过覆盖索引（即查询所需的所有列都包含在索引中）来避免回表操作，从而加快查询速度。</p>
-<p>2.避免返回不必要的数据列，减少返回的数据列可以增加查询的效率</p>
-<p>3.根据查询分析器适当优什5HL的结构，比如是否走全表扫描、避无子查询等</p>
-<p>4.分库分表</p>
-<p><strong>水平分区（Sharding）</strong>：将大表按某个维度（如日期、ID等）拆分为多个子表，以减少单表数据量，分散查询压力。</p>
-<p><strong>垂直分区</strong>：将表按列进行拆分，特别是将经常一起查询的列放在一个表中，减少单次查询涉及的列数和数据量。</p>
-<p>5.读写分离</p>
-<p>6.语句优化</p>
-<p>避免sql语句和分页查询优化</p>
+                <h3 id="线程和进程的区别">1.线程和进程的区别</h3>
+<p>进程是分配资源的最小单元，进程包括多个线程，线程其实对应的就是cpu的核心</p>
+<p>线程是操作系统调度的最小单位，多个线程可以共享进程的资源</p>
+<h3 id="tcp和udp的区别">2.TCP和UDP的区别</h3>
+<p>1.TCP是需要握手连接的，udp不用直接发送数据包，但是可靠性低</p>
+<p>2.相对来说TCP较为安全一点，需要3次握手4次回收，具有丢包重传，流量控制和拥塞控制，数据按顺序的，因为有序列号和应答号</p>
+<p>3.udP不用去管
+连接的顺序和是否成功到达，需要会更进一步的优化才行，使用与视频流，在线游戏这种</p>
+<h3 id="网页输入url整个流程">3.网页输入url整个流程</h3>
+<p>网页上输入URl</p>
+<p>首先我们知道 需要对这个url进行解析，我们需要知道这个 url的地址</p>
+<p>首先就是 DNS域名解析，</p>
+<p><strong>首先是去查看本地缓存里面有没有</strong> 没有</p>
+<p>通过不同的根，域名，顶级解析器来获得 其中的IP地址</p>
+<p>获得IP地址之后应该去传输了，然后是建立连接，使用TCP或者UDP,完成之后浏览器发送http的请求给服务器，（请求头，请求url，请求方法）
+服务器通过controller 进行处理 执行业务，然后返回对应的相应，其中包括一些
+响应状态码还是起他，</p>
+<p>状态码的<strong>第一个数字表示响应类别</strong>，后面两位数字表示更详细的状态信息。</p>
+<p>首先是 传输头分片加上MAC的地址，一起去寻找目的地</p>
+<p>然后获得资源就是html前端页面进行渲染这样</p>
+<h3 id="java集合类">4.java集合类</h3>
+<p>集合类包括 list arraylist linkedlist</p>
+<h3 id="hashmap">5.HashMap</h3>
+<p>基于哈希表，主要是hashcode（）计算</p>
+<p>之前是 table+ 链表 后面是 +加上红黑树</p>
+<p>首先是检查 容量是否需要扩容， 然后
+查看table满了没有，然后放到链表里卖弄，满了转成红黑树，红黑树满了，扩建一般是
+0.75 两倍</p>
+<p>解决哈希冲突，链表寻址法 + 开放地址（都放在一起，然后
+多计算几次hashcode存储）</p>
+<p>线性探测，二次探测</p>
+<p>再哈希法
+当发生冲突时，可以对哈希函数的结果进行重新哈希计算，从而找到一个新的索引位置。这种方法一般和开放地址法结合使用。</p>
+<p>扩容 与 重哈希</p>
+<p><strong>一致性哈希</strong>常用于分布式系统中，它将整个哈希空间视为一个环形结构，避免了数据倾斜问题。它将数据均匀分布到多个桶（节点）中，并在哈希冲突时，通过移动顺时针找到下一个节点。</p>
+<h3 id="jvm">6. JVM</h3>
+<h3 id="mysql如何分页分页数据量大会有什么问题如何解决">7.MySQL如何分页;分页数据量大会有什么问题;如何解决</h3>
+<p>LIMIT page_size OFFSET offset_value;</p>
+<p>offset_value = (page_number - 1) * page_size</p>
+<p><strong>分页数据量大可能带来的问题</strong></p>
+<p>当数据量较大时，使用 <code>LIMIT</code> 和 <code>OFFSET</code>
+进行分页会遇到以下几个问题：</p>
+<h4 id="a.-性能问题">a. <strong>性能问题</strong></h4>
+<ul>
+<li><code>OFFSET</code> 会跳过前面的记录，这意味着 MySQL 需要扫描
+<code>OFFSET + LIMIT</code> 记录，但实际上只返回 <code>LIMIT</code>
+条。因此，当 <code>OFFSET</code> 值很大时，MySQL
+仍需要扫描大量数据，造成查询效率下降。</li>
+<li>随着 <code>OFFSET</code>
+增加，查询的时间复杂度会逐渐变高，特别是在大表中，响应时间可能显著增加。</li>
+</ul>
+<h4 id="b.-内存消耗">b. <strong>内存消耗</strong></h4>
+<ul>
+<li>MySQL
+在执行查询时，可能会将查询结果放在内存中，特别是当没有合适的索引时。对于大数据集分页，内存消耗会显著增加，可能会影响系统性能。</li>
+</ul>
+<h3 id="spring设计模式有哪些">8.spring设计模式有哪些</h3>
+<p><strong>创建型模式</strong>、<strong>结构型模式</strong>和<strong>行为型模式</strong></p>
+<h4 id="创建型模式creational-patterns"><strong>创建型模式（Creational
+Patterns）</strong></h4>
+<p>创建型模式关注对象的创建过程，解决对象创建的复杂性，提供更灵活的对象创建方式。</p>
+<ol type="1">
+<li><p><strong>工厂方法模式（Factory Method）</strong></p>
+<ul>
+<li>定义：通过定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法让类的实例化延迟到子类。</li>
+<li>场景：当类不知道它所需要创建的对象的确切类型时。</li>
+<li>例子：<code>LoggerFactory</code>
+根据日志类型创建不同的日志对象。</li>
+</ul>
+<p>在spring中 <code>BeanFactory</code> 和
+<code>ApplicationContext</code> 是典型的工厂模式的实现。用于创建和管理
+Spring Bean 实例，控制对象的创建过程，使得对象的创建与使用分离。</p>
+<pre class="line-numbers language-none"><code class="language-none">ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+MyBean myBean = context.getBean(MyBean.class);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li><p><strong>抽象工厂模式（Abstract Factory）</strong></p>
+<ul>
+<li><p>定义：提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</p></li>
+<li><p>场景：当系统需要独立于对象的具体实现来创建多个相关对象时。</p></li>
+<li><p>例子：创建不同品牌的家具（如椅子、桌子等），具体品牌由工厂类决定。</p>
+<p>在 Spring 中，<code>BeanFactory</code>
+是一个抽象工厂，负责提供一个或多个工厂接口来创建 Bean 实例。</p></li>
+</ul></li>
+<li><p><strong>单例模式（Singleton）</strong></p>
+<ul>
+<li><p>定义：确保某个类只有一个实例，并提供一个全局访问点来访问该实例。</p></li>
+<li><p>场景：需要确保全局有且只有一个实例时，如数据库连接、日志管理器等。</p></li>
+<li><p>例子：<code>DatabaseConnection</code>，所有访问数据库的操作共享同一个连接实例。</p>
+<p>Spring 默认情况下 Bean 是单例的（通过
+<code>@Scope("singleton")</code> 声明），这意味着每个 Spring
+容器中只有一个实例。保证在整个应用程序中，某个类的实例只有一个，减少内存占用，避免频繁创建和销毁对象。Spring
+中每个默认 <code>Bean</code> 实例都是单例，生命周期由容器控制。</p></li>
+</ul></li>
+<li><p><strong>原型模式（Prototype）</strong></p>
+<ul>
+<li>定义：通过复制现有实例来创建新对象，而不是通过类实例化。</li>
+<li>场景：当需要创建的对象是相似或重复时，避免昂贵的对象创建过程。</li>
+<li>例子：克隆一份复杂对象，如深度复制具有复杂结构的对象。</li>
+</ul></li>
+<li><p><strong>建造者模式（Builder）</strong></p>
+<ul>
+<li>定义：将一个复杂对象的构建与其表示分离，使得同样的构建过程可以创建不同的表示。</li>
+<li>场景：需要构建复杂对象时，尤其是这些对象由多个部分组成，并且构建过程可按步骤进行。</li>
+<li>例子：构建一个具有多种配置的房屋，建造者类按步骤创建房屋的不同部分。</li>
+</ul></li>
+</ol>
+<h4 id="结构型模式">结构型模式</h4>
+<p>结构型模式关注类与对象的组合，简化类的设计和对象之间的关系。</p>
+<p><strong>适配器模式（Adapter）</strong></p>
+<ul>
+<li><p>定义：将一个类的接口转换成客户希望的另一个接口。适配器使得原本由于接口不兼容而不能一起工作的类可以一起工作。</p></li>
+<li><p>场景：当现有的类接口与需要的接口不匹配时。</p></li>
+<li><p>例子：电源适配器，将不同的电压接口转换成设备所需的电压。</p>
+<p>Spring MVC 中的 <code>HandlerAdapter</code>
+使用了适配器模式，使不同的 <code>Controller</code>
+能够通过统一的接口进行调用。</p>
+<p>适配器将不同类型的处理器（如
+<code>Controller</code>、<code>HttpRequestHandler</code>）适配到统一的
+<code>HandlerAdapter</code> 接口，简化了调用过程。</p></li>
+</ul>
+<p><strong>装饰者模式（Decorator）</strong></p>
+<ul>
+<li>定义：动态地给一个对象添加一些额外的职责。装饰者模式提供了比继承更有弹性的扩展功能的方式。</li>
+<li>场景：需要在不修改原有类的情况下，给对象动态地添加功能。</li>
+<li>例子：Java IO 流中的 <code>BufferedReader</code> 和
+<code>InputStream</code>，可以动态添加缓冲或其他功能。</li>
+</ul>
+<p><strong>代理模式（Proxy）</strong></p>
+<ul>
+<li><p>定义：为其他对象提供一种代理以控制对这个对象的访问。</p></li>
+<li><p>场景：需要控制对象的访问、延迟加载、权限控制等。</p></li>
+<li><p>例子：远程代理（调用远程对象时，使用本地代理对象来代表它）。</p>
+<p>Spring
+AOP（面向切面编程）大量使用了代理模式来对目标对象进行增强，常见的动态代理实现包括
+JDK 动态代理和 CGLIB 代理。</p>
+<p>在不修改目标对象的情况下，通过代理对象添加额外的功能，例如日志记录、事务管理、权限检查等。</p>
+<pre class="line-numbers language-none"><code class="language-none">@Transactional
+public void someMethod() {
+    // 事务处理代码由代理对象注入
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h4 id="结构型模式-1">结构型模式</h4>
+<p><strong>策略模式（Strategy）</strong></p>
+<ul>
+<li>定义：定义一系列算法，将每个算法封装起来，使得它们可以互换使用。</li>
+<li>场景：需要在运行时动态选择算法时。</li>
+<li>例子：支付系统中，可以选择不同的支付方式（如信用卡、PayPal、银行转账等）。</li>
+</ul>
+<p><strong>观察者模式（Observer）</strong></p>
+<ul>
+<li>定义：定义对象间的一对多依赖，当一个对象的状态发生改变时，所有依赖于它的对象都能自动收到通知。</li>
+<li>场景：对象状态变化时，自动通知所有依赖对象。</li>
+<li>例子：GUI 中的按钮和点击事件，订阅者和发布者模式。</li>
+</ul>
+<h3 id="单例模式的实现">9.单例模式的实现</h3>
+<pre class="line-numbers language-none"><code class="language-none">1.双重延迟
+public class Singleton {
+    private volatile static Singleton instance;
+    private Singleton(){}
+    public static  Singleton getInstance(){
+        if(instance == null){
+            synchronized (Singleton.class){
+                if(instance == null){
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+2.懒汉式
+public class Singleton {
+    private static Singleton instance;
+    private Singleton(){}
+    public  static  Singleton getInstance(){
+        if(instance == null){
+            instance = new Singleton();
+            }
+        return instance;
+    }
+}
+3.延迟加锁
+public class Singleton {
+    private static Singleton instance;
+    private Singleton(){}
+    public  synchronized static  Singleton getInstance(){
+        if(instance == null){
+            instance = new Singleton();
+            }
+        return instance;
+    }
+}
+4.饿汉式
+public class Singleton {
+    private static  final  Singleton instance = new Singleton();
+    private Singleton(){}
+    public  static  Singleton getInstance(){
+
+        return instance;
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="selectpoll和epoll的区别">10.select、poll和epoll的区别</h3>
+<p><code>select</code>、<code>poll</code> 和 <code>epoll</code>
+都是用于处理多路复用 I/O 的系统调用，它们允许一个线程同时监听多个 I/O
+操作，但它们的实现方式和性能特性有所不同。以下是它们的主要区别</p>
+<p><strong><code>select</code></strong>：早期的 I/O
+多路复用机制，适用于少量文件描述符，但在处理大量连接时性能较差。</p>
+<p><strong><code>poll</code></strong>：改进了 <code>select</code>
+的文件描述符限制问题，适用于中等规模的连接，但性能依然受限于需要遍历所有文件描述符。</p>
+<p><strong><code>epoll</code></strong>：高效的 I/O
+多路复用机制，适用于大规模并发连接，提供更高的性能，但仅在 Linux
+上可用。</p>
+<p><code>select</code> 使用一个集合（通常是一个
+<code>fd_set</code>）来跟踪要监视的文件描述符，<code>select</code>
+会阻塞直到至少一个文件描述符变得可读、可写或发生异常，或者超时。</p>
+<p><code>poll</code>
+使用一个数组来保存需要监控的文件描述符及其事件，遍历数组，步限制文件描述符的数量</p>
+<p><code>epoll</code>
+使用事件通知机制，内核维护一个事件表，并仅将有事件的文件描述符返回给应用程序。</p>
+<h3 id="链表的形式和-应用场景">11.链表的形式和 应用场景</h3>
+<p>链表是一种基本的数据结构，由一系列节点组成，每个节点包含数据和指向下一个节点的指针。根据不同的实现方式，链表有几种不同的类型，每种类型适用于不同的使用场景：</p>
+<ol type="1">
+<li><strong>单链表（Singly Linked List）</strong>
+<ul>
+<li><strong>结构</strong>：每个节点包含数据和指向下一个节点的指针。</li>
+<li><strong>优点</strong>：简单，插入和删除操作较为高效（在已知节点的情况下）。</li>
+<li><strong>缺点</strong>：只能从头到尾单向遍历。</li>
+<li><strong>使用场景</strong>：适用于不需要频繁反向遍历的场景，比如实现简单的数据结构（如栈和队列）。</li>
+</ul></li>
+<li><strong>双链表（Doubly Linked List）</strong>
+<ul>
+<li><strong>结构</strong>：每个节点包含数据、指向下一个节点的指针和指向前一个节点的指针。</li>
+<li><strong>优点</strong>：可以在双向上遍历，插入和删除操作比单链表更灵活。</li>
+<li><strong>缺点</strong>：每个节点需要额外的存储空间来保存指向前一个节点的指针。</li>
+<li><strong>使用场景</strong>：需要双向遍历的应用，如实现双向队列（Deque）、浏览器历史记录的回溯。</li>
+</ul></li>
+<li><strong>循环链表（Circular Linked List）</strong>
+<ul>
+<li><strong>结构</strong>：在循环链表中，最后一个节点的指针指向头节点，形成一个闭环。</li>
+<li><strong>优点</strong>：能够从任意节点开始循环遍历整个链表。</li>
+<li><strong>缺点</strong>：需要处理循环的结束情况，可能会导致无限循环。</li>
+<li><strong>使用场景</strong>：适用于需要循环访问链表的场景，如圆形缓冲区（环形队列）和调度算法（如Round
+Robin）。</li>
+</ul></li>
+<li><strong>双向循环链表（Doubly Circular Linked List）</strong>
+<ul>
+<li><strong>结构</strong>：结合了双链表和循环链表的特性，节点既有前向和后向指针，也形成一个闭环。</li>
+<li><strong>优点</strong>：支持双向遍历并形成循环结构。</li>
+<li><strong>缺点</strong>：实现相对复杂，需要管理两个指针的循环。</li>
+<li><strong>使用场景</strong>：需要双向遍历和循环访问的场景，如在应用程序中实现菜单或任务调度系统。</li>
+</ul></li>
+<li><strong>跳表（Skip List）</strong>
+<ul>
+<li><strong>结构</strong>：在链表的基础上增加了多个层次的链表来跳过部分节点，从而提高查找效率。</li>
+<li><strong>优点</strong>：在平均情况下查找、插入和删除操作时间复杂度为
+O(log n)。</li>
+<li><strong>缺点</strong>：比普通链表复杂，需额外的空间来存储多个层次的链表。</li>
+<li><strong>使用场景</strong>：需要高效查找和插入操作的场景，如实现有序集合和数据库索引。</li>
+</ul></li>
+</ol>
+<p>不同类型的链表在实际应用中根据需求的不同，提供了不同的性能特性和灵活性。选择合适的链表类型可以帮助提高程序的效率和可维护性。</p>
+<h3 id="什么是零拷贝netty中的零拷贝">12.什么是零拷贝，netty中的零拷贝</h3>
+<p>零拷贝（Zero-Copy）是一种优化技术，旨在<strong>减少数据在用户空间和内核空间之间的复制操作</strong>，从而提高数据传输的效率。零拷贝主要用于文件传输、网络通信等场景，可以显著减少
+CPU 的负载和提高 I/O 性能。</p>
+<p>传统的数据传输流程通常包括以下步骤：</p>
+<ol type="1">
+<li><strong>从文件读取数据</strong>：操作系统将数据从磁盘读入内核空间的缓冲区。</li>
+<li><strong>用户空间的复制</strong>：操作系统将数据从内核缓冲区复制到用户空间的缓冲区。</li>
+<li><strong>网络传输</strong>：将用户空间的缓冲区数据通过网络发送到另一端。</li>
+</ol>
+<p>这种过程会涉及到多次内存复制，导致性能瓶颈。零拷贝技术的目标是减少或消除这些不必要的内存复制操作。</p>
+<p>0copy实现</p>
+<ol type="1">
+<li><strong><code>mmap</code>（内存映射文件）</strong>：
+<ul>
+<li>使用 <code>mmap</code>
+系统调用将文件映射到进程的虚拟内存空间中。这样，文件数据直接存在于内存中，无需将数据从文件系统复制到用户空间缓冲区。</li>
+<li>通过直接访问映射的内存区域，可以避免文件 I/O
+操作中不必要的内存复制。</li>
+</ul></li>
+<li><strong><code>sendfile</code></strong>：
+<ul>
+<li><code>sendfile</code>
+系统调用允许操作系统将文件数据直接从文件描述符发送到网络套接字，而不需要将数据复制到用户空间缓冲区。</li>
+<li>这样可以减少内存复制和 CPU 的消耗，提高数据传输的效率。</li>
+</ul></li>
+<li><strong><code>splice</code></strong>：
+<ul>
+<li><code>splice</code>
+系统调用可以在两个文件描述符之间直接移动数据，避免了数据复制到用户空间。</li>
+<li>例如，它可以在文件描述符和套接字之间直接传输数据，适用于处理大型文件的情况。</li>
+</ul></li>
+</ol>
+<h3 id="netty-的零拷贝">Netty 的零拷贝</h3>
+<p>Netty
+是一个高性能的网络通信框架，它在内部使用了多种零拷贝技术来提高网络传输的效率。</p>
+<h4 id="netty-中的零拷贝实现">Netty 中的零拷贝实现</h4>
+<ol type="1">
+<li><strong><code>ByteBuf</code></strong>：
+<ul>
+<li>Netty 使用 <code>ByteBuf</code> 类来处理缓冲区。<code>ByteBuf</code>
+支持直接缓冲区（<code>DirectByteBuf</code>）和堆内存缓冲区（<code>HeapByteBuf</code>），并提供高效的读取和写入操作。</li>
+<li>直接缓冲区使用了
+<code>ByteBuffer.allocateDirect()</code>，避免了在用户空间和内核空间之间的数据复制。</li>
+</ul></li>
+<li><strong><code>FileRegion</code></strong>：
+<ul>
+<li>Netty 提供了 <code>FileRegion</code>
+接口，可以将文件的数据区域直接传输到网络套接字，而不需要将数据复制到用户空间。</li>
+<li><code>FileRegion</code> 使用了操作系统的 <code>sendfile</code>
+系统调用来实现零拷贝。</li>
+</ul></li>
+<li><strong><code>Splice</code></strong>：
+<ul>
+<li>在 Linux 上，Netty 支持使用 <code>splice</code>
+系统调用来将数据从一个文件描述符传输到另一个文件描述符，而无需数据复制到用户空间。</li>
+<li>这对于在文件系统和网络之间高效地传输数据非常有用。</li>
+</ul></li>
+<li><strong><code>ByteBuffer</code></strong>：
+<ul>
+<li>Netty 使用 Java NIO 的 <code>ByteBuffer</code>
+来处理缓冲区。<code>ByteBuffer</code>
+可以是直接缓冲区（<code>ByteBuffer.allocateDirect()</code>）或堆缓冲区（<code>ByteBuffer.allocate()</code>）。</li>
+<li>直接缓冲区的使用减少了从用户空间到内核空间的数据复制，提高了 I/O
+性能。</li>
+</ul></li>
+</ol>
+<h3 id="总结">总结</h3>
+<p>零拷贝技术通过减少数据在用户空间和内核空间之间的复制，显著提高了数据传输效率。在
+Netty 中，通过使用
+<code>ByteBuf</code>、<code>FileRegion</code>、<code>splice</code> 和
+<code>ByteBuffer</code>
+等技术，充分利用了零拷贝的优势，提供了高效的网络通信能力。这些技术使得
+Netty 在处理大规模网络数据传输时表现出色，能够有效地减少 CPU
+的负载并提高 I/O 性能。</p>
 
                 
             </div>
@@ -552,8 +878,8 @@ mjx-container[display="true"] + br {
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/Java/">
-                                    <span class="chip bg-color">Java</span>
+                                <a href="../../../../tags/JAVA/">
+                                    <span class="chip bg-color">-JAVA</span>
                                 </a>
                             
                         </div>
@@ -599,17 +925,18 @@ mjx-container[display="true"] + br {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../09/09/spring-boot-admin/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/4.jpg" class="responsive-img" alt="spring boot admin">
+                        <img src="../../../../medias/featureimages/19.jpg" class="responsive-img" alt="面试">
                         
-                        <span class="card-title">spring boot admin</span>
+                        <span class="card-title">面试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -619,9 +946,9 @@ mjx-container[display="true"] + br {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -630,6 +957,7 @@ mjx-container[display="true"] + br {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -648,13 +976,13 @@ mjx-container[display="true"] + br {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../21/spring/">
+                <a href="../spring-boot-admin/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/11.jpg" class="responsive-img" alt="spring">
+                        <img src="../../../../medias/featureimages/4.jpg" class="responsive-img" alt="spring boot admin">
                         
-                        <span class="card-title">spring</span>
+                        <span class="card-title">spring boot admin</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -665,7 +993,7 @@ mjx-container[display="true"] + br {
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-09
                             </span>
                         <span class="publish-author">
                             
@@ -678,8 +1006,8 @@ mjx-container[display="true"] + br {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="../../../../tags/JAVA/">
+                        <span class="chip bg-color">-JAVA</span>
                     </a>
                     
                 </div>

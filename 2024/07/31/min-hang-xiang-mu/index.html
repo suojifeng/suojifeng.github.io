@@ -530,6 +530,15 @@ EasyExcel 进行数据的导入导出。</p></li>
 <p>ACARS数据不涉及到时间，所以数据量少，但是QAR的数据量涉及到时刻，数据量大</p>
 <p>QAR数据需要进行补全、去噪和归一化，查看减推比例</p>
 <h2 id="数据库">数据库</h2>
+<p>数据库里面的数据包括两种，一种是用来计算减推比例的，一种是用来计算排气裕度的</p>
+<p>其中减推比例计算 在计算过程当中 最大值为26%</p>
+<p>排气裕度 的数据量 最大是 大连飞往海南省和乌鲁木齐 大概5个小时</p>
+<p>其中 一张表的数据量有多少呢 60×60×5×40 = 720000</p>
+<p>我们有很多张表了 其实说 大概的也就 2 - 4小时的比较多</p>
+<p>但是数据有很多 计算起来有很慢怎么解决呢 ：</p>
+<p>1.数据压缩，降采样。去掉无关的数据列，然后是
+按照固定的时间间隔来抽取数据点而不是处理每一个时间点的数据。</p>
+<p>2.将大数据集按某个维度（如时间或空间）切分为多个小的子集进行并行处理</p>
 <p>可以说是一次旅程就可以有一张表出来：</p>
 <p>那么就是 加入</p>
 <p><strong>飞机信息表</strong>，记录飞机
@@ -542,6 +551,46 @@ EasyExcel 进行数据的导入导出。</p></li>
 和 <code>Timestamp</code>）上创建索引，以提高查询性能。</p>
 <p><strong>外键约束</strong>：使用外键约束保持数据完整性，确保每条发动机数据都关联到有效的航班。</p>
 <p>对于历史航班和其发动机数据，可以考虑定期进行归档，以减少主数据库的负担。</p>
+<h2 id="数据库使用的设计模式">数据库使用的设计模式</h2>
+<ol type="1">
+<li><strong>Cache Aside Pattern（旁路缓存模式）</strong></li>
+</ol>
+<ul>
+<li><strong>目的</strong>：在数据访问时优先从缓存中读取数据，当缓存没有数据时，再从数据库中读取，并将结果写入缓存。</li>
+<li><strong>应用场景</strong>：在需要频繁读取而数据变化不频繁的场景中，这种模式可以极大地提高数据访问效率。</li>
+<li>优点：
+<ul>
+<li>减少了数据库的压力。</li>
+<li>提高了系统性能和响应速度。</li>
+</ul></li>
+<li><strong>示例</strong>：在电商系统中，经常读取但不经常更新的商品信息可以使用旁路缓存模式进行加速。</li>
+</ul>
+<p>2.<strong>Data Access Object Pattern（DAO 模式）</strong></p>
+<ul>
+<li><strong>目的</strong>：将数据访问操作封装到一个独立的对象中，提供数据的抽象接口。</li>
+<li><strong>应用场景</strong>：在需要频繁进行数据库操作的场景下，使用
+DAO 模式可以将数据访问层与业务逻辑层分离。</li>
+<li>优点：
+<ul>
+<li>提供了一个统一的数据操作接口，隐藏了数据库访问的复杂性。</li>
+<li>提高了代码的可维护性和可测试性。</li>
+</ul></li>
+<li><strong>示例</strong>：一个 <code>UserDAO</code>
+对象可以负责所有与用户相关的数据库操作，如查询、插入、更新和删除。</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Factory Pattern（工厂模式）</strong></li>
+</ol>
+<ul>
+<li><strong>目的</strong>：为创建不同类型的数据对象提供统一的接口。</li>
+<li><strong>应用场景</strong>：当需要根据不同条件动态创建不同类型的数据对象时，可以通过工厂模式生成这些对象。</li>
+<li>优点：
+<ul>
+<li>提供灵活的数据对象创建机制，方便维护。</li>
+<li>隐藏具体数据类型的创建细节，符合开闭原则。</li>
+</ul></li>
+<li><strong>示例</strong>：在一个金融系统中，工厂模式可以用于生成不同类型的交易记录对象（如股票交易、债券交易）。</li>
+</ul>
 <h2 id="权限验证">权限验证</h2>
 <p>基于RDBC权限管理的一个平台，分为用户，角色，权限</p>
 <p>用户（多对多）角色（多对多）菜单,基于RBAC设计的，通过将权限分配给角色，角色分配给用户，一般是多对多的关系</p>
@@ -630,6 +679,171 @@ Token，确保请求的合法性和用户身份的验证。</p>
 <p><strong>4.集成在全局异常处理当中</strong></p>
 <p>GlobalExceptionHandler处理在 Spring Boot
 应用中出现的各种异常，并返回统一格式的错误响应。</p>
+<h2 id="aop">AOP</h2>
+<pre class="line-numbers language-none"><code class="language-none">@AfterReturning(pointcut = "@annotation(controllerLog)", returning = "commonResult")
+public void doAfterReturning(JoinPoint joinPoint, Log controllerLog, Object commonResult) {
+    if (Objects.isNull(commonResult)) {
+        HttpServletResponse response = ServletUtil.getResponse();
+        // 没有统一返回类则必须有相关response信息
+        if (Objects.isNull(response)) {
+            log.warn("LogAspect#doAfterReturning切面方法无返回值且未能获得Http响应信息，无法记录日志");
+            return;
+        }
+        // response状态码信息转换为CommonResult格式
+        commonResult = new CommonResult&lt;&gt;(response.getStatus(), response.getContentType(), null);
+    }
+    // 若返回值不是CommonResult类型，则根据返回值类型自动转换为CommonResult
+    if (!(commonResult instanceof CommonResult)) {
+        switch (commonResult) {
+            case Integer num -&gt; commonResult = CommonResult.of(num, "执行成功", "执行失败");
+            case Boolean flag -&gt; commonResult = CommonResult.of(flag, "执行成功", "执行失败");
+            default -&gt; commonResult = new CommonResult&lt;&gt;(HttpStatus.SUCCESS, "执行成功", commonResult);
+        }
+    }
+    handleLog(joinPoint, controllerLog, null, (CommonResult&lt;?&gt;) commonResult);
+}
+
+/**
+ * 请求出现异常后执行
+ *
+ * @param joinPoint 切点
+ * @param e         异常
+ */
+@AfterThrowing(value = "@annotation(controllerLog)", throwing = "e")
+public void doAfterThrowing(JoinPoint joinPoint, Log controllerLog, Exception e) {
+    handleLog(joinPoint, controllerLog, e, null);
+}
+
+/**
+ * 使用虚拟线程
+ */
+private final ExecutorService virtualThreadPerTaskExecutor = Executors.newThreadPerTaskExecutor(NamedThreadFactory.newVirtualThreadFactory("log"));
+
+/**
+ * 日志处理
+ * 1.记录请求上下文信息
+ * 2.开启虚拟线程异步处理
+ * 3.判断日志类型，解析注解中的Spring EL表达式，获取日志内容
+ * 4.调用日志服务保存日志
+ *
+ * @param joinPoint     切点
+ * @param controllerLog 注解
+ * @param e             异常
+ * @param commonResult  统一返回值
+ */
+protected void handleLog(JoinPoint joinPoint, Log controllerLog, Exception e, CommonResult&lt;?&gt; commonResult) {
+    // 无法异步获取request以及登录用户，先记录request相关信息
+    String ip = IpUtil.getIpAddress(ServletUtil.getRequest());
+    int userId = 0;
+    String requestMethod = ServletUtil.getRequest().getMethod();
+    // 操作日志时提前记录用户id
+    if (controllerLog.businessType() != BusinessType.LOGIN &amp;&amp;
+            controllerLog.businessType() != BusinessType.LOGOUT &amp;&amp;
+            controllerLog.businessType() != BusinessType.ACCESS) {
+        userId = userIdSearcher.getUserId();
+    }
+    int currentUserId = userId; // 满足lambda等效静态
+    // 异步处理后续操作
+    virtualThreadPerTaskExecutor.execute(() -&gt; {
+        try {
+            SysLog sysLog = new SysLog();
+            sysLog.setOperate(controllerLog.businessType().getKey());
+            sysLog.setIp(ip);
+            sysLog.setLocation(IpUtil.getRegionAndIsp(ip));
+            // 获取方法入参，key为参数名，value为参数值
+            LinkedHashMap&lt;String, Object&gt; params = ReflectUtil.resolveParams(joinPoint);
+            StandardEvaluationContext context = ReflectUtil.paramsAlias(params);
+            // 用自定义的Spring EL表达式解析字符串
+            sysLog.setService(ReflectUtil.resolveValue(controllerLog.service(), context, String.class));
+            // 是否抛出异常，若未抛出异常则通过状态码判断响应状态
+            if (Objects.nonNull(e)) {
+                sysLog.setStatus(BusinessStatus.FAIL.getKey());
+                sysLog.setContent(StringUtil.handleExpMsg(e.getMessage()));
+            } else if (commonResult.isSuccess()) {
+                // 请求处理成功
+                sysLog.setStatus(BusinessStatus.SUCCESS.getKey());
+                sysLog.setContent(ReflectUtil.resolveValue(controllerLog.content(), context, String.class));
+            } else {
+                // 请求处理失败
+                sysLog.setStatus(BusinessStatus.FAIL.getKey());
+                sysLog.setContent(commonResult.getMsg());
+            }
+            String username;
+            // 登录日志处理（含调用doAppLogin的登录）
+            if (BusinessType.LOGIN == controllerLog.businessType()) {
+                // 登录成功，直接从返回结果中获取用户信息
+                username = Objects.isNull(e) &amp;&amp; commonResult.isSuccess() ? ((UserVO) commonResult.getData()).getUsername()
+                        // 否则用自定义的Spring EL表达式解析参数获取异常的用户名
+                        : ReflectUtil.resolveValue(controllerLog.operator(), context, String.class);
+            }
+            // 注销日志处理，注销时会返回用户id
+            else if (BusinessType.LOGOUT == controllerLog.businessType()) {
+                Integer id = (Integer) commonResult.getData();
+                username = usernameSearcher.getUsername(id);
+            }
+            // 其他操作日志处理，可直接通过请求获得用户id
+            else {
+                // 访问日志可通过返回结果获取用户信息或者日志注解中的operator获取用户名
+                username = BusinessType.ACCESS == controllerLog.businessType() &amp;&amp; Objects.isNull(e) &amp;&amp; commonResult.isSuccess()
+                        ? ((UserVO) commonResult.getData()).getUsername()
+                        : StringUtil.isNotBlank(controllerLog.operator()) ? ReflectUtil.resolveValue(controllerLog.operator(), context, String.class)
+                        : usernameSearcher.getUsername(currentUserId);
+                // 获取请求方法类名
+                String className = joinPoint.getTarget().getClass().getName();
+                // 获取请求方法名
+                String methodName = joinPoint.getSignature().getName();
+                // 记录的方法格式为：类名#方法名格式
+                sysLog.setMethod(STR."\{className}#\{methodName}");
+                sysLog.setRequestMethod(requestMethod);
+            }
+            sysLog.setUsername(username);
+            logFeignService.saveLog(sysLog);
+        } catch (Exception exception) {
+            log.error("日志存储失败", exception);
+        }
+    });
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这个AOP日志切面代码的主要功能是对标记了特定注解的方法进行日志记录，分别在方法正常返回和抛出异常的情况下执行不同的处理逻辑。以下是代码中关键部分的解释：</p>
+<h3 id="afterreturning注解">1.
+<strong><code>@AfterReturning</code>注解</strong></h3>
+<p><code>@AfterReturning</code>表示该方法将在目标方法成功返回之后执行。</p>
+<ul>
+<li><strong><code>pointcut = "@annotation(controllerLog)"</code></strong>：该切面会拦截所有被标注了自定义注解（比如<code>@Log</code>）的方法。</li>
+<li><strong><code>returning = "commonResult"</code></strong>：表示捕获目标方法的返回值<code>commonResult</code>。</li>
+<li>在方法返回后，<code>doAfterReturning</code>会检查返回值是否为空（<code>commonResult</code>），如果为空，则通过<code>HttpServletResponse</code>生成一个默认的返回对象。如果返回值不是<code>CommonResult</code>类型，则进行相应的转换为统一格式。</li>
+<li>最终调用<code>handleLog</code>方法来处理日志记录。</li>
+</ul>
+<h3 id="afterthrowing注解">2.
+<strong><code>@AfterThrowing</code>注解</strong></h3>
+<p><code>@AfterThrowing</code>表示该方法会在目标方法抛出异常时执行。</p>
+<ul>
+<li><strong><code>throwing = "e"</code></strong>：捕获目标方法抛出的异常<code>e</code>。</li>
+<li>方法体中通过<code>handleLog</code>处理异常信息并记录日志。</li>
+</ul>
+<h3 id="日志异步处理">3. <strong>日志异步处理</strong></h3>
+<p>日志的核心处理逻辑位于<code>handleLog</code>方法中。通过虚拟线程池（<code>ExecutorService</code>）异步处理日志，以提高性能，避免阻塞主线程。</p>
+<h3 id="日志处理逻辑">4. <strong>日志处理逻辑</strong></h3>
+<p>在<code>handleLog</code>方法中，日志记录的详细逻辑包括：</p>
+<ul>
+<li><strong>获取请求的上下文信息</strong>：包括客户端IP地址、请求方法、用户ID等。</li>
+<li><strong>判断业务类型</strong>：通过<code>controllerLog.businessType()</code>，判断是否为登录、注销、访问等不同类型的业务操作，分别处理用户信息的获取逻辑。</li>
+<li><strong>解析注解中的Spring EL表达式</strong>：用自定义的Spring
+EL表达式解析注解中定义的日志内容，这样可以动态获取方法的参数、返回值，形成灵活的日志内容。</li>
+<li><strong>处理异常或成功情况</strong>：如果抛出了异常，日志将记录为失败；如果没有异常，则根据返回值的状态记录成功或失败。</li>
+<li><strong>日志异步保存</strong>：通过调用日志服务（<code>logFeignService.saveLog(sysLog)</code>）异步保存日志信息。</li>
+</ul>
+<h3 id="方法的核心作用">5. <strong>方法的核心作用</strong></h3>
+<ul>
+<li><strong><code>doAfterReturning</code></strong>：在目标方法正常返回后进行日志记录，统一处理返回结果，并调用日志处理逻辑。</li>
+<li><strong><code>doAfterThrowing</code></strong>：在目标方法抛出异常时捕获异常信息，记录日志。</li>
+<li><strong><code>handleLog</code></strong>：负责处理所有日志信息的细节，包括请求上下文信息、方法参数、用户信息、执行结果等。通过虚拟线程池进行异步处理，提高日志处理的效率。</li>
+</ul>
+<h3 id="虚拟线程">6. <strong>虚拟线程</strong></h3>
+<ul>
+<li>使用<code>virtualThreadPerTaskExecutor</code>创建虚拟线程（JDK中的轻量级线程），通过异步执行日志的保存操作，避免日志处理对应用性能产生影响。</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>该AOP切面通过<code>@AfterReturning</code>和<code>@AfterThrowing</code>注解分别处理方法正常执行和抛出异常的情况，结合虚拟线程实现异步日志记录，解析方法参数、返回值及异常信息，并将这些信息保存为操作日志。这种实现方式减少了手动日志代码的冗余，并提升了日志记录的灵活性和性能。</p>
 <h2 id="redis">Redis</h2>
 <p>Redis部署在docker里面，默认端口</p>
 <p>整合的是 satoken和redis链接</p>
@@ -646,6 +860,22 @@ Token，确保请求的合法性和用户身份的验证。</p>
 string进行Jackson序列化存储</p>
 <h3 id="存储的数据类型具体大小">存储的数据类型，具体大小</h3>
 <h3 id="如何保证缓存与数据库一致性">如何保证缓存与数据库一致性</h3>
+<p>先更新数据库，然后再删除缓存</p>
+<p>将更新缓存和删除缓存</p>
+<p><strong>异步重试</strong>。什么是异步重试？</p>
+<p>其实就是把重试请求写到「消息队列」中，然后由专门的消费者来重试，直到成功。</p>
+<p>或者更直接的做法，为了避免第二步执行失败，我们可以把操作缓存这一步，直接放到消息队列中，由消费者来操作缓存。</p>
+<p>到这里你可能会问，写消息队列也有可能会失败啊？而且，引入消息队列，这又增加了更多的维护成本，这样做值得吗？</p>
+<p>这个问题很好，但我们思考这样一个问题：如果在执行失败的线程中一直重试，还没等执行成功，此时如果项目「重启」了，那这次重试请求也就「丢失」了，那这条数据就一直不一致了。</p>
+<p>所以，这里我们必须把重试或第二步操作放到另一个「服务」中，这个服务用「消息队列」最为合适。这是因为消息队列的特性，正好符合我们的需求：</p>
+<ul>
+<li><strong>消息队列保证可靠性</strong>：写到队列中的消息，成功消费之前不会丢失（重启项目也不担心）</li>
+<li><strong>消息队列保证消息成功投递</strong>：下游从队列拉取消息，成功消费后才会删除消息，否则还会继续投递消息给消费者（符合我们重试的场景）</li>
+<li><figure>
+<img src="/2024/07/31/min-hang-xiang-mu/Users\suoshi\AppData\Roaming\Typora\typora-user-images\image-20240911222304193.png" alt="image-20240911222304193">
+<figcaption aria-hidden="true">image-20240911222304193</figcaption>
+</figure></li>
+</ul>
 <p>1.简单：适应并发量一致性都不是很高</p>
 <p>写的时候删除缓存，然后再更新DB</p>
 <p>读的时候先读缓存，然后读DB，异步将数据刷会缓存</p>
@@ -675,8 +905,6 @@ log可以将数据库同步到其他各类数据库中，目标数据库支持my
 </figure>
 <p>不同点就在于我们加一个缓存，将近期被修改的数据进行标记锁定。读的时候，标记锁定的数据强行走DB，没锁定的数据，先走缓存，加上标志
 cache_0来规定</p>
-<h3 id="db主从一致性mysql的主从一致性">DB主从一致性(MySql的主从一致性)</h3>
-<p>分布式锁添加 共享锁和排他锁</p>
 <h2 id="注册登录">注册登录</h2>
 <p>使用邮箱注册，需要验证码，验证码存放在redis中，在redis中设置有效时间为一分钟</p>
 <p>忘记密码：与注册部分同理，也是邮箱验证码</p>
@@ -823,7 +1051,7 @@ HTTP 方法。</p>
 <p>4.定义外键约束。（缺点就是维护起来比较困难）</p>
 <p><strong>Result（结果）</strong></p>
 <p>执行起来更加迅速，数据库结构更加清晰。</p>
-<h3 id="数据库和redis缓存不一致的问题">**2.数据库和redis缓存不一致的问题</h3>
+<h3 id="数据库和redis缓存不一致的问题">2.数据库和redis缓存不一致的问题</h3>
 <p><strong>Situation（情境）</strong></p>
 <p>民航发动机在飞行过程中会产生大量的一秒一次（实时）的数据。<strong>数据更新mysql数据库的时候和缓存不一致的情况。</strong>或者是mysql和redis的分布式事务的问题</p>
 <p><strong>Task（任务）</strong></p>
@@ -835,6 +1063,15 @@ HTTP 方法。</p>
 </figure>
 <p><strong>Result（结果）</strong></p>
 <p>保证了一致性</p>
+<h3 id="多线程插入民航发动机的数据">3.多线程插入民航发动机的数据</h3>
+<p>民航公司，会定时的 批量的 传输一部分的 发动机数据 上万条
+<strong>数据库化持久化操作</strong></p>
+<p>提升速度 多线程：</p>
+<p>事务失效：其他的怎么去快速感知，然后解决。</p>
+<p>1.编程式事务：定义一个全局的事务管理器，让所有子线程都用这一个事务管理器。缺点：还是串行操作数据库</p>
+<p>2.创建线程池：</p>
+<p>每个线程处理 2000条数据</p>
+<p>使用count down latch <img src="/2024/07/31/min-hang-xiang-mu/Users\suoshi\AppData\Roaming\Typora\typora-user-images\image-20240909141009461.png" alt="image-20240909141009461"></p>
 
                 
             </div>
