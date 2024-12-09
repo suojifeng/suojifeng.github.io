@@ -59,7 +59,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -171,8 +172,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</style><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -607,6 +607,14 @@ DAO 模式可以将数据访问层与业务逻辑层分离。</li>
 <p>​ 使用相关功能</p>
 <p>​ 导出数据，但不能上传</p>
 <p>权限的话呢：增删改查肯定是要有的，包括数据和角色的表单管理</p>
+<p>问题在于 是怎么样去实现权限验证的呢？</p>
+<p>\1.
+<strong>检测权限</strong>：用户访问资源时，我们首先要检查用户的令牌（SaToken）是否有访问该资源的权限。</p>
+<p>\2.
+<strong>返回权限拒绝</strong>：如果发现令牌不匹配或者用户无权限访问该资源，服务器会返回一个权限拒绝的状态码，比如403
+Forbidden，和一条相关的错误信息，提示用户无权限。</p>
+<p>\3.
+<strong>前端处理</strong>：前端收到服务器返回的403状态码后，可以拦截请求并展示一条用户友好的错误信息，告知用户当前没有访问该资源的权限。</p>
 <h2 id="负责人">负责人</h2>
 <p>你作为负责人，你应该要做的是什么职责呢？</p>
 <p>确定项目架构，搭建整体框架，基于 RBAC 权限模型设计用户数据库；</p>
@@ -847,10 +855,10 @@ EL表达式解析注解中定义的日志内容，这样可以动态获取方法
 <h2 id="redis">Redis</h2>
 <p>Redis部署在docker里面，默认端口</p>
 <p>整合的是 satoken和redis链接</p>
-<p>redis整合的是 jackson序列化方式</p>
+<p>redis整合的是 <strong>jackson序列化方式</strong></p>
 <p>存储的是 redis的信息：用户的角色信息与权限列表，jwt-token
 请求时间</p>
-<p>每次权限验证的时候重写satoken的接口，每次<strong>查权限</strong>和登录信息的时候从redis缓存里面查</p>
+<p>每次权限验证的时候重写satoken的接口，每次<strong>查权限</strong>和<strong>登录信息</strong>的时候从redis缓存里面查</p>
 <p>还有就是经常查询的数据库：比如说是
 航班表的信息，但是实时数据可能不会存储到里面</p>
 <p>在application.yml里面部署</p>
@@ -858,6 +866,20 @@ EL表达式解析注解中定义的日志内容，这样可以动态获取方法
 <p>首先是用户信息，和权限信息，key/value形式，使用哈希的形式</p>
 <p>然后是 用户会话登录形成的会话令牌即token，可以使用
 string进行Jackson序列化存储</p>
+<p>首先是</p>
+<p>热点数据：</p>
+<p>\1.
+<strong>缓存热点数据</strong>：使用缓存系统（如Redis或Memcached）将热点数据缓存起来，加快访问速度，减少数据库压力。</p>
+<p>\2.
+<strong>数据分片</strong>：将数据分成多个分片，分布在不同的数据库或者服务器上，减少单一数据节点的压力。</p>
+<p>\3.
+<strong>负载均衡</strong>：在应用层增加负载均衡器，将请求分发到不同的服务器进行处理，以均衡负载，减少单个服务器的压力。</p>
+<p>\4.
+<strong>数据复制</strong>：创建热点数据的多个副本，放在不同的服务器上，从而分散读写压力。</p>
+<p>\5.
+<strong>异步处理</strong>：对于非实时性的数据更新，可以采用异步处理，减少瞬间高并发的压力。</p>
+<p>\6.
+<strong>热点数据分布策略</strong>：根据热点数据的分布规律，通过调整数据库表的结构或者查询逻辑，从根本上避免产生热点数据。</p>
 <h3 id="存储的数据类型具体大小">存储的数据类型，具体大小</h3>
 <h3 id="如何保证缓存与数据库一致性">如何保证缓存与数据库一致性</h3>
 <p>先更新数据库，然后再删除缓存</p>
@@ -1018,13 +1040,15 @@ HTTP 方法。</p>
 <p>得到相关的jar包，在linux或者其他系统通过java命令运行项目jar包</p>
 <pre class="line-numbers language-none"><code class="language-none">java -jar boot-0.0.1-SNAPSHOT.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>然后前端是 下载 nginx作为前端代理</p>
-<p>前端打包的</p>
+<h3 id="前端">前端</h3>
+<p>前端打包的 Node.js和npm管理</p>
 <pre class="line-numbers language-none"><code class="language-none">npm run build<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>将打包完成的 <strong>dist</strong>文件夹放到 nginx的 html文件夹里面
 ，然后修改nginx.conf文件</p>
 <p>在命令行启动 start nginx</p>
 <p>然后就可以进去，主要是在云服务器中 要下载 mysql和redis
 这两个要启动</p>
+<p>这就是前端静态代码的运行</p>
 <h2 id="项目难点">项目难点</h2>
 <p>回答时，<strong>可以采用 STAR 法则</strong>：</p>
 <ul>
