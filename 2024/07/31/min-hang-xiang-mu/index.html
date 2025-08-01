@@ -59,7 +59,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -171,8 +172,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</style><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -894,7 +894,7 @@ string进行Jackson序列化存储</p>
 <li><strong>消息队列保证可靠性</strong>：写到队列中的消息，成功消费之前不会丢失（重启项目也不担心）</li>
 <li><strong>消息队列保证消息成功投递</strong>：下游从队列拉取消息，成功消费后才会删除消息，否则还会继续投递消息给消费者（符合我们重试的场景）</li>
 <li><figure>
-<img src="/2024/07/31/min-hang-xiang-mu/Blog\source_posts\民航项目\image-20240911222304193.png" alt="image-20240911222304193">
+<img src="/2024/07/31/min-hang-xiang-mu/image-20240911222304193.png" alt="image-20240911222304193">
 <figcaption aria-hidden="true">image-20240911222304193</figcaption>
 </figure></li>
 </ul>
@@ -911,7 +911,7 @@ string进行Jackson序列化存储</p>
 <p>利用<strong>MQ</strong>集成分布式系统 将所有“读数据库” +
 “写数据库缓存”的步骤<strong>串行化</strong></p>
 <figure>
-<img src="/2024/07/31/min-hang-xiang-mu/Blog\source_posts\民航项目\image-20240821141457071.png" alt="image-20240821141457071">
+<img src="/2024/07/31/min-hang-xiang-mu/image-20240821141457071.png" alt="image-20240821141457071">
 <figcaption aria-hidden="true">image-20240821141457071</figcaption>
 </figure>
 <p>写的时候第一步先删除缓存，删除之后再更新DB，我们监听从库(资源少的话主库也ok)的binlog，通过分析binlog我们解析出需要需要刷新的<strong>数据标识</strong>，然后将<strong>数据标识写入MQ</strong>，接下来就<strong>消费MQ</strong>，解析MQ消息来读库获取相应的数据刷新缓存。</p>
@@ -922,7 +922,7 @@ string进行Jackson序列化存储</p>
 log可以将数据库同步到其他各类数据库中，目标数据库支持mysql,postgresql,oracle,redis,MQ,ES等</p>
 <p>canal分成服务端deployer和客户端adapter，我们可以部署多个，同时为了方便管理还提供了一个管理端admin</p>
 <figure>
-<img src="/2024/07/31/min-hang-xiang-mu/Blog\source_posts\民航项目\3fc70f3217cb46364b4f6a3c6d0f3bf6.png" alt="img">
+<img src="/2024/07/31/min-hang-xiang-mu/3fc70f3217cb46364b4f6a3c6d0f3bf6.png" alt="img">
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
 <p>不同点就在于我们加一个缓存，将近期被修改的数据进行标记锁定。读的时候，标记锁定的数据强行走DB，没锁定的数据，先走缓存，加上标志
@@ -1095,7 +1095,7 @@ HTTP 方法。</p>
 <p>1.编程式事务：定义一个全局的事务管理器，让所有子线程都用这一个事务管理器。缺点：还是串行操作数据库</p>
 <p>2.创建线程池：</p>
 <p>每个线程处理 2000条数据</p>
-<p>使用count down latch <img src="/2024/07/31/min-hang-xiang-mu/Blog\source_posts\民航项目\image-20240909141009461.png" alt="image-20240909141009461"></p>
+<p>使用count down latch <img src="/2024/07/31/min-hang-xiang-mu/image-20240909141009461.png" alt="image-20240909141009461"></p>
 
                 
             </div>
