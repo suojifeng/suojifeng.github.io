@@ -8,7 +8,7 @@
       <link href="/2025/08/01/c/"/>
       <url>/2025/08/01/c/</url>
       
-        <content type="html"><![CDATA[<p>c++里面的关键字</p><figure><img src="/2025/08/01/c/Blog\source_posts\c\关键字.png" alt="image-20250801092733557"><figcaption aria-hidden="true">image-20250801092733557</figcaption></figure>]]></content>
+        <content type="html"><![CDATA[<h2 id="基础">基础</h2><p>c++里面的关键字</p><figure><img src="/2025/08/01/c/关键字.png" alt="image-20250801092733557"><figcaption aria-hidden="true">image-20250801092733557</figcaption></figure><p>const修饰指针有几种情况</p><ol type="1"><li>const int *p = &amp;a； 表明值不能修改，但是指向可以</li><li>int * const p = &amp;a；表明值可以修改，但是指向不行</li><li>const int * const p = &amp;a；都不能</li></ol><p>结构体指针可以通过 -&gt; 操作符来访问结构体中的成员</p><p>c++中使用new来开创数据，返回该数据对应的指针</p><p>int *a = new int（10）；</p><h2 id="c中的引用">c++中的引用</h2><p>本质上是一个<strong>指针常量</strong></p><p>给变量起别名 使用&amp;符号，操作同一个地址</p><p>引用必须初始化，在初始化不可以改变</p><p>引用可以做函数参数，利用引用让形参修饰实参，修改实际大小，区分值传递和地址传递</p><p>int a = 10；</p><p>int &amp;b = a；</p><p>b=20;</p><p>cout a = 20</p><pre class="line-numbers language-none"><code class="language-none">void swap(int &amp;num1, int &amp;num2) {int temp = num1;num1 = num2;num2 = temp;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>与此同时 引用可以作为 函数返回值,累哦作为 静态变量作为左值</p><p>不要返回局部变量的引用</p><pre class="line-numbers language-none"><code class="language-none">错误int&amp; test(){int a=10;return a;}int &amp;ref = test();正确 static int a = 10；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><figure><img src="/2025/08/01/c/image-20250801154025421.png" alt="image-20250801154025421"><figcaption aria-hidden="true">image-20250801154025421</figcaption></figure><p>还有常量引用，用于修饰形参防止误操作</p><h2 id="函数">函数</h2><p>c++函数重载不用 override函数</p><h2 id="类和对象">类和对象</h2><p>三大特征 封装 继承 多态</p><p>构造和析构函数 在 public作用域当中</p><figure><img src="/2025/08/01/c/image-20250802093121429.png" alt="image-20250802093121429"><figcaption aria-hidden="true">image-20250802093121429</figcaption></figure><pre class="line-numbers language-none"><code class="language-none">Person p1；无参Person p1(10)；有参Person p1(p2)；拷贝<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>赋初值</p><pre class="line-numbers language-none"><code class="language-none">Person(int a, int b, int c): m_A(a), m_B(b),m_C(c)int m_A, m_B,m_C<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>静态成员变量</p><p>在类中使用 static修饰，都可以进行改变</p><p>静态成员函数只能使用静态成员函数 同样也是加上static的关键字</p><pre class="line-numbers language-none"><code class="language-none">Person::m_APerson::func()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><figure><img src="/2025/08/01/c/image-20250802150709183.png" alt="image-20250802150709183"><figcaption aria-hidden="true">image-20250802150709183</figcaption></figure><p><strong>this指针指向被调用的成员函数所属的对象</strong></p><p>本质为指针常量，指针的指向是不可以被修改的</p><p>void show() const 加上 mutable关键字可以修改</p><p>const Person p；常对象只能调用常函数</p><p>this指针是隐含每一个非静态成员函数内的一种指针this指针不需要定义，直接使用即可当形参和成员变量同名时，可用this指针来区分在类的非静态成员函数中返回对象本身，可使用return *this</p><p>this -&gt;age = age</p><h2 id="友元">友元</h2><p>生活中你的家有客厅(Public)，有你的卧室(Private)客厅所有来的客人都可以进去，但是你的卧室是私有的，也就是说只有你能进去但是呢，你也可以允许你的好闺蜜好基友进去在程序里，有些私有属性也想让类外特殊的一些函数或者类进行访问，就需要用到友元的技术友元的目的就是让一个函数或者类 访问另一个类中私有成员<strong>友元的关键字为 friend</strong> 友元的三种实现<strong>全局函数做友元</strong> friend void goodplay();<strong>类做友元</strong> friend class building;<strong>成员函数做友元</strong> friend GoodGay::visit();</p><h2 id="继承">继承</h2><p>类的继承</p><pre class="line-numbers language-none"><code class="language-none">class Java : Public(继承方式 public protected private) BasePage{public:void conmten(){}}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><figure><img src="/2025/08/01/c/image-20250803084636556.png" alt="image-20250803084636556"><figcaption aria-hidden="true">image-20250803084636556</figcaption></figure><p>通过子类访问父类的东西的话需要加作用域</p><p>比如说是 Son.Base::m_A</p><p>包括 静态的成员或者函数的话 Son::Base::func(00)</p><p>多继承 使用，分割</p><p>virtual作为虚继承的作用，作为解决菱形多继承的问题</p><p>class Sheep :virtual public Animal{};</p><h2 id="多态">多态</h2><p>virtual</p><p>作为虚函数的使用 ，关键在与传入的是 指针 Animal &amp;animal</p><figure><img src="/2025/08/01/c/image-20250803094545440.png" alt="image-20250803094545440"><figcaption aria-hidden="true">image-20250803094545440</figcaption></figure><p>利用虚析构可以解决 父类指针释放子类对象时不干净的问题</p><p>纯虚析构既需要声明也需要实现</p><h2 id="文件操作">文件操作</h2><p>头文件 <fstream></fstream></p><p>文件类型分为两种: 1. 文本文件-文件以文本的ASCII码形式存储在计算机中2.二进制文件·文件以文本的二进制形式存储在计算机中，用户一般不能直接读懂它们</p><pre class="line-numbers language-none"><code class="language-none"># include&lt;fstream&gt;ofstream ofs;ofs.open("wenjianluj",打开方式)；ofs&lt;&lt;"写入的数据"；ofs.close();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><figure><img src="/2025/08/01/c/image-20250803103440235.png" alt="image-20250803103440235"><figcaption aria-hidden="true">image-20250803103440235</figcaption></figure><p>char buf[1024]={0};</p><p>ifs.getline(buf, sizeof(buf))</p><p>is_open</p><figure><img src="/2025/08/01/c/image-20250803104248697.png" alt="image-20250803104248697"><figcaption aria-hidden="true">image-20250803104248697</figcaption></figure><h2 id="模版">模版</h2><p>泛型编程和STL</p><p>建立同样模具，函数模版和类模版,和java中的泛型相同，作为函数不同类型的输入</p><p>template<typename t></typename></p><p>记住什么呢 作用域和定义的处理 Person&lt;T1, T2&gt;::Person(T1 name,T2 age)</p><p>分文件编写</p><p>![image-20250804100254285]image-20250804100254285.png)</p><h2 id="stl">STL</h2><p>长久以来,软件界一直希望建立一种可重复利用的东西C++的面向对象和泛型编程思想，目的就是复用性的提升大多情况下，数据结构和算法都未能有一套标准,导致被迫从事大量重复工作为了建立数据结构和算法的一套标准,诞生了STL</p><p>STL作为标准模版库，分为 容器 算法 迭代器</p><p>容器和算法之间通过迭代器进行无缝连接。 STL几乎所有的代码都采用了模板类或者模板函数</p><figure><img src="/2025/08/01/c/image-20250804103351196.png" alt="image-20250804103351196"><figcaption aria-hidden="true">image-20250804103351196</figcaption></figure><h3 id="vector">vector</h3><p>算法 for_each</p><p>迭代器 vector<int>::iterator</int></p><pre class="line-numbers language-none"><code class="language-none">#include&lt;vector&gt;#include&lt;a&gt;插入push_backvector&lt;int&gt;::iterator itbegain = v.begin(); 指向第一个位置vector&lt;int&gt;::iterator itend = v.end(); 指向最后一个的下一个位置for_each(v.begin(),v.end(),print())赋值问题v3.assign(v1.begin(), v1.end())empty()  capacity() size() resize(int num )front()返回第一个 back()at(int  idx) 返回索引的数据 或者直接使用数组[]reserve(int len)预留len和元素长度<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><figure><img src="/2025/08/01/c/image-20250804155946282.png" alt="image-20250804155946282"><figcaption aria-hidden="true">image-20250804155946282</figcaption></figure><h3 id="deque">deque</h3><p>双端数组，push_front push_back pop_front pop_back insert</p><figure><img src="/2025/08/01/c/image-20250804161751472.png" alt="image-20250804161751472"><figcaption aria-hidden="true">image-20250804161751472</figcaption></figure><p>排序 sort(begin,end)</p><h3 id="stack">stack</h3><p>stack<t> stk;</t></p><h3 id="queue">queue</h3><p>先进先出的数据结构</p><p>push pop back front</p><h3 id="list">List</h3><p>链表</p>]]></content>
       
       
       
@@ -16,7 +16,7 @@
             
             <tag> C++ </tag>
             
-            <tag> CR </tag>
+            <tag> C语言 </tag>
             
         </tags>
       
@@ -35,9 +35,9 @@
       
         <tags>
             
-            <tag> CR </tag>
-            
             <tag> daily life </tag>
+            
+            <tag> CR </tag>
             
         </tags>
       
@@ -56,9 +56,9 @@
       
         <tags>
             
-            <tag> CR </tag>
-            
             <tag> daily life </tag>
+            
+            <tag> CR </tag>
             
         </tags>
       
@@ -83,9 +83,9 @@
       
         <tags>
             
-            <tag> CR </tag>
-            
             <tag> daily life </tag>
+            
+            <tag> CR </tag>
             
         </tags>
       
@@ -364,9 +364,9 @@
       
         <tags>
             
-            <tag> CR </tag>
-            
             <tag> daily life </tag>
+            
+            <tag> CR </tag>
             
         </tags>
       
