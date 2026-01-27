@@ -6,7 +6,7 @@
   <link href="http://suojifeng.xyz/atom.xml" rel="self"/>
   
   <link href="http://suojifeng.xyz/"/>
-  <updated>2026-01-16T15:28:57.981Z</updated>
+  <updated>2026-01-27T15:01:23.112Z</updated>
   <id>http://suojifeng.xyz/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>反思</title>
+    <link href="http://suojifeng.xyz/2026/01/24/fan-si/"/>
+    <id>http://suojifeng.xyz/2026/01/24/fan-si/</id>
+    <published>2026-01-24T10:54:11.000Z</published>
+    <updated>2026-01-27T15:01:23.112Z</updated>
+    
+    <content type="html"><![CDATA[<p>我怎么是这么一个拧巴敏感的人，为什么我一直说反话呢</p><p>为什么有些话说不出口呢</p><p>为什么我就不能主动一点呢</p><p>为什么我不能勇敢的迈出那一步呢</p><p>说一句我很想你有那么难吗</p><p>为什么非要说认识你很开心呢</p><p>难道真的想说的话就说完了吗</p><p>真的没有，有很多话很多话想说，但是机会不合适</p><p>就像小时候看电视剧不明白为什么男主不说明白呢</p><p>现在才明白有很多话真的很难说出口</p><p>我怎么会说出口为了我可以怎么怎么样呢，我从来都不会这么说的</p><p>为了我能够留下来吗</p><p>我一辈子都学不会</p><p>怎么先炽热的先变冷了</p><p>说不出口是我的伪装</p><p>难道就这么放手错过吗</p><p>我没有结论呢</p><p>想起的就是爱是常觉亏欠</p><p>我的毛病就是会因为拧巴说反话</p><p>我希望你可以听出来</p><p>应该是没有那么爱吗，变得有点偏执了</p><p>慢热的人会自我折磨</p><p>不爱喝酒的我有好久都在买醉</p><p>我想忘记</p><p>才发现上头的那个是我</p><p>唉</p><p>难道我的道路就这么坎坷吗</p><p>我不知道</p><p>难过是真的</p><p>还记得</p><p>回家的路上听着慢冷哭了一路</p><p>哈哈</p><p>我真是爱哭鬼</p><p>又说不出口</p><p>高中是一段现在又是</p><p>我一直学不会</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我怎么是这么一个拧巴敏感的人，为什么我一直说反话呢&lt;/p&gt;
+&lt;p&gt;为什么有些话说不出口呢&lt;/p&gt;
+&lt;p&gt;为什么我就不能主动一点呢&lt;/p&gt;
+&lt;p&gt;为什么我不能勇敢的迈出那一步呢&lt;/p&gt;
+&lt;p&gt;说一句我很想你有那么难吗&lt;/p&gt;
+&lt;p&gt;为什么非要说认识你很开心呢&lt;/p&gt;</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>解剖</title>
@@ -513,33 +538,6 @@ Redis 单机模式、集群模式的区别，以及哨兵模式的介绍</summar
     
     
     <category term="daily life" scheme="http://suojifeng.xyz/tags/daily-life/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>时序思考</title>
-    <link href="http://suojifeng.xyz/2024/01/24/2024-shuo-shi/"/>
-    <id>http://suojifeng.xyz/2024/01/24/2024-shuo-shi/</id>
-    <published>2024-01-24T13:35:34.000Z</published>
-    <updated>2024-02-28T13:13:07.426Z</updated>
-    
-    <content type="html"><![CDATA[<p>新的开始，目前发现一个好的方向那就是patch，我想在这方面下功夫做出我自己的代码</p><p>但是最近的工作感觉是有在这个方面，但是基本上都在长时序预测上面，在分类上面我觉得应该应该是有区别的</p><p>所以 我觉得通道独立这个是不太对的，我觉得需要是需要考虑channel上面的注意力。我觉得应该要这么做，在明天把这几篇有关于patch的文章看完之后，我就去想自己的创新点，首先要是在自己的数据集上调通，然后就在想其他方法的问题。</p><p>明天会更新一下一些相关的论文，有关于patch的。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;新的开始，目前发现一个好的方向那就是patch，我想在这方面下功夫做出我自己的代码&lt;/p&gt;
-&lt;p&gt;但是最近的工作感觉是有在这个方面，但是基本上都在长时序预测上面，在分类上面我觉得应该应该是有区别的&lt;/p&gt;
-&lt;p&gt;所以 我觉得通道独立这个是
-不太对的，我觉得需要是需要考</summary>
-      
-    
-    
-    
-    <category term="My Daily Life" scheme="http://suojifeng.xyz/categories/My-Daily-Life/"/>
-    
-    
-    <category term="daliy life" scheme="http://suojifeng.xyz/tags/daliy-life/"/>
     
   </entry>
   
