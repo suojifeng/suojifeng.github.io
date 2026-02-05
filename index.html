@@ -93,8 +93,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
-<style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -206,7 +205,8 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</style><link rel="alternate" href="atom.xml" title="索时" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -558,6 +558,32 @@ mjx-container[display="true"] + br {
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/15.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">时序思考</div>
+                            <div class="description center-align">
+                                
+                                    新的开始，目前发现一个好的方向那就是patch，我想在这方面下功夫做出我自己的代码
+但是最近的工作感觉是有在这个方面，但是基本上都在长时序预测上面，在分类上面我觉得应该应该是有区别的
+所以 我觉得通道独立这个是
+不太对的，我觉得需要是
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2024/01/24/2024-shuo-shi/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/1.jpg');">
                 <div class="container">
                     <div class="row">
@@ -588,21 +614,19 @@ mjx-container[display="true"] + br {
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/15.jpg');">
+                 style="background-image: url('/medias/featureimages/19.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">时序思考</div>
+                            <div class="title center-align">AQS</div>
                             <div class="description center-align">
                                 
-                                    新的开始，目前发现一个好的方向那就是patch，我想在这方面下功夫做出我自己的代码
-但是最近的工作感觉是有在这个方面，但是基本上都在长时序预测上面，在分类上面我觉得应该应该是有区别的
-所以 我觉得通道独立这个是
-不太对的，我觉得需要是
+                                    
+
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2024/01/24/2024-shuo-shi/" class="waves-effect waves-light btn"
+                                <a href="2024/08/17/aqs/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -641,30 +665,6 @@ mjx-container[display="true"] + br {
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">AQS</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2024/08/17/aqs/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/19.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
                             <div class="title center-align">CENET</div>
                             <div class="description center-align">
                                 
@@ -684,22 +684,27 @@ mjx-container[display="true"] + br {
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/20.jpg');">
+                 style="background-image: url('/medias/featureimages/10.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">Medical Aided Diagnosis System Based on Temporal Knowledge Graph</div>
+                            <div class="title center-align">Graph Hawkes Transformer</div>
                             <div class="description center-align">
                                 
                                     [TOC]
-简单介绍
-主要技术：GRU+TransR
-在临床领域，疾病发病往往存在缓慢或快速的进化过程，这些临时的事实时间序列知识可以根据时间序列转换为时间序列知识图。
-将文本数据和临床数据中最初存在的不可计算知识以知识图的形式表示
+这是我首次读到 关于
+hawkes过程的用transformer实现的，当然后面也是有另外一个新的，那么我就在这里简单介绍一下这篇论文。
+首先我们先区分一下 几种算法之间的区别
+
+
+算法区别
+
+THP
+在计算所
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2023/08/22/medical-aided-diagnosis-system-based-on-temporal-knowledge-graph/" class="waves-effect waves-light btn"
+                                <a href="2023/09/04/graph-hawkes-transformer/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -734,27 +739,22 @@ mjx-container[display="true"] + br {
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/10.jpg');">
+                 style="background-image: url('/medias/featureimages/20.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">Graph Hawkes Transformer</div>
+                            <div class="title center-align">Medical Aided Diagnosis System Based on Temporal Knowledge Graph</div>
                             <div class="description center-align">
                                 
                                     [TOC]
-这是我首次读到 关于
-hawkes过程的用transformer实现的，当然后面也是有另外一个新的，那么我就在这里简单介绍一下这篇论文。
-首先我们先区分一下 几种算法之间的区别
-
-
-算法区别
-
-THP
-在计算所
+简单介绍
+主要技术：GRU+TransR
+在临床领域，疾病发病往往存在缓慢或快速的进化过程，这些临时的事实时间序列知识可以根据时间序列转换为时间序列知识图。
+将文本数据和临床数据中最初存在的不可计算知识以知识图的形式表示
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2023/09/04/graph-hawkes-transformer/" class="waves-effect waves-light btn"
+                                <a href="2023/08/22/medical-aided-diagnosis-system-based-on-temporal-knowledge-graph/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -901,6 +901,40 @@ SAHP 采用 self-attention
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
+                            <div class="title center-align">The Last</div>
+                            <div class="description center-align">
+                                
+                                    终于到了这一段
+好像已经平静下来了
+我是被推开的那个
+还好有昨天的是好的
+好像是的
+一段故事的结束总会让人想起故事的开始
+已经过去这么久了啊
+好像还是昨天
+真希望雨能下不停啊
+能一直延续
+会等到彩虹出来
+我不止一次问自
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2026/01/28/the-last/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/21.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
                             <div class="title center-align">The Graph Hawkes Process</div>
                             <div class="description center-align">
                                 
@@ -952,29 +986,19 @@ Hawkes过程是一种自激励点过程，用于对事件序列建模和分析�
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/21.jpg');">
+                 style="background-image: url('/medias/featureimages/12.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">The Last</div>
+                            <div class="title center-align">TiRGN</div>
                             <div class="description center-align">
                                 
-                                    终于到了这一段
-好像已经平静下来了
-我是被推开的那个
-还好有昨天的是好的
-好像是的
-一段故事的结束总会让人想起故事的开始
-已经过去这么久了啊
-好像还是昨天
-真希望雨能下不停啊
-能一直延续
-会等到彩虹出来
-我不止一次问自
+                                    TiRGN: Time-Guided Recurrent Graph Network with Local-Global
+Historical Patterns for Temporal Knowledge Graph Reasoning
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2026/01/28/the-last/" class="waves-effect waves-light btn"
+                                <a href="2023/09/10/tirgn/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -1007,30 +1031,6 @@ int * const p = &
                             </div>
                             <div class="cover-btns">
                                 <a href="2025/08/01/c/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/12.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">TiRGN</div>
-                            <div class="description center-align">
-                                
-                                    TiRGN: Time-Guided Recurrent Graph Network with Local-Global
-Historical Patterns for Temporal Knowledge Graph Reasoning
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2023/09/10/tirgn/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -1106,6 +1106,33 @@ global evolutions
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/4.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">spring boot admin</div>
+                            <div class="description center-align">
+                                
+                                    开源软件Spring Boot Admin
+使用Actuator可以收集应用系统的健康状态、内存、线程、堆栈、配置等信息
+一、什么是Spring Boot Admin
+Spring Boot Admin是一个管理和监控Spring
+
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2024/09/09/spring-boot-admin/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/14.jpg');">
                 <div class="container">
                     <div class="row">
@@ -1123,6 +1150,30 @@ Redis 单机模式、集群模式的区别，以及哨兵模式的介绍：
                             </div>
                             <div class="cover-btns">
                                 <a href="2024/08/20/redis-mian-shi/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/11.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">spring</div>
+                            <div class="description center-align">
+                                
+                                    
+
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2024/08/21/spring/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -1160,22 +1211,18 @@ Redis 单机模式、集群模式的区别，以及哨兵模式的介绍：
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/4.jpg');">
+                 style="background-image: url('/medias/featureimages/2.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">spring boot admin</div>
+                            <div class="title center-align">time series</div>
                             <div class="description center-align">
                                 
-                                    开源软件Spring Boot Admin
-使用Actuator可以收集应用系统的健康状态、内存、线程、堆栈、配置等信息
-一、什么是Spring Boot Admin
-Spring Boot Admin是一个管理和监控Spring
-
+                                    time series
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2024/09/09/spring-boot-admin/" class="waves-effect waves-light btn"
+                                <a href="2024/01/02/time-series/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -1187,19 +1234,25 @@ Spring Boot Admin是一个管理和监控Spring
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/11.jpg');">
+                 style="background-image: url('/medias/featureimages/8.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col s10 offset-s1">
-                            <div class="title center-align">spring</div>
+                            <div class="title center-align">反思</div>
                             <div class="description center-align">
                                 
-                                    
-
+                                    我怎么是这么一个拧巴敏感的人，为什么我一直说反话呢
+为什么有些话说不出口呢
+为什么我就不能主动一点呢
+为什么我不能勇敢的迈出那一步呢
+说一句我很想你有那么难吗
+为什么非要说认识你很开心呢
+难道真的想说的话就说完了吗
+真的没有，
                                 
                             </div>
                             <div class="cover-btns">
-                                <a href="2024/08/21/spring/" class="waves-effect waves-light btn"
+                                <a href="2026/01/24/fan-si/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -1273,59 +1326,6 @@ Function）是一种数学函数，它用于将图形（graphs）中的结构信
                             </div>
                             <div class="cover-btns">
                                 <a href="2023/09/25/tu-qian-ming-han-shu/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/8.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">反思</div>
-                            <div class="description center-align">
-                                
-                                    我怎么是这么一个拧巴敏感的人，为什么我一直说反话呢
-为什么有些话说不出口呢
-为什么我就不能主动一点呢
-为什么我不能勇敢的迈出那一步呢
-说一句我很想你有那么难吗
-为什么非要说认识你很开心呢
-难道真的想说的话就说完了吗
-真的没有，
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2026/01/24/fan-si/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/2.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">time series</div>
-                            <div class="description center-align">
-                                
-                                    time series
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2024/01/02/time-series/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -1550,30 +1550,6 @@ oppo
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/4.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">锁面试</div>
-                            <div class="description center-align">
-                                
-                                    1.CAS
-CAS（Compare-And-Swap，比较与交换）是一种常见的无锁（lock-free）机制，用于实现多线程环境下的原子操作。CAS操作通过硬件支持的原子指令来实现，确保在多线程竞争的情况下，数据的一致性和操作的原子性。
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="2024/08/21/suo-1/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/9.jpg');">
                 <div class="container">
                     <div class="row">
@@ -1620,6 +1596,30 @@ CAS（Compare-And-Swap，比较与交换）是一种常见的无锁（lock-free�
                             </div>
                             <div class="cover-btns">
                                 <a href="2024/07/31/min-hang-xiang-mu/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/4.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">锁面试</div>
+                            <div class="description center-align">
+                                
+                                    1.CAS
+CAS（Compare-And-Swap，比较与交换）是一种常见的无锁（lock-free）机制，用于实现多线程环境下的原子操作。CAS操作通过硬件支持的原子指令来实现，确保在多线程竞争的情况下，数据的一致性和操作的原子性。
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="2024/08/21/suo-1/" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
